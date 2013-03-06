@@ -62,6 +62,7 @@ plugins=(
 )
 
 # PROMPT COLORS
+# MOVED HERE, WAS NOT WORKING IN PROMPT FILE > LOOK INTO LATER
 local emoticon="%(?,%{$fg[green]%}✔%{$reset_color%},%{$fg[red]%}✖%{$reset_color%})"
 
 PROMPT='%{$fg_bold[cyan]%}%n%{$reset_color%}::%{$fg[red]%}%M%{$reset_color%} → '

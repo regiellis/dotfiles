@@ -33,7 +33,7 @@ alias md='mkdir -p' # CREATE DIR , CREATE PARENT DIR IF IT DOES EXIST
 alias up='cd ..'   # MOVE UP ONE DIR
 alias e='exit'  # EXIT CMD
 alias k9="killall -9" # KILL BY PROC ID
-alias pubkey="more $HOME/.ssh/id_dsa.public | pbcopy | echo '=> Public key copied to pasteboard.'" # COPY PUBKEY TO PASTEBOARD
+alias pubkey="more $HOME/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'" # COPY PUBKEY TO PASTEBOARD
 
 # GRC OVERIDES FOR LS
 #   MADE POSSIBLE THROUGH CONTRIBUTIONS FROM GENEROUS BENEFACTORS LIKE
