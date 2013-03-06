@@ -1,15 +1,6 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-# Emits Git metadata for use in a Zsh prompt.
-#
-# AUTHOR:
-#   Ben Hoskings
-#   https://github.com/benhoskings/dot-files/blob/master/files/bin/git_cwd_info
-#
-# MODIFIED:
-#   Geoffrey Grosenbach http://peepcode.com
-
 # The methods that get called more than once are memoized.
 
 def git_repo_path
@@ -23,7 +14,7 @@ def in_git_repo
 end
 
 def git_parse_branch
-  @git_parse_branch ||= `git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||'`.chomp
+  @git_parse_branch ||= File.read("#{git_repo_path}/HEAD").strip.scan(/refs\/heads\/(.*)$/).flatten.first
 end
 
 def git_head_commit_id
@@ -31,7 +22,7 @@ def git_head_commit_id
 end
 
 def git_cwd_dirty
-  " %{\e[1;31m%}✗%{\e[0m%}" unless git_repo_path == '.' || `git ls-files -m`.strip.empty?
+  " %{\e[90m%}✗%{\e[0m%}" unless git_repo_path == '.' || `git ls-files -m`.strip.empty?
 end
 
 def rebasing_etc
@@ -45,5 +36,5 @@ def rebasing_etc
 end
 
 if in_git_repo
-  print " %{\e[90m%}#{git_parse_branch} %{\e[37m%}#{git_head_commit_id}%{\e[0m%}#{rebasing_etc}#{git_cwd_dirty}"
+  print " %{\e[34m%}#{git_parse_branch}%{\e[90m%}@%{\e[33m%}#{git_head_commit_id}%{\e[0m%}#{rebasing_etc}#{git_cwd_dirty}"
 end
