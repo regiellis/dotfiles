@@ -308,6 +308,9 @@ alias www="cd $HOME/www/" # OVERVIEW GENERAL WEB DIR
 alias vhosts="cd $HOME/www/vhosts" # OVERVIEW GENERAL DIR
 alias tools="cd $HOME/www/tools" # OVERVIEW WEB DEV TOOLS DIR
 alias logs="cd $HOME/www/logs" # OVERVIEW LOGS DIR
+alias assets="cd $HOME/Desktop/ASSETS/" # OVERVIEW ASSET DIR
+alias assets_design="cd $HOME/Desktop/ASSETS/DESIGN" # OVERVIEW DESIGN DIR
+alias assets_dev="cd $HOME/Desktop/ASSETS/DEVELOPMENT" # OVERVIEW DESIGN DIR
 
 
 # CONFIG FILES --------------------------
@@ -321,7 +324,7 @@ alias ssh-config="subl -w $HOME/.ssh/config" # OPEN SSH CONFIG
 alias nginx_dir="cd /usr/local/etc/nginx/" # NGINX CONFIGS
 alias eh="sudo subl -w /private/etc/hosts" # OPEN HOSTS FILE IN SUBL
 alias eg='subl .git/config' # EDIT GIT CONFIG
-alias zshconfig="subl $HOME/.dotfiles" 
+alias zshconfig="subl $HOME/.dotfiles" # EDIT DOT FILES
 
 
 # LOAD PERSONAL FUNCTIONS IF USER MATCH

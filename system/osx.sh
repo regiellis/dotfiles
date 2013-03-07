@@ -19,7 +19,7 @@ sudo scutil --set LocalHostName "Persona-IO"
 sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "Persona-IO"
 
 # Menu bar: disable transparency
-defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool False
+defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool True
 
 # Menu bar: show remaining battery time (on pre-10.8); hide percentage
 defaults write com.apple.menuextra.battery ShowPercent -string "NO"
