@@ -81,7 +81,7 @@ if (( $+commands[hub] ))
 then
   alias git=$hub_path # USE HUB WHEN RUNNING GIT IS CALLED
 fi
-alias mate="subl" # USE SUBLIME WHEN MATE IS CALLED
+#alias mate="subl" # USE SUBLIME WHEN MATE IS CALLED
 alias nano="subl" # USE SUBLIME WHEN NANO IS CALLED
 alias curl="http" # USE HTTP WHEN CURL IS CALLED
 
