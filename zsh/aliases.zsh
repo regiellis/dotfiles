@@ -38,13 +38,13 @@ alias pubkey="more $HOME/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied t
 # GRC OVERIDES FOR LS
 #   MADE POSSIBLE THROUGH CONTRIBUTIONS FROM GENEROUS BENEFACTORS LIKE
 #   `BREW INSTALL COREUTILS`
-# if $(gls &>/dev/null)
-# then
-#   alias ls="gls -F --color"
-#   alias l="gls -lAh --color"
-#   alias ll="gls -l --color"
-#   alias la='gls -A --color'
-# fi
+if $(gls &>/dev/null)
+then
+  alias g-ls="gls -F --color"
+  alias g-l="gls -lAh --color"
+  alias g-ll="gls -l --color"
+  alias g-la='gls -A --color'
+fi
 
 # SYSTEM FUNCTIONS --------------------------
 
@@ -127,7 +127,8 @@ _rbenv() {
 
 # START PYTHON MAILSERVER 
 function python_mailserver() {
-  sudo python -m smtpd -n -c DebuggingServer localhost:$1
+  local port="${1:-25}"
+  sudo python -m smtpd -n -c DebuggingServer localhost:"$port"
 } 
 
 # START PYTHON SIMPLEMAILSERVER 
@@ -219,6 +220,27 @@ alias nginx="sudo nginx" # QUICK START NGINX
 alias nginx_stop="sudo nginx -s stop" # QUICK STOP NGINX 
 alias nginx_reload="sudo nginx -s reload" # QUICK RELOAD NGINX
 
+
+# START IT ALL
+# START ALL DEVELOPMENT SERVER AND ALL TOOLS / NGINX / MYSQL
+function start_deving_with_nginx_mysql {
+  nginx
+  php-fpm
+  mysql_start
+}
+
+# START ALL DEVELOPMENT SERVER AND ALL TOOLS / DJANGO / MYSQL
+function start_deving_with_django_mysql {
+  mysql_start
+  python manage.py runserver
+}
+
+# START ALL DEVELOPMENT SERVER AND ALL TOOLS / DJANGO / POSTGRESQL
+function start_deving_with_django_mysql {
+  postgresql_start
+  python manage.py runserver
+}
+
 # DEV TOOL FUNCTIONS --------------------------
 
 # MYSQL DUMP ADV < USERNAME < DATABASE < OUTPUT
@@ -233,7 +255,7 @@ function mysql_import_file() {
 
 # VARNISH START ON LOCALHOST > PORT 
 function varnish_start() {
-  sudo varnishd -b 127.0.0.1:$1
+  sudo varnishd -b 127.0.0.1{$1:-}
 }
 # ALIAS NGINX VHOSTS FILE
 function nginx_alias_site() {
@@ -264,6 +286,7 @@ alias gst='git status' # GIT STATUS
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative" # PRETTY LOG
 alias gs='git status -sb' # SHORT / BRANCH 
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm" # UNKNOWN
+alias n=!"git ls-files | xargs notes | awk -F: '{ print $1,$2; print $3,$4; print $5}' | grcat conf.notes " # FIND FIXME, TODO, ETC
 
 # GIT COMPLETION
 completion=/usr/local/share/zsh/site-functions/_git
@@ -327,9 +350,32 @@ alias eg='subl .git/config' # EDIT GIT CONFIG
 alias zshconfig="subl $HOME/.dotfiles" # EDIT DOT FILES
 
 
+# ALIASES FOR GRC FROM HOMEBREW
+source `brew --prefix grc`/etc/grc.bashrc
+
 # LOAD PERSONAL FUNCTIONS IF USER MATCH
 if [[ $USER == "regi" ]]; then
   source $HOME/.dotfiles/zsh/functions/personal.zsh
+fi
+
+if $(grc &>/dev/null)
+then
+  GRC=`which grc`
+  if [ "$TERM" != dumb ] && [ -n GRC ]
+  then
+    alias colourify="$GRC -es --colour=auto"
+    alias configure='colourify ./configure'
+    alias diff='colourify diff'
+    alias make='colourify make'
+    alias gcc='colourify gcc'
+    alias g++='colourify g++'
+    alias as='colourify as'
+    alias gas='colourify gas'
+    alias ld='colourify ld'
+    alias netstat='colourify netstat'
+    alias ping='colourify ping'
+    alias traceroute='colourify /usr/sbin/traceroute'
+  fi
 fi
 
 # PORT
