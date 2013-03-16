@@ -34,6 +34,7 @@ alias up='cd ..'   # MOVE UP ONE DIR
 alias e='exit'  # EXIT CMD
 alias k9="killall -9" # KILL BY PROC ID
 alias pubkey="more $HOME/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'" # COPY PUBKEY TO PASTEBOARD
+alias restart_finder="open /System/Library/CoreServices/Finder.app"
 
 # GRC OVERIDES FOR LS
 #   MADE POSSIBLE THROUGH CONTRIBUTIONS FROM GENEROUS BENEFACTORS LIKE
@@ -206,6 +207,16 @@ alias memcached_start='/usr/local/bin/memcached' # START MEMCACHED ON STANDARD P
 alias wordpress_svn='svn co http://core.svn.wordpress.org/trunk/ .' # WORDPRESS TRUNK DOWNLOAD
 fpm_path=$(which php-fpm)
 alias php-fpm='sudo $fpm_path' # PHP5 FPM START
+
+# VAGRANT TOOLS
+alias vinit="vagrant init" # CREATE VAGRANTFILE < NAME & URL
+alias vup="vagrant up" # CREATE SETUP BASED ON VAGRANT FILE
+alias vgone="vagrant destroy" # DESTORY VAGRANT SETUP
+alias vhalt="vagrant halt" # SHUTDOWN CURRENT RUNNING BOX
+alias vsleep="vagrant suspend" # SUSPEND CURRENT VBOX
+alias vssh="vagrant ssh" # SSH INTO CURRENT RUNNING BOX
+alias vst="vagrant status" # GET THE CURRENT STATUS OF BOX
+
 
 # NPM PACKAGE UPDATE
 # 
