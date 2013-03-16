@@ -196,13 +196,23 @@ function phonegap_rm() {
   cd ~ && rm -Rf /Users/$USER/www/apps/Phonegap/$1/$2
 }
 
+# function update_phone_gap() {
+#   wget 'https://downloads.sourceforge.net/project/phonegap/phonegap-2.5.0.zip?r=&ts=1362511314&use_mirror=iweb' $HOME/tmp/
+# }
+
 # DEV TOOLS --------------------------
-alias ios_sim='open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app' # IOS 6
+alias ios-sim-web='open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app' # IOS 6
 alias memcached_start='/usr/local/bin/memcached' # START MEMCACHED ON STANDARD PORT
 alias wordpress_svn='svn co http://core.svn.wordpress.org/trunk/ .' # WORDPRESS TRUNK DOWNLOAD
-alias php-fpm='sudo /usr/local/Cellar/php53/5.3.21/sbin/php-fpm' # PHP5 FPM START
+fpm_path=$(which php-fpm)
+alias php-fpm='sudo $fpm_path' # PHP5 FPM START
+
+# NPM PACKAGE UPDATE
+# 
+alias update_node_system='sudo npm update -g'
 
 # MYSQL
+
 alias my="mysql -u root -p" # QUICK LOGIN AS ROOT W/PASS
 alias mysql_start="mysql.server start" # MYSQL SERVER START
 alias mysql_stop="mysql.server stop" # MYSQL SERVER STOP
@@ -236,7 +246,7 @@ function start_deving_with_django_mysql {
 }
 
 # START ALL DEVELOPMENT SERVER AND ALL TOOLS / DJANGO / POSTGRESQL
-function start_deving_with_django_mysql {
+function start_deving_with_django_postgresql {
   postgresql_start
   python manage.py runserver
 }

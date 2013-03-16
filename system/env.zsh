@@ -6,7 +6,7 @@ export EDITOR="$(which subl) --new-window --wait"
 
 
 # PATHS --------------------------
-PATH="$HOME/bin:/usr/local/share/python:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/X11/bin:$PATH"
+PATH="$HOME/bin:/usr/local/share/python:/usr/local/bin:/usr/bin:/bin:/sbin:/usr/local/sbin:/usr/sbin:/sbin:/usr/X11/bin:$PATH"
 export MANPATH="/usr/local/share/man:/usr/X11/man:/usr/share/man:$MANPATH"
 export PATH="/usr/local/bin/node:$PATH" # NODE 
 export PATH="$HOME/.rbenv/bin:$PATH" # RBENV
@@ -15,6 +15,7 @@ export PATH="/usr/local/Cellar/php53/5.3.17/bin:$PATH" # PHP
 export PATH="/usr/local/bin/gsutil:$PATH" # GOOGLE UTILS
 export PATH="/usr/local/Cellar/ssh-copy-id/6.0p1/bin:$PATH" # SSH COPY
 export PATH="/usr/local/heroku/bin:$PATH" # HEROKU TOOLBELT
+PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
 
 # RBENV
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
