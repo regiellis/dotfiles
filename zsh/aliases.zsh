@@ -35,6 +35,8 @@ alias e='exit'  # EXIT CMD
 alias k9="killall -9" # KILL BY PROC ID
 alias pubkey="more $HOME/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'" # COPY PUBKEY TO PASTEBOARD
 alias restart_finder="open /System/Library/CoreServices/Finder.app"
+alias flush_ipfw="sudo /sbin/ipfw -f flush" # FLUSH IPFW RULES
+alias list_ipfw="sudo /sbin/ipfw list" # LIST IPFW RULES
 
 # GRC OVERIDES FOR LS
 #   MADE POSSIBLE THROUGH CONTRIBUTIONS FROM GENEROUS BENEFACTORS LIKE
@@ -93,6 +95,10 @@ function sublime_package() {
   git clone $1 $HOME/Library/Application\ Support/Sublime\ Text\ 2/Packages/$2
 }
 
+function sublime_3_package() {
+  git clone $1 $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/$2
+}
+
 # LANGUAGE --------------------------
 
 # PYTHON
@@ -134,9 +140,17 @@ function python_mailserver() {
 
 # START PYTHON SIMPLEMAILSERVER 
 function python_simpleserver() {
-    local port="${1:-8000}"
-    open "http://localhost:${port}/" && python -m SimpleHTTPServer "$port"
+  local port="${1:-8000}"
+  open "http://localhost:${port}/" && python -m SimpleHTTPServer "$port"
 } 
+
+# RAILS
+
+# POW SERVER / POWIFY MUST BE INSTALLED
+stop_pow() {
+  powify server stop
+  flush_ipfw
+}
 
 # FRAMEWORKS --------------------------
 
@@ -147,6 +161,8 @@ alias sp='rails plugin' # RAILS PLUGINS
 alias ss='rails server' # RAILS SERVER
 alias tl='tail -f log/*.log' # RAILS DEV LOG
 alias ts='thin start' # RAILS START THIN
+
+# DJANGO
 
 # TDD / BDD
 
