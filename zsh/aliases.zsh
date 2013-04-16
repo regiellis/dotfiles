@@ -224,22 +224,42 @@ alias wordpress_svn='svn co http://core.svn.wordpress.org/trunk/ .' # WORDPRESS 
 fpm_path=$(which php-fpm)
 alias php-fpm='sudo $fpm_path' # PHP5 FPM START
 
-# VAGRANT TOOLS
-alias vinit="vagrant init" # CREATE VAGRANTFILE < NAME & URL
-alias vup="vagrant up" # CREATE SETUP BASED ON VAGRANT FILE
-alias vgone="vagrant destroy" # DESTORY VAGRANT SETUP
-alias vhalt="vagrant halt" # SHUTDOWN CURRENT RUNNING BOX
-alias vsleep="vagrant suspend" # SUSPEND CURRENT VBOX
-alias vssh="vagrant ssh" # SSH INTO CURRENT RUNNING BOX
-alias vst="vagrant status" # GET THE CURRENT STATUS OF BOX
+# BOXES
+# Ubuntu precise 64 - http://files.vagrantup.com/precise64.box
+# Ubuntu Server 12.04 amd64 - http://goo.gl/8kWkm
+# 
 
+# VAGRANT COMMON CMDS
+alias vaginit="vagrant init" # CREATE VAGRANTFILE < NAME & URL
+alias vagup="vagrant up" # CREATE SETUP BASED ON VAGRANT FILE
+alias vagreload="vagrant reload" # REUP
+alias vaghalt="vagrant halt" # SHUTDOWN CURRENT RUNNING BOX
+alias vaggone="vagrant destroy" # DESTORY VAGRANT SETUP
+alias vagssh="vagrant ssh" # SSH INTO CURRENT RUNNING BOX
+alias vagsleep="vagrant suspend" # SUSPEND CURRENT VBOX
+alias vagst="vagrant status" # GET THE CURRENT STATUS OF BOX
+alias vagwakr="vagrant resume" # RESUME BOX
+
+# VAGRANT SHARE
+alias vagpack="vagrant package" # PACKAGE UP CURRENT BOX
+
+# VAGRANT BOX
+alias vagboxadd="vagrant box add" # ADD NEW BOX < NAME & URL
+alias vagboxlist="vagrant box list" # ADD LIST BOX < NAME
+alias vagboxrm="vagrant box remove" # ADD REMOVE BOX < NAME & URL
+alias vagboxrepack="vagrant box repackage" # ADD REPACK BOX < NAME & URL
+
+# VAGRANT PLUGIN
+alias vagplug="vagrant plugin" # PLUGIN LIST 
+alias vagpluginstall="vagrant plugin install" # PLUGIN INSTALL 
+alias vagpluglist="vagrant plugin list" # PLUGIN LIST 
+alias vagplug="vagrant plugin uninstall" # PLUGIN UNINSTALL 
 
 # NPM PACKAGE UPDATE
 # 
 alias update_node_system='sudo npm update -g'
 
 # MYSQL
-
 alias my="mysql -u root -p" # QUICK LOGIN AS ROOT W/PASS
 alias mysql_start="mysql.server start" # MYSQL SERVER START
 alias mysql_stop="mysql.server stop" # MYSQL SERVER STOP
