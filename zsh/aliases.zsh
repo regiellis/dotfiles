@@ -37,6 +37,18 @@ alias pubkey="more $HOME/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied t
 alias restart_finder="open /System/Library/CoreServices/Finder.app"
 alias flush_ipfw="sudo /sbin/ipfw -f flush" # FLUSH IPFW RULES
 alias list_ipfw="sudo /sbin/ipfw list" # LIST IPFW RULES
+alias going_mobile="diskutil unmountDisk /dev/disk*" # UNMONUT ALL DISK
+
+
+# ANIMATION FUNCTIONS --------------------------
+
+# MODO
+alias modo_dir="open $HOME/Library/Application\ Support/Luxology"
+alias modo_config="open $HOME/Library/Application\ Support/Luxology/Configs"
+alias modo_scripts="open $HOME/Library/Application\ Support/Luxology/Scripts"
+
+
+
 
 # GRC OVERIDES FOR LS
 #   MADE POSSIBLE THROUGH CONTRIBUTIONS FROM GENEROUS BENEFACTORS LIKE
@@ -253,7 +265,12 @@ alias vagboxrepack="vagrant box repackage" # ADD REPACK BOX < NAME & URL
 alias vagplug="vagrant plugin" # PLUGIN LIST 
 alias vagpluginstall="vagrant plugin install" # PLUGIN INSTALL 
 alias vagpluglist="vagrant plugin list" # PLUGIN LIST 
-alias vagplug="vagrant plugin uninstall" # PLUGIN UNINSTALL 
+alias vagplug="vagrant plugin uninstall" # PLUGIN UNINSTALL
+
+# COOKBOOKS
+function git_cookbooks() {
+	git clone https://github.com/opscode-cookbooks/$1.git
+}
 
 # NPM PACKAGE UPDATE
 # 
@@ -321,7 +338,7 @@ function nginx_alias_site() {
 
 # MARKDOWN DOCS
 function markdown() { 
-  /Applications/Textsubl.app/Contents/SharedSupport/Support/bin/Markdown.pl $1 > $1.html 
+  /Applications/Textmate.app/Contents/SharedSupport/Support/bin/Markdown.pl $1 > $1.html 
 }
 
 # VERSION TOOLS --------------------------
@@ -339,6 +356,7 @@ alias gdm='git diff master' # GIT DIFFERENCE MASTER
 alias gl='git pull' # GIT PULL
 alias gnp="git-notpushed" # LIST PUSH NOT ON ORIGIN
 alias gp='git push origin HEAD' # PUSH TO ORIGIN
+alias gph='git push heroku master' #PUSH TO HEROKU MASTER 
 alias gst='git status' # GIT STATUS
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative" # PRETTY LOG
 alias gs='git status -sb' # SHORT / BRANCH 
