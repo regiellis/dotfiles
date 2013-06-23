@@ -40,12 +40,20 @@ setopt menucomplete
 # CUSTOM PLUGINS MAY BE ADDED TO ~/.OH-MY-ZSH/CUSTOM/PLUGINS/
 plugins=(
     brew
+    bower
+    cake
     cloudapp
+    coffee
     django
     git
+    git-extras
     git-flow
+    git-hubflow
     github
+    git-remote-branch
     mercurial
+    heroku
+    history
     osx
     pip
     python
@@ -57,14 +65,18 @@ plugins=(
     terminalapp
     node
     npm
-    django
     sublime
+    ssh-agent
+    terminalapp
+    vagrant
+    virtualenvwrapper
 )
+
 
 # PROMPT COLORS
 # MOVED HERE, WAS NOT WORKING IN PROMPT FILE > LOOK INTO LATER
 local emoticon="%(?,%{$fg[green]%}✔%{$reset_color%},%{$fg[red]%}✖%{$reset_color%})"
 
-PROMPT='%{$fg_bold[yellow]%}%n%{$reset_color%} > %{$fg[red]%}%M%{$reset_color%} → '
+PROMPT='%{$fg_bold[yellow]%}[ %n ]%{$reset_color%} %{$fg[red]%}%M%{$reset_color%} → '
 PROMPT2='\'
-RPROMPT='$(prompt_char) %{$fg_bold[cyan]%}%~%{$reset_color%}%{$fg_bold[green]%}$(current_venv)%{$fg_bold[red]%}$(current_rbenv)%{$reset_color%}$($HOME/.dotfiles/bin/git-cwd-info.rb)'
+RPROMPT='%{$fg_bold[cyan]%}%~%{$reset_color%}%{$fg_bold[green]%}$(current_venv)%{$fg_bold[red]%}$(current_rbenv)%{$reset_color%}$($HOME/.dotfiles/bin/git-cwd-info.rb)'

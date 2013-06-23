@@ -39,7 +39,11 @@ def git_head_commit_id
 end
 
 def git_cwd_dirty
-  " %{\e[90m%}✗%{\e[0m%}" unless git_repo_path == '.' || `git ls-files -m`.strip.empty?
+  if git_repo_path == '.' || `git ls-files -m`.strip.empty?
+    " %{\033[1;31m%}✗%{\e[0m%}"
+  else 
+    " %{\033[0;32m%}✔%{\e[0m%}"
+  end
 end
 
 def rebasing_etc
@@ -53,5 +57,5 @@ def rebasing_etc
 end
 
 if in_git_repo
-  print " %{\033[1;31m%}#{git_parse_branch}%{\e[90m%}@%{\e[33m%}#{git_head_commit_id}%{\e[0m%}#{rebasing_etc}#{git_cwd_dirty}"
+  print " %{\033[1;31m%}⭠ #{git_parse_branch}%{\e[90m%}@%{\e[33m%}#{git_head_commit_id}%{\e[0m%}#{rebasing_etc}#{git_cwd_dirty}"
 end

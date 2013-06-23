@@ -38,7 +38,7 @@ alias restart_finder="open /System/Library/CoreServices/Finder.app"
 alias flush_ipfw="sudo /sbin/ipfw -f flush" # FLUSH IPFW RULES
 alias list_ipfw="sudo /sbin/ipfw list" # LIST IPFW RULES
 alias going_mobile="diskutil unmountDisk /dev/disk*" # UNMONUT ALL DISK
-
+alias spell="aspell" 
 
 # ANIMATION FUNCTIONS --------------------------
 
@@ -46,8 +46,6 @@ alias going_mobile="diskutil unmountDisk /dev/disk*" # UNMONUT ALL DISK
 alias modo_dir="open $HOME/Library/Application\ Support/Luxology"
 alias modo_config="open $HOME/Library/Application\ Support/Luxology/Configs"
 alias modo_scripts="open $HOME/Library/Application\ Support/Luxology/Scripts"
-
-
 
 
 # GRC OVERIDES FOR LS
@@ -183,51 +181,11 @@ alias aaf='autotest -f' # DON'T RUN ALL AT START
 alias aas="./script/autospec" # RSPEC
 
 
+# RAPTORJS
+alias rjs='raptor' # SHORTEN RAPTOR CALL
+
+
 # FRAMEWORK FUNCTIONS --------------------------
-
-# PHONEGAP
-
-# CREATE PHONEGAP IOS APP < NAME
-function phonegap_create_ios() {
-  /Applications/Phonegap/ios/bin/create /Users/$USER/www/apps/Phonegap/$1 io.persona.$1 $1
-}
-# CREATE PHONEGAP ANDROID APP < NAME
-function phonegap_create_android() {
-  /Applications/Phonegap/android/bin/create /Users/$USER/www/apps/Phonegap/$1 io.persona.$1 $1
-}
-# CREATE PHONEGAP WINDOWS 8 PHONE APP < NAME
-function phonegap_create_windows_8_phone() {
-  /Applications/Phonegap/windows-phone-8/bin/create /Users/$USER/www/apps/Phonegap/$1 io.persona.$1 $1
-}
-# CREATE PHONEGAP WINDOWS 8 APP < NAME
-function phonegap_create_windows_8_app() {
-  /Applications/Phonegap/windows8/bin/create /Users/$USER/www/apps/Phonegap/$1 io.persona.$1 $1
-}
-# CHANGE INTO PHONEGAP APP DIR < APP < NAME
-function phonegap_dir() {
-  cd /Users/$USER/www/apps/Phonegap/$1/$2
-}
-# BUILD PHONEGAP APP < APP < NAME
-function phonegap_build() {
-  /Users/$USER/www/apps/Phonegap/$1/$2/cordova/debug
-  /Users/$USER/www/apps/Phonegap/$1/$2/cordova/emulate
-}
-# SIMULATE PHONEGAP APP < APP < NAME
-function phonegap_sim() {
-  /Users/$USER/www/apps/Phonegap/$1/$2/cordova/emulate
-}
-# OPEN LOGFILE FOR PHONEGAP APP < APP < NAME
-function phonegap_log() {
-  subl /Users/$USER/www/apps/Phonegap/$1/$2/cordova/log
-}
-# DELETE PHONEGAP APP < APP < NAME
-function phonegap_rm() {
-  cd ~ && rm -Rf /Users/$USER/www/apps/Phonegap/$1/$2
-}
-
-# function update_phone_gap() {
-#   wget 'https://downloads.sourceforge.net/project/phonegap/phonegap-2.5.0.zip?r=&ts=1362511314&use_mirror=iweb' $HOME/tmp/
-# }
 
 # DEV TOOLS --------------------------
 alias ios-sim-web='open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app' # IOS 6
@@ -242,30 +200,30 @@ alias php-fpm='sudo $fpm_path' # PHP5 FPM START
 # 
 
 # VAGRANT COMMON CMDS
-alias vaginit="vagrant init" # CREATE VAGRANTFILE < NAME & URL
-alias vagup="vagrant up" # CREATE SETUP BASED ON VAGRANT FILE
-alias vagreload="vagrant reload" # REUP
-alias vaghalt="vagrant halt" # SHUTDOWN CURRENT RUNNING BOX
-alias vaggone="vagrant destroy" # DESTORY VAGRANT SETUP
-alias vagssh="vagrant ssh" # SSH INTO CURRENT RUNNING BOX
-alias vagsleep="vagrant suspend" # SUSPEND CURRENT VBOX
-alias vagst="vagrant status" # GET THE CURRENT STATUS OF BOX
-alias vagwakr="vagrant resume" # RESUME BOX
+alias vinit="vagrant init" # CREATE VAGRANTFILE < NAME & URL
+alias vup="vagrant up" # CREATE SETUP BASED ON VAGRANT FILE
+alias vreload="vagrant reload" # REUP
+alias vhalt="vagrant halt" # SHUTDOWN CURRENT RUNNING BOX
+alias vgone="vagrant destroy" # DESTORY VAGRANT SETUP
+alias vssh="vagrant ssh" # SSH INTO CURRENT RUNNING BOX
+alias vsleep="vagrant suspend" # SUSPEND CURRENT VBOX
+alias vst="vagrant status" # GET THE CURRENT STATUS OF BOX
+alias vwake="vagrant resume" # RESUME BOX
 
 # VAGRANT SHARE
-alias vagpack="vagrant package" # PACKAGE UP CURRENT BOX
+alias vpack="vagrant package" # PACKAGE UP CURRENT BOX
 
 # VAGRANT BOX
-alias vagboxadd="vagrant box add" # ADD NEW BOX < NAME & URL
-alias vagboxlist="vagrant box list" # ADD LIST BOX < NAME
-alias vagboxrm="vagrant box remove" # ADD REMOVE BOX < NAME & URL
-alias vagboxrepack="vagrant box repackage" # ADD REPACK BOX < NAME & URL
+alias vboxadd="vagrant box add" # ADD NEW BOX < NAME & URL
+alias vboxlist="vagrant box list" # ADD LIST BOX < NAME
+alias vboxrm="vagrant box remove" # ADD REMOVE BOX < NAME & URL
+alias vboxrepack="vagrant box repackage" # ADD REPACK BOX < NAME & URL
 
 # VAGRANT PLUGIN
-alias vagplug="vagrant plugin" # PLUGIN LIST 
-alias vagpluginstall="vagrant plugin install" # PLUGIN INSTALL 
-alias vagpluglist="vagrant plugin list" # PLUGIN LIST 
-alias vagplug="vagrant plugin uninstall" # PLUGIN UNINSTALL
+alias vplug="vagrant plugin" # PLUGIN LIST 
+alias vpluginstall="vagrant plugin install" # PLUGIN INSTALL 
+alias vpluglist="vagrant plugin list" # PLUGIN LIST 
+alias vplug="vagrant plugin uninstall" # PLUGIN UNINSTALL
 
 # COOKBOOKS
 function git_cookbooks() {
@@ -274,7 +232,7 @@ function git_cookbooks() {
 
 # NPM PACKAGE UPDATE
 # 
-alias update_node_system='sudo npm update -g'
+alias npm_update='sudo npm update -g'
 
 # MYSQL
 alias my="mysql -u root -p" # QUICK LOGIN AS ROOT W/PASS
@@ -408,12 +366,14 @@ alias tools="cd $HOME/www/tools" # OVERVIEW WEB DEV TOOLS DIR
 alias logs="cd $HOME/www/logs" # OVERVIEW LOGS DIR
 alias assets="cd $HOME/Desktop/ASSETS/" # OVERVIEW ASSET DIR
 alias assets_design="cd $HOME/Desktop/ASSETS/DESIGN" # OVERVIEW DESIGN DIR
-alias assets_dev="cd $HOME/Desktop/ASSETS/DEVELOPMENT" # OVERVIEW DESIGN DIR
+alias assets_dev="cd $HOME/Desktop/ASSETS/DEVELOPMENT" # OVERVIEW DEVELOPMENT DIR
+alias android_tools="cd /Applications/ADT/sdk/tools" # OVERVIEW ANDRIOD TOOLS DIR
 
 
 # CONFIG FILES --------------------------
 alias ohmyzsh="subl $HOME/.oh-my-zsh" # OPEN ZSH DEFAULT CONFIG
 alias zshconfig="subl $HOME/.zshrc" # OPEN ZSH CONFIG
+alias reload=". ~/.zshrc && echo 'ZSH config reloaded'" # RELOAD CONFIGS
 alias ea='subl -w $HOME/.dotfiles/zsh/aliases.zsh && reload' # OPEN USER-DEFINED ALIASES
 alias ee="subl $HOME/.dotfiles/system/env.zsh" # OPEN USER-DEFINED ENV
 alias known_host="subl /Users/$USER/.ssh/known_hosts" # OPEN KNOWN HOST 
