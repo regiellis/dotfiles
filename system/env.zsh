@@ -15,6 +15,9 @@ export PATH="/usr/local/Cellar/php53/5.3.17/bin:$PATH" # PHP
 export PATH="/usr/local/bin/gsutil:$PATH" # GOOGLE UTILS
 export PATH="/usr/local/Cellar/ssh-copy-id/6.0p1/bin:$PATH" # SSH COPY
 export PATH="/usr/local/heroku/bin:$PATH" # HEROKU TOOLBELT
+export PATH="/Applications/adt-bundle/sdk/tools:$PATH" # ANDRIOD
+export PATH="/Applications/adt-bundle/sdk/platform-tools:$PATH" # ANDRIOD
+
 PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
 
 # RBENV
@@ -40,4 +43,7 @@ export PATH="/Applications/SenchaSDKTools:$PATH"
 export PATH="/Applications/SenchaSDKTools/command:$PATH"
 export PATH="/Applications/SenchaSDKTools/jsbuilder:$PATH"
 export PATH="/Applications/SenchaSDKTools/appbuilder:$PATH"
+
+# NODE 
+ulimit -n 10000 # SET SO THAT EMFILE error clears
 

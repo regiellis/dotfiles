@@ -47,6 +47,12 @@ alias modo_dir="open $HOME/Library/Application\ Support/Luxology"
 alias modo_config="open $HOME/Library/Application\ Support/Luxology/Configs"
 alias modo_scripts="open $HOME/Library/Application\ Support/Luxology/Scripts"
 
+# ROSETTA STONE
+function rosetta() {
+  /Library/Application\ Support/RosettaStoneDaemon/Bin/RosettaStoneDaemon
+  /Applications/Rosetta\ Stone\ TOTALe.app/Contents/MacOS/Rosetta\ Stone\ TOTALe
+}
+
 
 # GRC OVERIDES FOR LS
 #   MADE POSSIBLE THROUGH CONTRIBUTIONS FROM GENEROUS BENEFACTORS LIKE
@@ -113,6 +119,7 @@ function sublime_3_package() {
 
 # PYTHON
 alias pythondir="python -c 'from distutils.sysconfig import get_python_lib; print get_python_lib()'" # DISPLAY SYSTEM PYTHON DIR
+alias pipupdate="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U" # UPDATE ALL PIP PACKAGES
 
 # RUBY
 alias r="rake"
@@ -367,7 +374,8 @@ alias logs="cd $HOME/www/logs" # OVERVIEW LOGS DIR
 alias assets="cd $HOME/Desktop/ASSETS/" # OVERVIEW ASSET DIR
 alias assets_design="cd $HOME/Desktop/ASSETS/DESIGN" # OVERVIEW DESIGN DIR
 alias assets_dev="cd $HOME/Desktop/ASSETS/DEVELOPMENT" # OVERVIEW DEVELOPMENT DIR
-alias android_tools="cd /Applications/ADT/sdk/tools" # OVERVIEW ANDRIOD TOOLS DIR
+alias android_tools="cd /Applications/adt-bundle/sdk/tools" # OVERVIEW ANDRIOD TOOLS DIR
+alias android_sdk="cd /Applications/adt-bundle/sdk/tools/android sdk" # OVERVIEW ANDRIOD TOOLS DIR
 
 
 # CONFIG FILES --------------------------
