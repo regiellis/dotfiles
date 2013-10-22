@@ -12,8 +12,8 @@ EMAIL="$EMAIL"
 
 alias disable_local_backups="sudo tmutil disablelocal" # DISABLES LOCAL BACKUPS - OSX 10.6+
 alias enable_local_backups="sudo tmutil enablelocal" # ENABLES LOCAL BACKUPS - OSX 10.6+
-alias show_hidden_files="defaults write com.apple.Finder AppleShowAllFiles TRUE; killall Finder" # SHOW ALL HIDDEN FILES
-alias hide_hidden_files="defaults write com.apple.Finder AppleShowAllFiles FALSE; killall Finder" # HIDE ALL HIDDEN FILES
+alias show_hidden_files="defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder" # SHOW ALL HIDDEN FILES
+alias hide_hidden_files="defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder" # HIDE ALL HIDDEN FILES
 alias o='open . &' # QUICK OPEN IN FINDER WITH "O"
 alias tu='top -o cpu' # QUICK LOOK AT CPU USAGE
 alias tm='top -o vsize' # QUICK LOOK AT MEMOERY USAGE
@@ -39,6 +39,7 @@ alias flush_ipfw="sudo /sbin/ipfw -f flush" # FLUSH IPFW RULES
 alias list_ipfw="sudo /sbin/ipfw list" # LIST IPFW RULES
 alias going_mobile="diskutil unmountDisk /dev/disk*" # UNMONUT ALL DISK
 alias spell="aspell" 
+alias pathcp="pwd | pbcopy" # COPY PATH TP PB
 
 # ANIMATION FUNCTIONS --------------------------
 
@@ -119,7 +120,7 @@ function sublime_3_package() {
 
 # PYTHON
 alias pythondir="python -c 'from distutils.sysconfig import get_python_lib; print get_python_lib()'" # DISPLAY SYSTEM PYTHON DIR
-alias pipupdate="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U" # UPDATE ALL PIP PACKAGES
+alias pipupdate="sudo pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U" # UPDATE ALL PIP PACKAGES
 
 # RUBY
 alias r="rake"
@@ -216,6 +217,7 @@ alias vssh="vagrant ssh" # SSH INTO CURRENT RUNNING BOX
 alias vsleep="vagrant suspend" # SUSPEND CURRENT VBOX
 alias vst="vagrant status" # GET THE CURRENT STATUS OF BOX
 alias vwake="vagrant resume" # RESUME BOX
+
 
 # VAGRANT SHARE
 alias vpack="vagrant package" # PACKAGE UP CURRENT BOX
@@ -376,6 +378,19 @@ alias assets_design="cd $HOME/Desktop/ASSETS/DESIGN" # OVERVIEW DESIGN DIR
 alias assets_dev="cd $HOME/Desktop/ASSETS/DEVELOPMENT" # OVERVIEW DEVELOPMENT DIR
 alias android_tools="cd /Applications/adt-bundle/sdk/tools" # OVERVIEW ANDRIOD TOOLS DIR
 alias android_sdk="cd /Applications/adt-bundle/sdk/tools/android sdk" # OVERVIEW ANDRIOD TOOLS DIR
+
+
+# QUICK JUMPS WITH MARKS
+# http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html?utm_source=hackernewsletter&utm_medium=email
+function jump { 
+    cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
+}
+function mark { 
+    mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"
+}
+function unmark { 
+    rm -i "$MARKPATH/$1"
+}
 
 
 # CONFIG FILES --------------------------
