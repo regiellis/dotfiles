@@ -1,5 +1,5 @@
 # ZSH CONFIGS - PERSONA IO
-# MARCH 2013
+# JAN 2014
 
 
 # PATH TO YOUR OH-MY-ZSH CONFIGURATION
@@ -44,6 +44,7 @@ plugins=(
     cake
     cloudapp
     coffee
+    colorize
     django
     git
     git-extras
@@ -51,6 +52,8 @@ plugins=(
     git-hubflow
     github
     git-remote-branch
+    git-prompt
+    fabric
     mercurial
     heroku
     history
@@ -58,18 +61,20 @@ plugins=(
     pip
     python
     rails
-    rails3
     rbenv
     redis-cli
     ruby
     terminalapp
     node
     npm
+    scala
     sublime
     ssh-agent
     terminalapp
+    textmate
     vagrant
     virtualenvwrapper
+    xcode
 )
 
 
@@ -77,6 +82,6 @@ plugins=(
 # MOVED HERE, WAS NOT WORKING IN PROMPT FILE > LOOK INTO LATER
 local emoticon="%(?,%{$fg[green]%}✔%{$reset_color%},%{$fg[red]%}✖%{$reset_color%})"
 
-PROMPT='%{$fg_bold[yellow]%}[ %n ]%{$reset_color%} %{$fg[red]%}%M%{$reset_color%} → '
+PROMPT='%{$fg_bold[yellow]%}%n →%{$reset_color%} %{$fg[blue]%}%M: %{$reset_color%}'
 PROMPT2='\'
 RPROMPT='%{$fg_bold[cyan]%}%~%{$reset_color%}%{$fg_bold[green]%}$(current_venv)%{$fg_bold[red]%}$(current_rbenv)%{$reset_color%}$($HOME/.dotfiles/bin/git-cwd-info.rb)'

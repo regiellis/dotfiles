@@ -1,7 +1,7 @@
 # TERMINAL ALIASES - PERSONA IO
-# MARCH 2013
-# 
-# 
+# JAN 2014
+#
+#
 # TODO: LOOKUP LINE 17, 18, 234
 
 # VARS
@@ -14,18 +14,19 @@ alias disable_local_backups="sudo tmutil disablelocal" # DISABLES LOCAL BACKUPS 
 alias enable_local_backups="sudo tmutil enablelocal" # ENABLES LOCAL BACKUPS - OSX 10.6+
 alias show_hidden_files="defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder" # SHOW ALL HIDDEN FILES
 alias hide_hidden_files="defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder" # HIDE ALL HIDDEN FILES
+alias no_ds_store_remote="defaults write com.apple.desktopservices DSDontWriteNetworkStores true" # PREVENT DS STORE ON REMOTE
 alias o='open . &' # QUICK OPEN IN FINDER WITH "O"
 alias tu='top -o cpu' # QUICK LOOK AT CPU USAGE
 alias tm='top -o vsize' # QUICK LOOK AT MEMOERY USAGE
 alias cl='clear; l' # CLEAR THEN LIST
 alias a='ls -A' # LIST ALL EXCEPT LITERAL
 alias la="ls -A -l -G" # LIST ALL - EXPANDED
-alias l.='ls -d .[^.]*' # UNKNOWN LIST TYPE 
+alias l.='ls -d .[^.]*' # LIST HIDDEN FILES
 alias lh="ls -lh" # UNKNOWN LIST TYPE
 alias l='ls -lhGt'  #  LONG LISTING < RECENT FIRST
 alias ll='ls -lhG'  # LONG LISTING, HUMAN READABLE, NO GROUP INFO
 alias lt='ls -lt' # LIST BY LAST MODIFIED
-alias c='clear' # CLEAR TERMINAL 
+alias c='clear' # CLEAR TERMINAL
 alias cls='clear; ls' # CLEAR - LIST DIR
 alias h='history' # TERMINAL HISTORY
 alias cdd='cd -'  # RETURN TO THE LAST DIR CHANGED FROM
@@ -34,11 +35,11 @@ alias up='cd ..'   # MOVE UP ONE DIR
 alias e='exit'  # EXIT CMD
 alias k9="killall -9" # KILL BY PROC ID
 alias pubkey="more $HOME/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'" # COPY PUBKEY TO PASTEBOARD
-alias restart_finder="open /System/Library/CoreServices/Finder.app"
+alias restart_finder="open /System/Library/CoreServices/Finder.app" # AS IT SAYS, RESTART FINDER
 alias flush_ipfw="sudo /sbin/ipfw -f flush" # FLUSH IPFW RULES
 alias list_ipfw="sudo /sbin/ipfw list" # LIST IPFW RULES
 alias going_mobile="diskutil unmountDisk /dev/disk*" # UNMONUT ALL DISK
-alias spell="aspell" 
+alias spell="aspell"
 alias pathcp="pwd | pbcopy" # COPY PATH TP PB
 
 # ANIMATION FUNCTIONS --------------------------
@@ -69,19 +70,19 @@ fi
 # SYSTEM FUNCTIONS --------------------------
 
 # CHANGE INTO THEN LIST
-function cdc() { 
-    cd $1; ls 
+function cdc() {
+    cd $1; ls
 }
 
 # CREATE THEN CHANGE INTO
-function take() { 
+function take() {
     mkdir -p "$1"
-    cd "$1" 
+    cd "$1"
 }
 
 # KILL PROC BY NAME
-function killnamed () { 
-    ps ax | grep $1 | cut -d ' ' -f 2 | xargs kill 
+function killnamed () {
+    ps ax | grep $1 | cut -d ' ' -f 2 | xargs kill
 }
 
 # ZIP FILE
@@ -89,7 +90,7 @@ function zipr() {
   zip -r $1.zip $1
 }
 
-# TAR AND GIZ FILES
+# UNTAR AND GZIP FILES
 function untarit() {
   tar -xzvf $1.gz.tar $1
 }
@@ -108,10 +109,6 @@ alias curl="http" # USE HTTP WHEN CURL IS CALLED
 # APP FUNCTIONS --------------------------
 
 # INSTALL SUBLIME PACKAGES VIA GITHUB USERNAME AND PACKAGE NAME
-function sublime_package() {
-  git clone $1 $HOME/Library/Application\ Support/Sublime\ Text\ 2/Packages/$2
-}
-
 function sublime_3_package() {
   git clone $1 $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/$2
 }
@@ -120,7 +117,7 @@ function sublime_3_package() {
 
 # PYTHON
 alias pythondir="python -c 'from distutils.sysconfig import get_python_lib; print get_python_lib()'" # DISPLAY SYSTEM PYTHON DIR
-alias pipupdate="sudo pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U" # UPDATE ALL PIP PACKAGES
+alias pip_update="sudo pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U" # UPDATE ALL PIP PACKAGES
 
 # RUBY
 alias r="rake"
@@ -150,17 +147,17 @@ _rbenv() {
 
 # PYTHON
 
-# START PYTHON MAILSERVER 
+# START PYTHON MAILSERVER
 function python_mailserver() {
   local port="${1:-25}"
   sudo python -m smtpd -n -c DebuggingServer localhost:"$port"
-} 
+}
 
-# START PYTHON SIMPLEMAILSERVER 
+# START PYTHON SIMPLEMAILSERVER
 function python_simpleserver() {
   local port="${1:-8000}"
   open "http://localhost:${port}/" && python -m SimpleHTTPServer "$port"
-} 
+}
 
 # RAILS
 
@@ -189,14 +186,10 @@ alias aaf='autotest -f' # DON'T RUN ALL AT START
 alias aas="./script/autospec" # RSPEC
 
 
-# RAPTORJS
-alias rjs='raptor' # SHORTEN RAPTOR CALL
-
-
 # FRAMEWORK FUNCTIONS --------------------------
 
 # DEV TOOLS --------------------------
-alias ios-sim-web='open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app' # IOS 6
+alias ios-sim-web='open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app' # IOS 7
 alias memcached_start='/usr/local/bin/memcached' # START MEMCACHED ON STANDARD PORT
 alias wordpress_svn='svn co http://core.svn.wordpress.org/trunk/ .' # WORDPRESS TRUNK DOWNLOAD
 fpm_path=$(which php-fpm)
@@ -205,7 +198,7 @@ alias php-fpm='sudo $fpm_path' # PHP5 FPM START
 # BOXES
 # Ubuntu precise 64 - http://files.vagrantup.com/precise64.box
 # Ubuntu Server 12.04 amd64 - http://goo.gl/8kWkm
-# 
+#
 
 # VAGRANT COMMON CMDS
 alias vinit="vagrant init" # CREATE VAGRANTFILE < NAME & URL
@@ -229,18 +222,18 @@ alias vboxrm="vagrant box remove" # ADD REMOVE BOX < NAME & URL
 alias vboxrepack="vagrant box repackage" # ADD REPACK BOX < NAME & URL
 
 # VAGRANT PLUGIN
-alias vplug="vagrant plugin" # PLUGIN LIST 
-alias vpluginstall="vagrant plugin install" # PLUGIN INSTALL 
-alias vpluglist="vagrant plugin list" # PLUGIN LIST 
+alias vplug="vagrant plugin" # PLUGIN LIST
+alias vpluginstall="vagrant plugin install" # PLUGIN INSTALL
+alias vpluglist="vagrant plugin list" # PLUGIN LIST
 alias vplug="vagrant plugin uninstall" # PLUGIN UNINSTALL
 
 # COOKBOOKS
-function git_cookbooks() {
+function git_cookbook() {
 	git clone https://github.com/opscode-cookbooks/$1.git
 }
 
 # NPM PACKAGE UPDATE
-# 
+#
 alias npm_update='sudo npm update -g'
 
 # MYSQL
@@ -258,7 +251,7 @@ alias monogodb_start="mongod run --config /usr/local/etc/mongod.conf" # QUICK ST
 
 # NGINX
 alias nginx="sudo nginx" # QUICK START NGINX
-alias nginx_stop="sudo nginx -s stop" # QUICK STOP NGINX 
+alias nginx_stop="sudo nginx -s stop" # QUICK STOP NGINX
 alias nginx_reload="sudo nginx -s reload" # QUICK RELOAD NGINX
 
 
@@ -294,7 +287,7 @@ function mysql_import_file() {
   mysqldump -u $1 -p $2 < $3
 }
 
-# VARNISH START ON LOCALHOST > PORT 
+# VARNISH START ON LOCALHOST > PORT
 function varnish_start() {
   sudo varnishd -b 127.0.0.1{$1:-}
 }
@@ -304,13 +297,13 @@ function nginx_alias_site() {
 }
 
 # MARKDOWN DOCS
-function markdown() { 
-  /Applications/Textmate.app/Contents/SharedSupport/Support/bin/Markdown.pl $1 > $1.html 
+function markdown() {
+  /Applications/Textmate.app/Contents/SharedSupport/Support/bin/Markdown.pl $1 > $1.html
 }
 
 # VERSION TOOLS --------------------------
 
-# GIT 
+# GIT
 alias ungit="find . -name '.git' -exec rm -rf {} \;" # REMOVE GIT FILES
 alias gb='git branch' # CREATE A GIT BRANCH
 alias gba='git branch -a' # LIST ALL GIT BRANCHES
@@ -323,10 +316,10 @@ alias gdm='git diff master' # GIT DIFFERENCE MASTER
 alias gl='git pull' # GIT PULL
 alias gnp="git-notpushed" # LIST PUSH NOT ON ORIGIN
 alias gp='git push origin HEAD' # PUSH TO ORIGIN
-alias gph='git push heroku master' #PUSH TO HEROKU MASTER 
+alias gph='git push heroku master' #PUSH TO HEROKU MASTER
 alias gst='git status' # GIT STATUS
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative" # PRETTY LOG
-alias gs='git status -sb' # SHORT / BRANCH 
+alias gs='git status -sb' # SHORT / BRANCH
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm" # UNKNOWN
 alias n=!"git ls-files | xargs notes | awk -F: '{ print $1,$2; print $3,$4; print $5}' | grcat conf.notes " # FIND FIXME, TODO, ETC
 
@@ -346,7 +339,7 @@ function new-hg() {
 }
 
 # COMMIT PENDING CHANGES AND QUOTE ALL ARGS AS MESSAGE
-function gg() { 
+function gg() {
     git commit -v -a -m "$*"
 }
 
@@ -356,20 +349,20 @@ function gch() {
 }
 
 # SETUP A TRACKING BRANCH FROM [REMOTE] [BRANCH_NAME]
-function gbt() { 
-  git branch --track $2 $1/$2 && git checkout $2 
+function gbt() {
+  git branch --track $2 $1/$2 && git checkout $2
 }
 # QUICKLY CLOBBER A FILE AND CHECKOUT
-function grf() { 
+function grf() {
   rm $1
-  git checkout $1 
+  git checkout $1
 }
 
 # QUICK LOCATION --------------------------
 
 alias apps="cd $HOME/www/apps" # OVERVIEW APPLICATIONS DIR
 alias press="cd $HOME/www/vhosts/press" # OVERVIEW APPLICATIONS WORDPRESS
-alias www="cd $HOME/www/" # OVERVIEW GENERAL WEB DIR 
+alias www="cd $HOME/www/" # OVERVIEW GENERAL WEB DIR
 alias vhosts="cd $HOME/www/vhosts" # OVERVIEW GENERAL DIR
 alias tools="cd $HOME/www/tools" # OVERVIEW WEB DEV TOOLS DIR
 alias logs="cd $HOME/www/logs" # OVERVIEW LOGS DIR
@@ -382,13 +375,13 @@ alias android_sdk="cd /Applications/adt-bundle/sdk/tools/android sdk" # OVERVIEW
 
 # QUICK JUMPS WITH MARKS
 # http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html?utm_source=hackernewsletter&utm_medium=email
-function jump { 
+function jump {
     cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
 }
-function mark { 
+function mark {
     mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"
 }
-function unmark { 
+function unmark {
     rm -i "$MARKPATH/$1"
 }
 
@@ -399,7 +392,7 @@ alias zshconfig="subl $HOME/.zshrc" # OPEN ZSH CONFIG
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded'" # RELOAD CONFIGS
 alias ea='subl -w $HOME/.dotfiles/zsh/aliases.zsh && reload' # OPEN USER-DEFINED ALIASES
 alias ee="subl $HOME/.dotfiles/system/env.zsh" # OPEN USER-DEFINED ENV
-alias known_host="subl /Users/$USER/.ssh/known_hosts" # OPEN KNOWN HOST 
+alias known_host="subl /Users/$USER/.ssh/known_hosts" # OPEN KNOWN HOST
 alias php-fpm-config="subl -w /usr/local/etc/php/5.3/php-fpm.conf" # OPEN PHP FPM CONFIG
 alias ssh-config="subl -w $HOME/.ssh/config" # OPEN SSH CONFIG
 alias nginx_dir="cd /usr/local/etc/nginx/" # NGINX CONFIGS
