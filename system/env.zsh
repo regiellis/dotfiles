@@ -35,6 +35,7 @@ export PIP_VIRTUALENV_BASE=$WORKON_HOME
 export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 source /usr/local/bin/virtualenvwrapper.sh
 
+# VIRTUALENVWRAPPER
 if [[ -f `brew --prefix`/usr/local/bin/virtualenvwrapper.sh ]]; then
     . `brew --prefix`/usr/local/bin/virtualenvwrapper.sh
 fi

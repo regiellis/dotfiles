@@ -42,6 +42,20 @@ alias going_mobile="diskutil unmountDisk /dev/disk*" # UNMONUT ALL DISK
 alias spell="aspell"
 alias pathcp="pwd | pbcopy" # COPY PATH TP PB
 
+
+# Wacom Tablet Install -------------------------
+# This function is because the wacom drivers will
+# not stay installed on Mac 10.9+ on my machine
+#
+function wacom_download_install() {
+    cd "/Users/regi/Downloads" # Change into download dir
+    wget "http://cdn.wacom.com/u/drivers/mac/pro/WacomTablet_6.3.7-3.dmg"
+    hdiutil detach WacomTablet_6.3.7-3.dmg
+    /Volumes/WacomTablet/
+    sudo installer -pkg Install\ Wacom\ Tablet.pkg -target /
+}
+
+
 # ANIMATION FUNCTIONS --------------------------
 
 # MODO
@@ -104,6 +118,7 @@ then
 fi
 #alias mate="subl" # USE SUBLIME WHEN MATE IS CALLED
 alias nano="subl" # USE SUBLIME WHEN NANO IS CALLED
+alias vim='mvim -v' # USE MACVIM WHEN VIM IS CALLED
 alias curl="http" # USE HTTP WHEN CURL IS CALLED
 
 # APP FUNCTIONS --------------------------
@@ -210,6 +225,7 @@ alias vssh="vagrant ssh" # SSH INTO CURRENT RUNNING BOX
 alias vsleep="vagrant suspend" # SUSPEND CURRENT VBOX
 alias vst="vagrant status" # GET THE CURRENT STATUS OF BOX
 alias vwake="vagrant resume" # RESUME BOX
+alias vrefresh"vagrant provision" # RE-PROVISION
 
 
 # VAGRANT SHARE
@@ -373,6 +389,14 @@ alias android_tools="cd /Applications/adt-bundle/sdk/tools" # OVERVIEW ANDRIOD T
 alias android_sdk="cd /Applications/adt-bundle/sdk/tools/android sdk" # OVERVIEW ANDRIOD TOOLS DIR
 
 
+# TMUX QUICK KEYS --------------------------
+alias tns="tmux new -s" # START A NEW NAME SESSION
+alias tls="tmux ls" # LIST ALL SESSIONS
+alias ta="tmux attach" # TMUX ATTACH
+alias tan="tmux attach -t" # TMUX ATTACH TO NAME SESSION
+alias tkill="tmux kill-session -t" # TMUX KILL SESSION WITH NAME
+
+
 # QUICK JUMPS WITH MARKS
 # http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html?utm_source=hackernewsletter&utm_medium=email
 function jump {
@@ -398,7 +422,7 @@ alias ssh-config="subl -w $HOME/.ssh/config" # OPEN SSH CONFIG
 alias nginx_dir="cd /usr/local/etc/nginx/" # NGINX CONFIGS
 alias eh="sudo subl -w /private/etc/hosts" # OPEN HOSTS FILE IN SUBL
 alias eg='subl .git/config' # EDIT GIT CONFIG
-alias zshconfig="subl $HOME/.dotfiles" # EDIT DOT FILES
+alias dotconfig="subl $HOME/.dotfiles" # EDIT DOT FILES
 
 
 # ALIASES FOR GRC FROM HOMEBREW

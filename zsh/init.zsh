@@ -52,7 +52,6 @@ plugins=(
     git-hubflow
     github
     git-remote-branch
-    git-prompt
     fabric
     mercurial
     heroku
