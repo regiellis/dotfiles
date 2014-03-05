@@ -21,8 +21,6 @@ export MARKPATH="$HOME/.marks:$MANPATH" # MARKS
 export SLIMERJSLAUNCHER=/Applications/Firefox.app/Contents/MacOS/firefox #SLIMERJS
 export SASS_LIBSASS_PATH="/Users/hcatlin/path/libsass:$SASS_LIBSASS_PATH"
 
-
-
 # RBENV
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
@@ -51,6 +49,6 @@ autoload bashcompinit
 bashcompinit
 #source $HOME/.wp-cli/vendor/wp-cli/wp-cli/utils/wp-completion.zsh
 
-
+. /Users/regiellis/Desktop/ASSETS/DEVELOPMENT/PYTHON/REPOS/powerline/powerline/bindings/zsh/powerline.zsh
 
 

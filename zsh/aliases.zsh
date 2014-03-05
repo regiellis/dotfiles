@@ -119,7 +119,7 @@ fi
 #alias mate="subl" # USE SUBLIME WHEN MATE IS CALLED
 alias nano="subl" # USE SUBLIME WHEN NANO IS CALLED
 alias vim='mvim -v' # USE MACVIM WHEN VIM IS CALLED
-alias curl="http" # USE HTTP WHEN CURL IS CALLED
+#alias curl="http" # USE HTTP WHEN CURL IS CALLED
 
 # APP FUNCTIONS --------------------------
 
@@ -131,8 +131,13 @@ function sublime_3_package() {
 # LANGUAGE --------------------------
 
 # PYTHON
-alias pythondir="python -c 'from distutils.sysconfig import get_python_lib; print get_python_lib()'" # DISPLAY SYSTEM PYTHON DIR
-alias pip_update="sudo pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U" # UPDATE ALL PIP PACKAGES
+alias python_dir="python -c 'from distutils.sysconfig import get_python_lib; print get_python_lib()'" # DISPLAY SYSTEM PYTHON DIR
+alias pip_update_system_packages="pip freeze > .dotfiles/system.txt" # UPDATE ALL PIP PACKAGES
+alias pip_update="pip install -U -r .dotfiles/system.txt" # UPDATE ALL PIP PACKAGES
+function pip_install_system_packages() {  # INSTALL AND UPDATE SYSTEM FILE
+  pip install $1
+  pip freeze > .dotfiles/system.txt
+}
 
 # RUBY
 alias r="rake"
