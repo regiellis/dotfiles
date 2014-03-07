@@ -49,7 +49,7 @@ autoload bashcompinit
 bashcompinit
 #source $HOME/.wp-cli/vendor/wp-cli/wp-cli/utils/wp-completion.zsh
 
-. /Users/regiellis/Desktop/ASSETS/DEVELOPMENT/PYTHON/REPOS/powerline/powerline/bindings/zsh/powerline.zsh
+. $HOME/Desktop/ASSETS/DEVELOPMENT/PYTHON/REPOS/powerline/powerline/bindings/zsh/powerline.zsh
 
 
 
