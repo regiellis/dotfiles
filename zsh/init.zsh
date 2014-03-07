@@ -76,6 +76,9 @@ plugins=(
     xcode
 )
 
+# POWERLINE
+. /Users/regi/Desktop/ASSETS/DEVELOPMENT/TERMINAL/powerline/powerline/bindings/zsh/powerline.zsh
+
 
 # PROMPT COLORS
 # MOVED HERE, WAS NOT WORKING IN PROMPT FILE > LOOK INTO LATER
