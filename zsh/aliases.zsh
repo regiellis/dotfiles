@@ -132,8 +132,8 @@ function sublime_3_package() {
 
 # PYTHON
 alias python_dir="python -c 'from distutils.sysconfig import get_python_lib; print get_python_lib()'" # DISPLAY SYSTEM PYTHON DIR
-alias pip_update_system_packages="pip freeze > .dotfiles/system.txt" # UPDATE ALL PIP PACKAGES
-alias pip_update="pip install -U -r .dotfiles/system.txt" # UPDATE ALL PIP PACKAGES
+alias pip_update_system_packages="pip freeze > $HOME/.dotfiles/system.txt" # UPDATE ALL PIP PACKAGES
+alias pip_update="pip install -U -r $HOME/.dotfiles/system.txt" # UPDATE ALL PIP PACKAGES
 function pip_install_system_packages() {  # INSTALL AND UPDATE SYSTEM FILE
   pip install $1
   pip freeze > .dotfiles/system.txt
