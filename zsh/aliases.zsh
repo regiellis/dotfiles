@@ -35,6 +35,7 @@ alias up='cd ..'   # MOVE UP ONE DIR
 alias e='exit'  # EXIT CMD
 alias k9="killall -9" # KILL BY PROC ID
 alias pubkey="more $HOME/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'" # COPY PUBKEY TO PASTEBOARD
+alias sshalias="subl /Users/regi/.ssh/config -w"
 alias restart_finder="open /System/Library/CoreServices/Finder.app" # AS IT SAYS, RESTART FINDER
 alias flush_ipfw="sudo /sbin/ipfw -f flush" # FLUSH IPFW RULES
 alias list_ipfw="sudo /sbin/ipfw list" # LIST IPFW RULES
@@ -44,15 +45,22 @@ alias pathcp="pwd | pbcopy" # COPY PATH TP PB
 
 
 # Wacom Tablet Install -------------------------
-# This function is because the wacom drivers will
+# This function is here because the wacom drivers will
 # not stay installed on Mac 10.9+ on my machine
 #
 function wacom_download_install() {
-    cd "/Users/regi/Downloads" # Change into download dir
+    cd "/Users/$USER/Downloads" # Change into download dir
     wget "http://cdn.wacom.com/u/drivers/mac/pro/WacomTablet_6.3.7-3.dmg"
     hdiutil detach WacomTablet_6.3.7-3.dmg
     /Volumes/WacomTablet/
     sudo installer -pkg Install\ Wacom\ Tablet.pkg -target /
+}
+
+
+# FIX PERMISSIONS ON NODE
+function permission_fix_on_node() {
+    sudo chown -R `whoami` ~/.npm
+    sudo chown -R `whoami` /usr/local/lib/node_modules
 }
 
 
@@ -69,6 +77,10 @@ function rosetta() {
   /Applications/Rosetta\ Stone\ TOTALe.app/Contents/MacOS/Rosetta\ Stone\ TOTALe
 }
 
+# SWITCH XCODE
+function xcode_switch() {
+  sudo xcode-select -switch /Applications/$1.app/Contents/Developer
+}
 
 # GRC OVERIDES FOR LS
 #   MADE POSSIBLE THROUGH CONTRIBUTIONS FROM GENEROUS BENEFACTORS LIKE
@@ -132,12 +144,16 @@ function sublime_3_package() {
 
 # PYTHON
 alias python_dir="python -c 'from distutils.sysconfig import get_python_lib; print get_python_lib()'" # DISPLAY SYSTEM PYTHON DIR
-alias pip_update_system_packages="pip freeze > .dotfiles/system.txt" # UPDATE ALL PIP PACKAGES
-alias pip_update="pip install -U -r .dotfiles/system.txt" # UPDATE ALL PIP PACKAGES
+alias pip_update_system_packages="pip freeze > $HOME/.dotfiles/system.txt" # UPDATE ALL PIP PACKAGES
+alias pip_update="pip install -U -r $HOME/.dotfiles/system.txt" # UPDATE ALL PIP PACKAGES
 function pip_install_system_packages() {  # INSTALL AND UPDATE SYSTEM FILE
   pip install $1
   pip freeze > .dotfiles/system.txt
 }
+function remove_all_pyc() {
+  find . -name "*.pyc" -exec git rm -f {} \; # REMOVE ALL PYC
+}
+
 
 # RUBY
 alias r="rake"
@@ -196,6 +212,7 @@ alias sp='rails plugin' # RAILS PLUGINS
 alias ss='rails server' # RAILS SERVER
 alias tl='tail -f log/*.log' # RAILS DEV LOG
 alias ts='thin start' # RAILS START THIN
+alias generate_gem_list="gem list | cut -d" " -f1 > my-gems" # GENERATE GEM LIST WITHOUT VER
 
 # DJANGO
 
@@ -255,7 +272,7 @@ function git_cookbook() {
 
 # NPM PACKAGE UPDATE
 #
-alias npm_update='sudo npm update -g'
+alias npm_update='npm update -g'
 
 # MYSQL
 alias my="mysql -u root -p" # QUICK LOGIN AS ROOT W/PASS
@@ -268,7 +285,8 @@ alias postgresql_start="pg_ctl -D /usr/local/var/postgres -l /Users/$USER/www/lo
 alias postgresql_stop="pg_ctl -D /usr/local/var/postgres stop -s -m fast" # QUICK STOP OF POSTGRESQL
 
 # MONGO
-alias monogodb_start="mongod run --config /usr/local/etc/mongod.conf" # QUICK START OF MONGO
+alias mongodb_start="mongod run --config $HOME/www/data/config/mongodb.yaml" # QUICK START OF MONGO
+alias mongodb_stop="mongo --eval 'db.getSiblingDB('admin').shutdownServer()'" #QUICK STOP OF MONGO
 
 # NGINX
 alias nginx="sudo nginx" # QUICK START NGINX
@@ -385,13 +403,13 @@ alias apps="cd $HOME/www/apps" # OVERVIEW APPLICATIONS DIR
 alias press="cd $HOME/www/vhosts/press" # OVERVIEW APPLICATIONS WORDPRESS
 alias www="cd $HOME/www/" # OVERVIEW GENERAL WEB DIR
 alias vhosts="cd $HOME/www/vhosts" # OVERVIEW GENERAL DIR
-alias tools="cd $HOME/www/tools" # OVERVIEW WEB DEV TOOLS DIR
+#alias tools="cd $HOME/www/tools" # OVERVIEW WEB DEV TOOLS DIR
 alias logs="cd $HOME/www/logs" # OVERVIEW LOGS DIR
 alias assets="cd $HOME/Desktop/ASSETS/" # OVERVIEW ASSET DIR
 alias assets_design="cd $HOME/Desktop/ASSETS/DESIGN" # OVERVIEW DESIGN DIR
 alias assets_dev="cd $HOME/Desktop/ASSETS/DEVELOPMENT" # OVERVIEW DEVELOPMENT DIR
 alias android_tools="cd /Applications/adt-bundle/sdk/tools" # OVERVIEW ANDRIOD TOOLS DIR
-alias android_sdk="cd /Applications/adt-bundle/sdk/tools/android sdk" # OVERVIEW ANDRIOD TOOLS DIR
+alias android_sdk="/Applications/adt-bundle/sdk/tools/android sdk" # OVERVIEW ANDRIOD TOOLS DIR
 
 
 # TMUX QUICK KEYS --------------------------
