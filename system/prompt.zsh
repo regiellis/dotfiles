@@ -1,6 +1,6 @@
 # PROMPT ZSH- PERSONA IO
 # MARCH 2013
-# 
+#
 
 function current_rbenv {
     [ -f .rbenv-version ] && echo " $(rbenv version | awk '{print $1}')"
