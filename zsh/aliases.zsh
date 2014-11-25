@@ -146,6 +146,7 @@ function sublime_3_package() {
 alias python_dir="python -c 'from distutils.sysconfig import get_python_lib; print get_python_lib()'" # DISPLAY SYSTEM PYTHON DIR
 alias pip_update_system_packages="pip freeze > $HOME/.dotfiles/system.txt" # UPDATE ALL PIP PACKAGES
 alias pip_update="pip install -U -r $HOME/.dotfiles/system.txt" # UPDATE ALL PIP PACKAGES
+alias pip_remove_all="pip freeze | xargs pip uninstall -y" # REMOVE ALL PACKAGES
 function pip_install_system_packages() {  # INSTALL AND UPDATE SYSTEM FILE
   pip install $1
   pip freeze > .dotfiles/system.txt
@@ -185,7 +186,7 @@ _rbenv() {
 
 # START PYTHON MAILSERVER
 function python_mailserver() {
-  local port="${1:-25}"
+  local port="${1:-1025}"
   sudo python -m smtpd -n -c DebuggingServer localhost:"$port"
 }
 
@@ -229,8 +230,8 @@ alias aas="./script/autospec" # RSPEC
 alias ios-sim-web='open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app' # IOS 7
 alias memcached_start='/usr/local/bin/memcached' # START MEMCACHED ON STANDARD PORT
 alias wordpress_svn='svn co http://core.svn.wordpress.org/trunk/ .' # WORDPRESS TRUNK DOWNLOAD
-fpm_path=$(which php-fpm)
-alias php-fpm='sudo $fpm_path' # PHP5 FPM START
+# fpm_path=$(which php-fpm)
+# alias php-fpm='sudo $fpm_path' # PHP5 FPM START
 
 # BOXES
 # Ubuntu precise 64 - http://files.vagrantup.com/precise64.box
@@ -265,6 +266,13 @@ alias vpluginstall="vagrant plugin install" # PLUGIN INSTALL
 alias vpluglist="vagrant plugin list" # PLUGIN LIST
 alias vplug="vagrant plugin uninstall" # PLUGIN UNINSTALL
 
+
+# DOCKER
+function start_docker() {
+  boot2docker start
+  $(boot2docker shellinit)
+}
+
 # COOKBOOKS
 function git_cookbook() {
 	git clone https://github.com/opscode-cookbooks/$1.git
@@ -288,6 +296,9 @@ alias postgresql_stop="pg_ctl -D /usr/local/var/postgres stop -s -m fast" # QUIC
 alias mongodb_start="mongod run --config $HOME/www/data/config/mongodb.yaml" # QUICK START OF MONGO
 alias mongodb_stop="mongo --eval 'db.getSiblingDB('admin').shutdownServer()'" #QUICK STOP OF MONGO
 
+# RETHINKDB
+alias rethinkdb_start="rethinkdb --config-file $HOME/www/data/config/rethink_config"
+
 # NGINX
 alias nginx="sudo nginx" # QUICK START NGINX
 alias nginx_stop="sudo nginx -s stop" # QUICK STOP NGINX
@@ -296,23 +307,23 @@ alias nginx_reload="sudo nginx -s reload" # QUICK RELOAD NGINX
 
 # START IT ALL
 # START ALL DEVELOPMENT SERVER AND ALL TOOLS / NGINX / MYSQL
-function start_deving_with_nginx_mysql {
-  nginx
-  php-fpm
-  mysql_start
-}
+# function start_deving_with_nginx_mysql {
+#   nginx
+#   php-fpm
+#   mysql_start
+# }
 
 # START ALL DEVELOPMENT SERVER AND ALL TOOLS / DJANGO / MYSQL
-function start_deving_with_django_mysql {
-  mysql_start
-  python manage.py runserver
-}
+# function start_deving_with_django_mysql {
+#   mysql_start
+#   python manage.py runserver
+# }
 
 # START ALL DEVELOPMENT SERVER AND ALL TOOLS / DJANGO / POSTGRESQL
-function start_deving_with_django_postgresql {
-  postgresql_start
-  python manage.py runserver
-}
+# function start_deving_with_django_postgresql {
+#   postgresql_start
+#   python manage.py runserver
+# }
 
 # DEV TOOL FUNCTIONS --------------------------
 
@@ -408,8 +419,9 @@ alias logs="cd $HOME/www/logs" # OVERVIEW LOGS DIR
 alias assets="cd $HOME/Desktop/ASSETS/" # OVERVIEW ASSET DIR
 alias assets_design="cd $HOME/Desktop/ASSETS/DESIGN" # OVERVIEW DESIGN DIR
 alias assets_dev="cd $HOME/Desktop/ASSETS/DEVELOPMENT" # OVERVIEW DEVELOPMENT DIR
-alias android_tools="cd /Applications/adt-bundle/sdk/tools" # OVERVIEW ANDRIOD TOOLS DIR
-alias android_sdk="/Applications/adt-bundle/sdk/tools/android sdk" # OVERVIEW ANDRIOD TOOLS DIR
+
+alias android_tools="cd $HOME/Android/sdk/tools" # OVERVIEW ANDROID TOOLS DIR
+# alias android_sdk="/Applications/adt-bundle/sdk/tools/android sdk" # OVERVIEW ANDRIOD TOOLS DIR
 
 
 # TMUX QUICK KEYS --------------------------
