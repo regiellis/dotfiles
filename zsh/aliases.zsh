@@ -268,10 +268,9 @@ alias vplug="vagrant plugin uninstall" # PLUGIN UNINSTALL
 
 
 # DOCKER
-function start_docker() {
-  boot2docker start
-  $(boot2docker shellinit)
-}
+alias rm_all_docker_continaer="docker rm $(docker ps -aq)" # REMOVES ALL DOCKER CONTAINERS
+alias rm_all_docker_images="docker rmi $(docker images -aq)" # REMOVES ALL DOCKER CONTAINERS
+alias b2d="boot2docker" # BOOT2DOCKER
 
 # COOKBOOKS
 function git_cookbook() {
@@ -294,7 +293,7 @@ alias postgresql_stop="pg_ctl -D /usr/local/var/postgres stop -s -m fast" # QUIC
 
 # MONGO
 alias mongodb_start="mongod run --config $HOME/www/data/config/mongodb.yaml" # QUICK START OF MONGO
-alias mongodb_stop="mongo --eval 'db.getSiblingDB('admin').shutdownServer()'" #QUICK STOP OF MONGO
+alias mongodb_stop="mongo --eval 'db.getSiblingDB('admin').shutdownServer()'" # QUICK STOP OF MONGO
 
 # RETHINKDB
 alias rethinkdb_start="rethinkdb --config-file $HOME/www/data/config/rethink_config"

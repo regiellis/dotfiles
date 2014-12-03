@@ -21,7 +21,12 @@ export SLIMERJSLAUNCHER=/Applications/Firefox.app/Contents/MacOS/firefox #SLIMER
 export SASS_LIBSASS_PATH="/Users/hcatlin/path/libsass:$SASS_LIBSASS_PATH" #LEESC
 # export PATH="$(brew --prefix php55)/bin:$PATH" #PHP
 
-export DOCKER_HOST=tcp://192.168.59.103:2376 # DOCKER
+# export DOCKER_HOST=tcp://192.168.59.103:2376 # DOCKER
+export DOCKER_HOST=tcp://$(boot2docker ip 2>/dev/null):2376 # DOCKER
+
+if [[ $(boot2docker status) == 'running' ]]; then
+    $(boot2docker shellinit)
+fi
 
 
 # RBENV
