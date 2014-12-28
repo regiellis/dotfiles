@@ -12,6 +12,7 @@ setopt prompt_subst
 
 # UNCOMMENT FOLLOWING LINE IF YOU WANT RED DOTS TO BE DISPLAYED WHILE WAITING FOR COMPLETION
 COMPLETION_WAITING_DOTS="true"
+CASE_SENSITIVE="true"
 
 # IGNORE DUPLICATES IN HISTORY
 setopt hist_ignore_dups
@@ -40,12 +41,14 @@ setopt menucomplete
 # CUSTOM PLUGINS MAY BE ADDED TO ~/.OH-MY-ZSH/CUSTOM/PLUGINS/
 plugins=(
     brew
+    brew-cask
     bower
     cake
     cloudapp
     coffee
     colorize
     django
+    docker
     git
     git-extras
     git-flow
@@ -58,7 +61,10 @@ plugins=(
     history
     osx
     pip
+    pep8
     python
+    # pyenv
+    pylint
     rails
     rbenv
     redis-cli
@@ -67,20 +73,24 @@ plugins=(
     node
     npm
     scala
+    sbt
+    sudo
     sublime
     ssh-agent
     terminalapp
     textmate
+    themes
+    # tmux
     vagrant
+    virtualenv
     virtualenvwrapper
     xcode
 )
 
-
 # PROMPT COLORS
 # MOVED HERE, WAS NOT WORKING IN PROMPT FILE > LOOK INTO LATER
-local emoticon="%(?,%{$fg[green]%}✔%{$reset_color%},%{$fg[red]%}✖%{$reset_color%})"
+#local emoticon="%(?,%{$fg[green]%}✔%{$reset_color%},%{$fg[red]%}✖%{$reset_color%})"
 
-PROMPT='%{$fg_bold[yellow]%}%n →%{$reset_color%} %{$fg[blue]%}%M: %{$reset_color%}'
-PROMPT2='\'
-RPROMPT='%{$fg_bold[cyan]%}%~%{$reset_color%}%{$fg_bold[green]%}$(current_venv)%{$fg_bold[red]%}$(current_rbenv)%{$reset_color%}$($HOME/.dotfiles/bin/git-cwd-info.rb)'
+#PROMPT='%{$fg_bold[yellow]%}%n →%{$reset_color%} %{$fg[blue]%}%M: %{$reset_color%}'
+#PROMPT2='\'
+#RPROMPT='%{$fg_bold[cyan]%}%~%{$reset_color%}%{$fg_bold[green]%}$(current_venv)%{$fg_bold[red]%}$(current_rbenv)%{$reset_color%}$($HOME/.dotfiles/bin/git-cwd-info.rb)'
