@@ -73,8 +73,8 @@ alias vim='mvim -v' # USE MACVIM WHEN VIM IS CALLED
 
 # PYTHON
 alias python_dir="python -c 'from distutils.sysconfig import get_python_lib; print get_python_lib()'" # DISPLAY SYSTEM PYTHON DIR
-alias pip_update_system_packages="pip freeze > $HOME/.dotfiles/system.txt" # UPDATE ALL PIP PACKAGES
-alias pip_update="pip install -U -r $HOME/.dotfiles/system.txt" # UPDATE ALL PIP PACKAGES
+alias pip_update_system_packages="pip freeze > $HOME/.dotfiles/system.pip" # UPDATE ALL PIP PACKAGES
+alias pip_update="pip install -U -r $HOME/.dotfiles/system.pip" # UPDATE ALL PIP PACKAGES
 alias pip_remove_all="pip freeze | xargs pip uninstall -y" # REMOVE ALL PACKAGES
 
 
