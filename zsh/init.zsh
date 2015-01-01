@@ -1,6 +1,5 @@
 # ZSH CONFIGS - PERSONA IO
-# JAN 2014
-
+# JAN 2015
 
 # PATH TO YOUR OH-MY-ZSH CONFIGURATION
 ZSH=$HOME/.oh-my-zsh
@@ -14,8 +13,12 @@ setopt prompt_subst
 COMPLETION_WAITING_DOTS="true"
 CASE_SENSITIVE="true"
 
-# IGNORE DUPLICATES IN HISTORY
+# ZSH OPTIONS
 setopt hist_ignore_dups
+setopt extendedglob notify
+setopt append_history
+setopt inc_append_history
+setopt menucomplete
 
 . $ZSH/oh-my-zsh.sh
 
@@ -24,18 +27,12 @@ HISTFILE=~/.zsh_history
 HISTIGNORE="ls:ls *:cd:cd -:pwd;exit:date:* --help"
 HISTSIZE=1000000
 SAVEHIST=1000000
-setopt extendedglob notify
-setopt append_history
-setopt inc_append_history
 bindkey -e
 
 # MAPPINGS FOR CTRL/OPTION-LEFT-ARROW AND CTRL/OPTION-RIGHT-ARROW FOR
 # MOVING ACROSS WORDS
 bindkey "\e\e[C" forward-word
 bindkey "\e\e[D" backward-word
-
-# SHOW COMPLETION ON THE FIRST TAB
-setopt menucomplete
 
 # WHICH PLUGINS WOULD YOU LIKE TO LOAD? (PLUGINS CAN BE FOUND IN ~/.OH-MY-ZSH/PLUGINS/*)
 # CUSTOM PLUGINS MAY BE ADDED TO ~/.OH-MY-ZSH/CUSTOM/PLUGINS/
@@ -48,14 +45,14 @@ plugins=(
     coffee
     colorize
     django
-    docker
+    # docker
     git
     git-extras
     git-flow
     git-hubflow
     github
     git-remote-branch
-    fabric
+    # fabric
     mercurial
     heroku
     history
@@ -63,9 +60,9 @@ plugins=(
     pip
     pep8
     python
-    # pyenv
+    pyenv
     pylint
-    rails
+    # rails
     rbenv
     redis-cli
     ruby
@@ -80,17 +77,9 @@ plugins=(
     terminalapp
     textmate
     themes
-    # tmux
+    tmux
     vagrant
     virtualenv
-    virtualenvwrapper
+    # virtualenvwrapper
     xcode
 )
-
-# PROMPT COLORS
-# MOVED HERE, WAS NOT WORKING IN PROMPT FILE > LOOK INTO LATER
-#local emoticon="%(?,%{$fg[green]%}✔%{$reset_color%},%{$fg[red]%}✖%{$reset_color%})"
-
-#PROMPT='%{$fg_bold[yellow]%}%n →%{$reset_color%} %{$fg[blue]%}%M: %{$reset_color%}'
-#PROMPT2='\'
-#RPROMPT='%{$fg_bold[cyan]%}%~%{$reset_color%}%{$fg_bold[green]%}$(current_venv)%{$fg_bold[red]%}$(current_rbenv)%{$reset_color%}$($HOME/.dotfiles/bin/git-cwd-info.rb)'

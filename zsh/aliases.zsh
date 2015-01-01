@@ -1,8 +1,6 @@
 # TERMINAL ALIASES - PERSONA IO
-# JAN 2014
+# JAN 2015
 #
-#
-# TODO: LOOKUP LINE 17, 18, 234
 
 # VARS
 EMAIL="$EMAIL"
@@ -42,41 +40,12 @@ alias spell="aspell"
 alias pathcp="pwd | pbcopy" # COPY PATH TP PB
 
 
-# Wacom Tablet Install -------------------------
-# This function is here because the wacom drivers will
-# not stay installed on Mac 10.9+ on my machine
-#
-function wacom_download_install() {
-    cd "/Users/$USER/Downloads" # Change into download dir
-    wget "http://cdn.wacom.com/u/drivers/mac/pro/WacomTablet_6.3.7-3.dmg"
-    hdiutil detach WacomTablet_6.3.7-3.dmg
-    /Volumes/WacomTablet/
-    sudo installer -pkg Install\ Wacom\ Tablet.pkg -target /
-}
-
-# FIX PERMISSIONS ON NODE
-function permission_fix_on_node() {
-    sudo chown -R `whoami` ~/.npm
-    sudo chown -R `whoami` /usr/local/lib/node_modules
-}
-
 # ANIMATION FUNCTIONS --------------------------
 
 # MODO
 alias modo_dir="open $HOME/Library/Application\ Support/Luxology"
 alias modo_config="open $HOME/Library/Application\ Support/Luxology/Configs"
 alias modo_scripts="open $HOME/Library/Application\ Support/Luxology/Scripts"
-
-# ROSETTA STONE
-function rosetta() {
-  /Library/Application\ Support/RosettaStoneDaemon/Bin/RosettaStoneDaemon
-  /Applications/Rosetta\ Stone\ TOTALe.app/Contents/MacOS/Rosetta\ Stone\ TOTALe
-}
-
-# SWITCH XCODE
-function xcode_switch() {
-  sudo xcode-select -switch /Applications/$1.app/Contents/Developer
-}
 
 # GRC OVERIDES FOR LS
 #   MADE POSSIBLE THROUGH CONTRIBUTIONS FROM GENEROUS BENEFACTORS LIKE
@@ -89,34 +58,6 @@ then
   alias g-la='gls -A --color'
 fi
 
-# SYSTEM FUNCTIONS --------------------------
-
-# CHANGE INTO THEN LIST
-function cdc() {
-    cd $1; ls
-}
-
-# CREATE THEN CHANGE INTO
-function take() {
-    mkdir -p "$1"
-    cd "$1"
-}
-
-# KILL PROC BY NAME
-function killnamed () {
-    ps ax | grep $1 | cut -d ' ' -f 2 | xargs kill
-}
-
-# ZIP FILE
-function zipr() {
-  zip -r $1.zip $1
-}
-
-# UNTAR AND GZIP FILES
-function untarit() {
-  tar -xzvf $1.gz.tar $1
-}
-
 # APPS --------------------------
 
 hub_path=$(which hub)
@@ -127,12 +68,6 @@ fi
 alias nano="subl" # USE SUBLIME WHEN NANO IS CALLED
 alias vim='mvim -v' # USE MACVIM WHEN VIM IS CALLED
 
-# APP FUNCTIONS --------------------------
-
-# INSTALL SUBLIME PACKAGES VIA GITHUB USERNAME AND PACKAGE NAME
-function sublime_3_package() {
-  git clone $1 $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/$2
-}
 
 # LANGUAGE --------------------------
 
@@ -141,13 +76,7 @@ alias python_dir="python -c 'from distutils.sysconfig import get_python_lib; pri
 alias pip_update_system_packages="pip freeze > $HOME/.dotfiles/system.txt" # UPDATE ALL PIP PACKAGES
 alias pip_update="pip install -U -r $HOME/.dotfiles/system.txt" # UPDATE ALL PIP PACKAGES
 alias pip_remove_all="pip freeze | xargs pip uninstall -y" # REMOVE ALL PACKAGES
-function pip_install_system_packages() {  # INSTALL AND UPDATE SYSTEM FILE
-  pip install $1
-  pip freeze > .dotfiles/system.txt
-}
-function remove_all_pyc() {
-  find . -name "*.pyc" -exec git rm -f {} \; # REMOVE ALL PYC
-}
+
 
 # RUBY
 alias r="rake"
@@ -171,22 +100,6 @@ _rbenv() {
   fi
 
   reply=("${(ps:\n:)completions}")
-}
-
-# LANGUAGE FUNCTIONS --------------------------
-
-# PYTHON
-
-# START PYTHON MAILSERVER
-function python_mailserver() {
-  local port="${1:-1025}"
-  sudo python -m smtpd -n -c DebuggingServer localhost:"$port"
-}
-
-# START PYTHON SIMPLEMAILSERVER
-function python_simpleserver() {
-  local port="${1:-8000}"
-  open "http://localhost:${port}/" && python -m SimpleHTTPServer "$port"
 }
 
 # FRAMEWORKS --------------------------
@@ -233,9 +146,9 @@ alias vplug="vagrant plugin uninstall" # PLUGIN UNINSTALL
 
 
 # DOCKER
-alias rm_all_docker_continaer="docker rm $(docker ps -aq)" # REMOVES ALL DOCKER CONTAINERS
-alias rm_all_docker_images="docker rmi $(docker images -aq)" # REMOVES ALL DOCKER CONTAINERS
-alias b2d="boot2docker" # BOOT2DOCKER
+# alias rm_all_docker_continaer="docker rm $(docker ps -aq)" # REMOVES ALL DOCKER CONTAINERS
+# alias rm_all_docker_images="docker rmi $(docker images -aq)" # REMOVES ALL DOCKER CONTAINERS
+# alias b2d="boot2docker" # BOOT2DOCKER
 
 # COOKBOOKS
 function git_cookbook() {
@@ -254,11 +167,6 @@ alias mongodb_stop="mongo --eval 'db.getSiblingDB(\"admin\").shutdownServer()'" 
 alias rethinkdb_start="rethinkdb --config-file $HOME/www/data/config/rethink_config"
 
 # DEV TOOL FUNCTIONS --------------------------
-
-# MARKDOWN DOCS
-function markdown() {
-  /Applications/Textmate.app/Contents/SharedSupport/Support/bin/Markdown.pl $1 > $1.html
-}
 
 # VERSION TOOLS --------------------------
 
@@ -282,40 +190,8 @@ alias gs='git status -sb' # SHORT / BRANCH
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm" # UNKNOWN
 alias n=!"git ls-files | xargs notes | awk -F: '{ print $1,$2; print $3,$4; print $5}' | grcat conf.notes " # FIND FIXME, TODO, ETC
 
-# GIT COMPLETION
-completion=/usr/local/share/zsh/site-functions/_git
-if test -f $completion
-then
-  zstyle ':completion:*:*:git:*' source $completion
-fi
 
 # VERSION TOOL FUNCTIONS --------------------------
-
-# CREATE A NEW MERURIAL REPO ON A SERVER
-function new-hg() {
-    ssh regi@persona.io "hg init $1"
-    hg clone ssh://hg@example.com/$1
-}
-
-# COMMIT PENDING CHANGES AND QUOTE ALL ARGS AS MESSAGE
-function gg() {
-    git commit -v -a -m "$*"
-}
-
-# GIT CLONE FROM GITHUB
-function gch() {
-  git clone git://github.com/$1/$2.git $2
-}
-
-# SETUP A TRACKING BRANCH FROM [REMOTE] [BRANCH_NAME]
-function gbt() {
-  git branch --track $2 $1/$2 && git checkout $2
-}
-# QUICKLY CLOBBER A FILE AND CHECKOUT
-function grf() {
-  rm $1
-  git checkout $1
-}
 
 # QUICK LOCATION --------------------------
 
@@ -325,7 +201,6 @@ alias vhosts="cd $HOME/www/vhosts" # OVERVIEW GENERAL DIR
 alias logs="cd $HOME/www/logs" # OVERVIEW LOGS DIR
 alias database_configs="cd $HOME/www/data" # OVERVIEW DATA DIR
 alias assets_dev="cd $HOME/Desktop/ASSETS/DEVELOPMENT" # OVERVIEW DEVELOPMENT DIR
-
 alias android_tools="cd $HOME/Android/sdk/tools" # OVERVIEW ANDROID TOOLS DIR
 
 # TMUX QUICK KEYS --------------------------
@@ -334,20 +209,6 @@ alias tls="tmux ls" # LIST ALL SESSIONS
 alias ta="tmux attach" # TMUX ATTACH
 alias tan="tmux attach -t" # TMUX ATTACH TO NAME SESSION
 alias tkill="tmux kill-session -t" # TMUX KILL SESSION WITH NAME
-
-
-# QUICK JUMPS WITH MARKS
-# http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html?utm_source=hackernewsletter&utm_medium=email
-function jump {
-    cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
-}
-function mark {
-    mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"
-}
-function unmark {
-    rm -i "$MARKPATH/$1"
-}
-
 
 # CONFIG FILES --------------------------
 alias ohmyzsh="subl $HOME/.oh-my-zsh" # OPEN ZSH DEFAULT CONFIG
@@ -361,13 +222,6 @@ alias eh="sudo subl -w /private/etc/hosts" # OPEN HOSTS FILE IN SUBL
 alias eg='subl .git/config' # EDIT GIT CONFIG
 alias dotconfig="subl $HOME/.dotfiles" # EDIT DOT FILES
 
-# ALIASES FOR GRC FROM HOMEBREW
-source `brew --prefix grc`/etc/grc.bashrc
-
-# LOAD PERSONAL FUNCTIONS IF USER MATCH
-if [[ $USER == "regi" ]]; then
-  source $HOME/.dotfiles/zsh/functions/personal.zsh
-fi
 
 if $(grc &>/dev/null)
 then
@@ -389,6 +243,13 @@ then
   fi
 fi
 
-# PORT
-#alias whats_on_port="lsof -iTCP"
+# ALIASES FOR GRC FROM HOMEBREW
+source `brew --prefix grc`/etc/grc.bashrc
 
+# LOAD FUNCTIONS
+source $HOME/.dotfiles/zsh/functions/functions.zsh
+
+# LOAD PERSONAL FUNCTIONS IF USER MATCH
+if [[ $USER == "regi" ]]; then
+  source $HOME/.dotfiles/zsh/functions/personal.zsh
+fi
