@@ -45,14 +45,14 @@ plugins=(
     coffee
     colorize
     django
-    # docker
+    docker
     git
     git-extras
     git-flow
     git-hubflow
     github
     git-remote-branch
-    # fabric
+    fabric
     mercurial
     heroku
     history
