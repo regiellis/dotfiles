@@ -150,11 +150,6 @@ alias vplug="vagrant plugin uninstall" # PLUGIN UNINSTALL
 # alias rm_all_docker_images="docker rmi $(docker images -aq)" # REMOVES ALL DOCKER CONTAINERS
 # alias b2d="boot2docker" # BOOT2DOCKER
 
-# COOKBOOKS
-function git_cookbook() {
-	git clone https://github.com/opscode-cookbooks/$1.git
-}
-
 # NPM PACKAGE UPDATE
 #
 alias npm_update='npm update -g'
@@ -213,10 +208,10 @@ alias tkill="tmux kill-session -t" # TMUX KILL SESSION WITH NAME
 # CONFIG FILES --------------------------
 alias ohmyzsh="subl $HOME/.oh-my-zsh" # OPEN ZSH DEFAULT CONFIG
 alias zshconfig="subl $HOME/.zshrc" # OPEN ZSH CONFIG
-alias reload=". ~/.zshrc && echo 'ZSH config reloaded'" # RELOAD CONFIGS
-alias ea='subl -w $HOME/.dotfiles/zsh/aliases.zsh && reload' # OPEN USER-DEFINED ALIASES
-alias ee="subl $HOME/.dotfiles/system/env.zsh" # OPEN USER-DEFINED ENV
-alias known_host="subl /Users/$USER/.ssh/known_hosts" # OPEN KNOWN HOST
+alias reload=". $HOME/.zshrc && echo 'ZSH config reloaded'" # RELOAD CONFIGS
+alias ea="subl -w $HOME/.dotfiles/.zshalias && reload" # OPEN USER-DEFINED ALIASES
+alias ee="subl $HOME/.dotfiles/.zshenv" # OPEN USER-DEFINED ENV
+alias known_host="subl $USER/.ssh/known_hosts" # OPEN KNOWN HOST
 alias ssh-config="subl -w $HOME/.ssh/config" # OPEN SSH CONFIG
 alias eh="sudo subl -w /private/etc/hosts" # OPEN HOSTS FILE IN SUBL
 alias eg='subl .git/config' # EDIT GIT CONFIG
@@ -246,10 +241,7 @@ fi
 # ALIASES FOR GRC FROM HOMEBREW
 source `brew --prefix grc`/etc/grc.bashrc
 
-# LOAD FUNCTIONS
-source $HOME/.dotfiles/zsh/functions/functions.zsh
-
 # LOAD PERSONAL FUNCTIONS IF USER MATCH
 if [[ $USER == "regi" ]]; then
-  source $HOME/.dotfiles/zsh/functions/personal.zsh
+  source $HOME/.dotfiles/functions/personal.zsh
 fi

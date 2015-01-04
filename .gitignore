@@ -1,2 +1,5 @@
 .DS_Store
 personal.zsh
+*.pyc
+.pip/cache/
+.pip/pip.log

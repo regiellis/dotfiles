@@ -132,3 +132,8 @@ function mark {
 function unmark {
   rm -i "$MARKPATH/$1"
 }
+
+# COOKBOOKS
+function git_cookbook() {
+    git clone https://github.com/opscode-cookbooks/$1.git
+}

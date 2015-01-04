@@ -7,9 +7,9 @@ export EDITOR="$(which subl) --new-window --wait"
 # PATHS --------------------------
 
 PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH"
-export PATH="$HOME/Android/sdk/tools:$PATH" # ANDROID
-export PATH="$HOME/Android/sdk/platform-tools:$PATH" #ANDROID
-export PATH="/usr/local/share/npm/bin:$PATH" # NPM BIN
+export ANDROID_TOOLS="$HOME/Android/sdk/tools:$PATH" # ANDROID
+export ANDROID_PLATFORM="$HOME/Android/sdk/platform-tools:$PATH" #ANDROID
+export NPM_BIN="/usr/local/share/npm/bin:$PATH" # NPM BIN
 export GITHUB_ROOT="$HOME/GitHub/:$PATH" # GITHUB
 
 export DOCKER_TLS_VERIFY=1
@@ -36,10 +36,10 @@ export PIP_VIRTUALENV_BASE=$WORKON_HOME
 source /usr/local/bin/virtualenvwrapper.sh
 
 # POWERLINE REPOS
-powerline-daemon -q
-POWERLINE_BASH_CONTINUATION=1
-POWERLINE_BASH_SELECT=1
-source "$HOME/Desktop/ASSETS/DEVELOPMENT/PYTHON/REPOS/powerline/powerline/bindings/zsh/powerline.zsh"
+# powerline-daemon -q
+# POWERLINE_BASH_CONTINUATION=1
+# POWERLINE_BASH_SELECT=1
+# source "$HOME/Desktop/ASSETS/DEVELOPMENT/PYTHON/REPOS/powerline/powerline/bindings/zsh/powerline.zsh"
 
 # OLD / UNUSED
 # if [[ $(boot2docker status) == 'running' ]]; then \

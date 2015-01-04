@@ -1,0 +1,33 @@
+[user]
+	name = Regi Ellis
+	email = regi@persona.io
+[core]
+[credential]
+	helper = osxkeychain
+[github]
+	user = regiellis
+[mergetool]
+	keepBackup = true
+[core]
+	excludesfile = /Users/regi/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[color]
+	ui = true
+[http]
+	sslVerify = false
+[push]
+	default = current
+[alias]
+	switch = !legit switch \"$@\"
+	branches = !legit branches
+	sprout = !legit sprout \"$@\"
+	unpublish = !legit unpublish \"$@\"
+	harvest = !legit harvest \"$@\"
+	sync = !legit sync \"$@\"
+	publish = !legit publish \"$@\"
+	graft = !legit graft \"$@\"

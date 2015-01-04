@@ -8,6 +8,7 @@ psutil # dep 4 powerline
 colorscheme # dep 4 powerline
 netifaces # dep 4 powerline
 isort
+invoke
 pyflakes
 pylint
 virtualenv
