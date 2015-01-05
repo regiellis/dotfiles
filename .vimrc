@@ -1,5 +1,5 @@
 set nocompatible              " be iMproved, required
-set textwidth=79              " lines longer than 79 columns will be broken
+set textwidth=120             " lines longer than 120 columns will be broken
 set shiftwidth=4              " operation >> indents 4 columns; << unindents 4 columns
 set tabstop=4                 " a hard TAB displays as 4 columns
 set expandtab                 " insert spaces when hitting TABs
@@ -14,14 +14,16 @@ filetype plugin indent on
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+Plugin 'rking/ag.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'reedes/vim-thematic'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'marijnh/tern_for_vim'
 
-call pathogen#infect()
-call pathogen#helptags()
+call vundle#end()            " required
 syntax on
 set background=dark
-colorscheme solarized
 let g:solarized_termcolors=256
 
 " To ignore plugin indent changes, instead use:
@@ -35,4 +37,6 @@ let g:solarized_termcolors=256
 " see :h vundle for more details or wiki for FAQ "
 " Put your non-Plugin stuff after this line
 
-set rtp+=~/Desktop/ASSETS/DEVELOPMENT/PYTHON/REPOS/powerline/powerline/bindings/vim
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
