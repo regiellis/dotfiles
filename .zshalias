@@ -38,6 +38,8 @@ alias restart_finder="open /System/Library/CoreServices/Finder.app" # AS IT SAYS
 alias going_mobile="diskutil unmountDisk /dev/disk*" # UNMONUT ALL DISK
 alias spell="aspell"
 alias pathcp="pwd | pbcopy" # COPY PATH TP PB
+alias ports='sudo lsof -i -P | grep -i "listen"' # LIST OPEN PORTS
+alias ips="ifconfig -a | grep -o 'inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)" # GET LOCAL IPS
 
 
 # ANIMATION FUNCTIONS --------------------------

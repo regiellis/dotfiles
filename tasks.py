@@ -13,5 +13,5 @@
 from invoke import task, run, Collection
 
 BREW_APPS = []
-CASK_APPS = []
+CASK_APPS = ['iterm2']
 PIP_APPS = []

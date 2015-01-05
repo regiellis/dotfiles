@@ -27,6 +27,21 @@ ZSH_THEME="psona"
 
 ZSH=$HOME/.oh-my-zsh
 
+# notify of bg job completion immediately
+set -o notify
+
+# no mail checking
+unset MAILCHECK
+
+#disable core dumps
+ulimit -S -c 0
+
+#default umask
+umask 0022
+
+# ignore backups, CVS directories, python bytecode, vim swap files
+FIGNORE="~:CVS:#:.pyc:.swp:.swa:apache-solr-*"
+
 # PROMPT COLORS
 autoload -U colors
 colors
