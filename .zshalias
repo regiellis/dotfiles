@@ -33,7 +33,7 @@ alias up='cd ..'   # MOVE UP ONE DIR
 alias e='exit'  # EXIT CMD
 alias k9="killall -9" # KILL BY PROC ID
 alias pubkey="more $HOME/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'" # COPY PUBKEY TO PASTEBOARD
-alias sshalias="subl /Users/regi/.ssh/config -w"
+alias sshalias="vim /Users/regi/.ssh/config -w"
 alias restart_finder="open /System/Library/CoreServices/Finder.app" # AS IT SAYS, RESTART FINDER
 alias going_mobile="diskutil unmountDisk /dev/disk*" # UNMONUT ALL DISK
 alias spell="aspell"
@@ -67,7 +67,7 @@ if (( $+commands[hub] ))
 then
   alias git=$hub_path # USE HUB WHEN RUNNING GIT IS CALLED
 fi
-alias nano="subl" # USE SUBLIME WHEN NANO IS CALLED
+alias nano="vim" # USE VIM WHEN NANO IS CALLED
 alias vim='mvim -v' # USE MACVIM WHEN VIM IS CALLED
 
 
@@ -208,16 +208,16 @@ alias tan="tmux attach -t" # TMUX ATTACH TO NAME SESSION
 alias tkill="tmux kill-session -t" # TMUX KILL SESSION WITH NAME
 
 # CONFIG FILES --------------------------
-alias ohmyzsh="subl $HOME/.oh-my-zsh" # OPEN ZSH DEFAULT CONFIG
-alias zshconfig="subl $HOME/.zshrc" # OPEN ZSH CONFIG
+alias ohmyzsh="vim $HOME/.oh-my-zsh" # OPEN ZSH DEFAULT CONFIG
+alias zshconfig="vim $HOME/.zshrc" # OPEN ZSH CONFIG
 alias reload=". $HOME/.zshrc && echo 'ZSH config reloaded'" # RELOAD CONFIGS
-alias ea="subl -w $HOME/.dotfiles/.zshalias && reload" # OPEN USER-DEFINED ALIASES
-alias ee="subl $HOME/.dotfiles/.zshenv" # OPEN USER-DEFINED ENV
-alias known_host="subl $USER/.ssh/known_hosts" # OPEN KNOWN HOST
-alias ssh-config="subl -w $HOME/.ssh/config" # OPEN SSH CONFIG
-alias eh="sudo subl -w /private/etc/hosts" # OPEN HOSTS FILE IN SUBL
-alias eg='subl .git/config' # EDIT GIT CONFIG
-alias dotconfig="subl $HOME/.dotfiles" # EDIT DOT FILES
+alias ea="vim $HOME/.dotfiles/.zshalias && reload" # OPEN USER-DEFINED ALIASES
+alias ee="vim $HOME/.dotfiles/.zshenv" # OPEN USER-DEFINED ENV
+alias known_host="vim $USER/.ssh/known_hosts" # OPEN KNOWN HOST
+alias ssh-config="vim $HOME/.ssh/config" # OPEN SSH CONFIG
+alias eh="sudo vim /private/etc/hosts" # OPEN HOSTS FILE IN SUBL
+alias eg='vim .git/config' # EDIT GIT CONFIG
+alias dotconfig="vim $HOME/.dotfiles" # EDIT DOT FILES
 
 
 if $(grc &>/dev/null)

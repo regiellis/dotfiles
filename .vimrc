@@ -17,7 +17,7 @@ call vundle#begin()
 Plugin 'rking/ag.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'reedes/vim-thematic'
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'marijnh/tern_for_vim'
 
@@ -34,8 +34,15 @@ let g:solarized_termcolors=256
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "
-" see :h vundle for more details or wiki for FAQ "
+" see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+" autocmd vimenter * NERDTree
+map <C-n> :NERDTreeToggle<CR>
+
+autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
 
 python from powerline.vim import setup as powerline_setup
 python powerline_setup()
