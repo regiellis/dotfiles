@@ -43,7 +43,6 @@ autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-
 python from powerline.vim import setup as powerline_setup
 python powerline_setup()
 python del powerline_setup
