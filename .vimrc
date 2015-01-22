@@ -11,7 +11,7 @@ set nobackup
 set nowritebackup
 set noswapfile
 set history=1000
-" set ruler
+set ruler
 set showcmd
 set incsearch
 set smartcase
@@ -19,7 +19,7 @@ set hidden
 set backspace=indent,eol,start
 set number
 set background=dark
-set list listchars=tab:\ \ ,trail:·
+set list listchars=tab:▸\ ,eol:¬
 set encoding=utf-8
 set autoread
 set clipboard+=unnamed
@@ -29,10 +29,9 @@ set visualbell
 set wildmenu
 set lazyredraw
 set showmatch
-" let g:netrw_liststyle=3
+set ts=4 sts=4 sw=4 noexpandtab
+let mapleader = ","
 
-" autocmd BufWinEnter * highlight ColorColumn ctermbg=darkred
-" set colorcolumn=120
 " CtrlP
 map <leader>t <C-p>
 map <leader>y :CtrlPBuffer<cr>
@@ -94,6 +93,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'klen/python-mode'
 Plugin 'cburroughs/pep8.py'
 Plugin 'pangloss/vim-javascript'
+Plugin 'jelera/vim-javascript-syntax'
 Plugin 'groenewege/vim-less'
 Plugin 'othree/html5.vim'
 Plugin 'hail2u/vim-css3-syntax'
@@ -112,6 +112,11 @@ Plugin 'tpope/vim-sleuth'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'mmozuras/vim-github-comment'
 Plugin 'mattn/webapi-vim'
+Plugin 'moll/vim-node'
+Plugin 'hallettj/jslint.vim'
+Plugin 'walm/jshint.vim'
+Plugin 'wavded/vim-stylus'
+Plugin 'sjl/gundo'
 call vundle#end()            " required
 syntax on
 let g:solarized_termcolors=256
@@ -131,11 +136,51 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 " Put your non-Plugin stuff after this line
 " autocmd vimenter * NERDTree
 map <C-n> :NERDTreeToggle<CR>
-
+nmap <leader>l :set list!<CR>
+let g:pymode_options_colorcolumn = 0
+" hi ColorColumn ctermbg=8
+highlight NonText guifg=#4a4a59
+highlight SpecialKey guifg=#4a4a59
+let g:netrw_liststyle=3
+autocmd BufWinEnter * highlight ColorColumn ctermbg=darkred
 autocmd FileType vim-plug setl colorcolumn=0
 autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+
+" Set tabstyle and tabstops based on file type
+if has("autocmd")
+    
+    "Javascript/HTML/CSS
+    autocmd FileType html setlocal ts=4 sts=4 sw=4 expandtab
+    autocmd FileType css setlocal ts=4 sts=4 sw=4 expandtab
+    autocmd Filetype javascript setlocal ts=4 sts=4 sw=4 noexpandtab
+
+    "Python
+    autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
+    autocmd BufWritePre *.py,*.js :call <SID>StripTrailingWhitespaces()
+endif
+  nnoremap <silent> <F5> :call <SID>Preserve()<CR>
+function! Preserve(command)
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  execute a:command
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
+endfunction 
+nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
+nmap _= :call Preserve("normal gg=G")<CR>
+
+nmap <D-[> <<
+nmap <D-]> >>
+vmap <D-[> <gv
+vmap <D-]> >gv
+
 
 python from powerline.vim import setup as powerline_setup
 python powerline_setup()

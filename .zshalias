@@ -201,7 +201,7 @@ alias assets_dev="cd $HOME/Desktop/ASSETS/DEVELOPMENT" # OVERVIEW DEVELOPMENT DI
 alias android_tools="cd $HOME/Android/sdk/tools" # OVERVIEW ANDROID TOOLS DIR
 
 # TMUX QUICK KEYS --------------------------
-alias tns="tmux new -s" # START A NEW NAME SESSION
+alias tns="tmux new-session" # START A NEW NAME SESSION
 alias tls="tmux ls" # LIST ALL SESSIONS
 alias ta="tmux attach" # TMUX ATTACH
 alias tan="tmux attach -t" # TMUX ATTACH TO NAME SESSION
