@@ -159,7 +159,7 @@ if has("autocmd")
 
     "Python
     autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
-    " autocmd BufWritePre *.py,*.js :call <SID>StripTrailingWhitespaces()
+    autocmd BufWritePre *.py,*.js :call <SID>Preserve()
 endif
   nnoremap <silent> <F5> :call <SID>Preserve()<CR>
 function! Preserve(command)
@@ -193,6 +193,6 @@ map <D-8> 8gt
 map <D-9> 9gt
 map <D-0> :tablast<CR>
 
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
+"python from powerline.vim import setup as powerline_setup
+"python powerline_setup()
+"python del powerline_setup
