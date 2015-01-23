@@ -14,3 +14,4 @@ pylint
 virtualenv
 virtualenvwrapper
 youtube-dl
+howdoi
