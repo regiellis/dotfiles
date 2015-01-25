@@ -9,13 +9,15 @@
 set nocompatible
 filetype off
 syntax enable
+colorscheme Tomorrow-Night
 
 set autoindent
 set autoread
+set autowrite
 set background=dark
 set backspace=indent,eol,start
 set clipboard+=unnamed
-set colorcolumn=0
+set colorcolumn=120
 set copyindent
 set encoding=utf-8
 set expandtab
@@ -23,9 +25,9 @@ set foldlevel=1
 set foldmethod=indent
 set foldnestmax=10
 set hidden
+set history=1000
 set hlsearch
 set ignorecase
-set history=1000
 set incsearch
 set laststatus=2
 set lazyredraw
@@ -39,16 +41,17 @@ set nowritebackup
 set number
 set ruler
 set shiftround
-set shiftwidth=2
 set shiftwidth=4
 set shortmess+=I
 set showcmd
 set showmatch
+set showmode
 set smartcase
 set smarttab
 set softtabstop=4
-set term=screen-256color
+set tabpagemax=15
 set tabstop=4
+set term=screen-256color
 set textwidth=120
 set title
 set undolevels=1000
@@ -71,9 +74,11 @@ set wildmenu
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+  "Plugin 'honza/vim-snippets'
   Plugin 'Lokaltog/vim-easymotion'
   Plugin 'Shougo/neocomplcache.vim'
   Plugin 'Shougo/neocomplete.vim'
+  Plugin 'SirVer/ultisnips'
   Plugin 'airblade/vim-gitgutter'
   Plugin 'alvan/vim-closetag'
   Plugin 'burnettk/vim-angular'
@@ -95,12 +100,14 @@ call vundle#begin()
   Plugin 'klen/python-mode'
   Plugin 'laurentgoudet/vim-howdoi'
   Plugin 'leshill/vim-json'
+  Plugin 'majutsushi/tagbar'
   Plugin 'marijnh/tern_for_vim'
   Plugin 'mattn/emmet-vim'
   Plugin 'mattn/webapi-vim'
   Plugin 'mmozuras/vim-github-comment'
   Plugin 'moll/vim-node'
   Plugin 'mustache/vim-mustache-handlebars'
+  Plugin 'myusuf3/numbers.vim'
   Plugin 'othree/html5.vim'
   Plugin 'othree/javascript-libraries-syntax.vim'
   Plugin 'pangloss/vim-javascript'
@@ -112,6 +119,8 @@ call vundle#begin()
   Plugin 'scrooloose/nerdtree'
   Plugin 'scrooloose/syntastic'
   Plugin 'sjl/gundo.vim'
+  Plugin 'skammer/vim-css-color'
+  Plugin 'terryma/vim-multiple-cursors'
   Plugin 'tpope/vim-commentary'
   Plugin 'tpope/vim-endwise'
   Plugin 'tpope/vim-fugitive'
@@ -124,8 +133,6 @@ call vundle#begin()
   Plugin 'vim-scripts/snipMate'
   Plugin 'walm/jshint.vim'
   Plugin 'wavded/vim-stylus'
-  Plugin 'myusuf3/numbers.vim'
-  Plugin 'majutsushi/tagbar'
 call vundle#end()
 filetype plugin indent on
 
@@ -177,9 +184,16 @@ let g:netrw_liststyle=3
 " Numbers
 let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
 
-" Python Mode
-"
+" ultisnip
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" Python Mode"
 let g:pymode_lint_write = 0
+
+let &colorcolumn=join(range(200,999),",")
+let &colorcolumn="120,".join(range(160,999),",")
 " ----------------------------------------------------------------------------------------------------
 " map
 " ----------------------------------------------------------------------------------------------------
@@ -211,6 +225,7 @@ nmap <F8> :TagbarToggle<cr>
 nnoremap ; :
 nnoremap <silent> <F5> :call <SID>Preserve()<cr>
 nnoremap <leader>s :SemanticHighlightToggle<cr>
+nnoremap <cr> :noh<cr><cr>
 
 vmap <D-[> <gv
 vmap <D-]> >gv
@@ -219,9 +234,16 @@ vmap <D-]> >gv
 " highlight
 " ----------------------------------------------------------------------------------------------------
 
-highlight ColorColumn ctermbg=8
-highlight NonText guifg=#4a4a59
-highlight SpecialKey guifg=#4a4a59
+highlight ColorColumn ctermbg=234
+highlight NonText ctermfg=darkgray ctermbg=none cterm=none
+highlight SpecialKey ctermfg=darkgray ctermbg=none cterm=none
+highlight Search ctermfg=yellow ctermbg=none cterm=bold,underline
+
+highlight clear SignColumn
+highlight GitGutterAdd ctermfg=green
+highlight GitGutterChange ctermfg=yellow
+highlight GitGutterDelete ctermfg=red
+highlight GitGutterChangeDelete ctermfg=yellow
 
 " ----------------------------------------------------------------------------------------------------
 " autocmd
