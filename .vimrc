@@ -75,6 +75,7 @@ set wildmenu
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
   "Plugin 'honza/vim-snippets'
+  Plugin 'bling/vim-airline'
   Plugin 'Lokaltog/vim-easymotion'
   Plugin 'Shougo/neocomplcache.vim'
   Plugin 'Shougo/neocomplete.vim'
@@ -192,6 +193,11 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " Python Mode"
 let g:pymode_lint_write = 0
 
+
+" Airline
+let g:airline#extensions#tabline#enabled=1
+
+
 let &colorcolumn=join(range(200,999),",")
 let &colorcolumn="120,".join(range(160,999),",")
 " ----------------------------------------------------------------------------------------------------
@@ -270,8 +276,6 @@ if has("autocmd")
 
     " Python
      autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
-     autocmd BufWinEnter * highlight ColorColumn ctermbg=darkred
-     autocmd FileType vim-plug setl colorcolumn=0
      autocmd StdinReadPre * let s:std_in=1
     " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
     " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
