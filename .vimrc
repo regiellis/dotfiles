@@ -19,6 +19,7 @@ set backspace=indent,eol,start
 set clipboard+=unnamed
 set colorcolumn=120
 set copyindent
+set display+=lastline
 set encoding=utf-8
 set expandtab
 set foldlevel=1
@@ -31,33 +32,43 @@ set ignorecase
 set incsearch
 set laststatus=2
 set lazyredraw
-set list 
+set list
 set listchars=tab:▸\ ,eol:¬
 set nobackup
 set nofoldenable
+set noshowmode
 set noswapfile
+set nottimeout
 set nowrap
 set nowritebackup
 set number
 set ruler
+set scrolloff=5
 set shiftround
 set shiftwidth=4
 set shortmess+=I
+set shortmess=atI
+set splitbelow
+set splitright
 set showcmd
 set showmatch
-set showmode
 set smartcase
 set smarttab
 set softtabstop=4
 set tabpagemax=15
 set tabstop=4
+set tags=.git/tags,tags
 set term=screen-256color
 set textwidth=120
+set tildeop
 set title
+set ttimeout
 set undolevels=1000
+set updatetime=500
 set visualbell
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*.,*/.DS_Store
 set wildmenu
+set wildmode=list:longest
 
 " ----------------------------------------------------------------------------------------------------
 " Respectively Stolen from myusuf3
@@ -69,80 +80,94 @@ set wildmenu
 " :iabbrev !env   #!/usr/bin/env python <cr>#-*- coding: utf-8 -*-
 
 " ----------------------------------------------------------------------------------------------------
-" Vundle PluginList
+" Plug PluginList
 " ----------------------------------------------------------------------------------------------------
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-  "Plugin 'honza/vim-snippets'
-  Plugin 'bling/vim-airline'
-  Plugin 'Lokaltog/vim-easymotion'
-  Plugin 'Shougo/neocomplcache.vim'
-  Plugin 'Shougo/neocomplete.vim'
-  Plugin 'SirVer/ultisnips'
-  Plugin 'airblade/vim-gitgutter'
-  Plugin 'alvan/vim-closetag'
-  Plugin 'burnettk/vim-angular'
-  Plugin 'cakebaker/scss-syntax.vim'
-  Plugin 'cburroughs/pep8.py'
-  Plugin 'christoomey/vim-tmux-navigator'
-  Plugin 'derekwyatt/vim-scala'
-  Plugin 'docker/docker'
-  Plugin 'ervandew/supertab'
-  Plugin 'fs111/pydoc.vim'
-  Plugin 'godlygeek/tabular'
-  Plugin 'groenewege/vim-less'
-  Plugin 'hail2u/vim-css3-syntax'
-  Plugin 'hallettj/jslint.vim'
-  Plugin 'jaxbot/semantic-highlight.vim'
-  Plugin 'jelera/vim-javascript-syntax'
-  Plugin 'kchmck/vim-coffee-script'
-  Plugin 'kien/ctrlp.vim'
-  Plugin 'klen/python-mode'
-  Plugin 'laurentgoudet/vim-howdoi'
-  Plugin 'leshill/vim-json'
-  Plugin 'majutsushi/tagbar'
-  Plugin 'marijnh/tern_for_vim'
-  Plugin 'mattn/emmet-vim'
-  Plugin 'mattn/webapi-vim'
-  Plugin 'mmozuras/vim-github-comment'
-  Plugin 'moll/vim-node'
-  Plugin 'mustache/vim-mustache-handlebars'
-  Plugin 'myusuf3/numbers.vim'
-  Plugin 'othree/html5.vim'
-  Plugin 'othree/javascript-libraries-syntax.vim'
-  Plugin 'pangloss/vim-javascript'
-  Plugin 'reedes/vim-thematic'
-  Plugin 'rizzatti/dash.vim'
-  Plugin 'rking/ag.vim'
-  Plugin 'rstacruz/sparkup'
-  Plugin 'scrooloose/nerdcommenter'
-  Plugin 'scrooloose/nerdtree'
-  Plugin 'scrooloose/syntastic'
-  Plugin 'sjl/gundo.vim'
-  Plugin 'skammer/vim-css-color'
-  Plugin 'terryma/vim-multiple-cursors'
-  Plugin 'tpope/vim-commentary'
-  Plugin 'tpope/vim-endwise'
-  Plugin 'tpope/vim-fugitive'
-  Plugin 'tpope/vim-markdown'
-  Plugin 'tpope/vim-repeat'
-  Plugin 'tpope/vim-rsi'
-  Plugin 'tpope/vim-sleuth'
-  Plugin 'tpope/vim-surround'
-  Plugin 'vim-scripts/SyntaxComplete'
-  Plugin 'vim-scripts/snipMate'
-  Plugin 'walm/jshint.vim'
-  Plugin 'wavded/vim-stylus'
-call vundle#end()
+call plug#begin('~/.vim/bundle')
+      Plug 'FelikZ/ctrlp-py-matcher'
+      Plug 'Lokaltog/vim-easymotion'
+      Plug 'PeterRincker/vim-argumentative'
+      Plug 'Raimondi/delimitMate'
+      Plug 'SirVer/ultisnips',
+      Plug 'Wolfy87/vim-enmasse', { 'on': 'EnMasse' }
+      Plug 'Wolfy87/vim-expand', { 'on': 'Expand' }
+      Plug 'airblade/vim-gitgutter'
+      Plug 'alvan/vim-closetag'
+      Plug 'amdt/vim-niji', { 'for': 'javascript' }
+      Plug 'bling/vim-airline'
+      Plug 'derekwyatt/vim-scala'
+      Plug 'ekalinin/Dockerfile.vim'
+      Plug 'geekjuice/vim-mocha'
+      Plug 'godlygeek/tabular'
+      Plug 'haya14busa/incsearch.vim'
+      Plug 'haya14busa/vim-asterisk'
+      Plug 'helino/vim-json', { 'for': 'json' }
+      Plug 'honza/vim-snippets'
+      Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
+      Plug 'jmcantrell/vim-virtualenv'
+      Plug 'junegunn/vim-easy-align'
+      Plug 'kien/ctrlp.vim'
+      Plug 'klen/python-mode'
+      Plug 'majutsushi/tagbar'
+      Plug 'marijnh/tern_for_vim', { 'do': 'npm install', 'for': 'javascript' }
+      Plug 'mattn/emmet-vim'
+      Plug 'myusuf3/numbers.vim'
+      Plug 'nathanaelkane/vim-indent-guides'
+      Plug 'othree/html5.vim', { 'for': 'html' }
+      Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
+      Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+      Plug 'rizzatti/dash.vim'
+      Plug 'rking/ag.vim'
+      Plug 'scrooloose/nerdcommenter'
+      Plug 'scrooloose/syntastic'
+      Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
+      Plug 'skammer/vim-css-color', { 'for': ['html', 'css'] }
+      Plug 'terryma/vim-multiple-cursors'
+      Plug 'tpope/vim-abolish'
+      Plug 'tpope/vim-endwise'
+      Plug 'tpope/vim-eunuch'
+      Plug 'tpope/vim-fugitive'
+      Plug 'tpope/vim-markdown', { 'for': 'md' }
+      Plug 'tpope/vim-repeat'
+      Plug 'tpope/vim-sleuth'
+      Plug 'tpope/vim-surround'
+      Plug 'tpope/vim-unimpaired'
+      Plug 'tpope/vim-vinegar'
+      Plug 'vim-scripts/SyntaxComplete'
+      Plug 'walm/jshint.vim', { 'on': 'JSHint', 'for': 'javascript' }
+    " Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+    " Plug 'docker/docker'
+call plug#end()
 filetype plugin indent on
 
 " ----------------------------------------------------------------------------------------------------
 " let
 " ----------------------------------------------------------------------------------------------------
 
-" leader
+" leader / global
 let mapleader = ","
+let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
+let g:closetag_filenames = "*.html"
+let &colorcolumn=join(range(200,999),",")
+let &colorcolumn="120,".join(range(160,999),",")
+
+" Solorized Color
+let g:solarized_termcolors=256
+
+" Powerline Symbols Config
+let g:Powerline_symbols = 'fancy'
+
+" Argumentative 
+nmap [; <Plug>Argumentative_Prev
+nmap ]; <Plug>Argumentative_Next
+xmap [; <Plug>Argumentative_XPrev
+xmap ]; <Plug>Argumentative_XNext
+nmap <; <Plug>Argumentative_MoveLeft
+nmap >; <Plug>Argumentative_MoveRight
+xmap i; <Plug>Argumentative_InnerTextObject
+xmap a; <Plug>Argumentative_OuterTextObject
+omap i; <Plug>Argumentative_OpPendingInnerTextObject
+omap a; <Plug>Argumentative_OpPendingOuterTextObject
 
 " CtrlP -> use Ag for searching instead of VimScript
 let g:ctrlp_custom_ignore = '\v[\/]((node_modules)|\.(git|svn|grunt|sass-cache))$'
@@ -158,11 +183,11 @@ let s:semanticGUIColors = [ '#72d572', '#c5e1a5', '#e6ee9c', '#fff59d', '#ffe082
 let g:semanticTermColors = [28,1,2,3,4,5,6,7,25,9,10,34,12,13,14,15,16,125,124,19]
 
 " Git gutter
-let g:gitgutter_enabled = 1
-let g:gitgutter_eager = 0
-let g:gitgutter_sign_column_always = 1
-let g:github_user='regiellis'
-let g:github_comment_open_browser = 1
+ let g:gitgutter_enabled = 1
+ let g:gitgutter_eager = 0
+ let g:gitgutter_sign_column_always = 1
+ let g:github_user='regiellis'
+ let g:github_comment_open_browser = 1
 
 " Syntastic
 set statusline+=%#warningmsg#
@@ -171,42 +196,97 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
-" Color
-let g:solarized_termcolors=256
-let g:Powerline_symbols = 'fancy'
-
-" let g:neocomplcache_enable_at_startup = 1
-let g:pymode_options_colorcolumn = 0
-let g:netrw_liststyle=3
-
-" Numbers
-let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
-
-" ultisnip
+" Ultisnip
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " Python Mode"
 let g:pymode_lint_write = 0
+let g:pymode_options_colorcolumn = 0
+let g:pymode_rope_goto_definition_bind = "<C-]>"
+let g:pymode_run_bind = "<C-S-e>"
+let g:pymode_doc_bind = "<C-S-d>"
 
+" EasyMotion
+let g:EasyMotion_smartcase = 1
 
 " Airline
 let g:airline#extensions#tabline#enabled=1
+let g:airline_powerline_fonts=1
+if !exists('g:airline_symbols')
+    let g:airline_symbols={}
+endif
+let g:airline_symbols.space="\ua0"
+let g:airline_theme="powerlineish"
+
+" Mocha
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
 
 
-let &colorcolumn=join(range(200,999),",")
-let &colorcolumn="120,".join(range(160,999),",")
+" Neocomplete
+
+let g:acp_enableAtStartup = 0
+" let g:neocomplete#enable_at_startup = 1
+" let g:neocomplete#enable_smart_case = 1
+" let g:neocomplete#sources#syntax#min_keyword_length = 3
+" let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+    \ }
+
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
 " ----------------------------------------------------------------------------------------------------
-" map
+" maps
 " ----------------------------------------------------------------------------------------------------
 
-map <leader>t <C-p>
-map <leader>y :CtrlPBuffer<cr>
-map <leader>nt :NERDTreeToggle<cr>
+" Global
+" nmap <S-Enter> O<Esc>
+" nmap <CR> o<Esc>
+
+" Easy Motion / GIF CONFIG
+map  / <Plug>(easymotion-sn)
+map <leader>j <Plug>(easymotion-j)
+map <leader>k <Plug>(easymotion-k)
+nmap <leader>s <Plugin>(eastmotion-s)
+omap / <Plug>(easymotion-tn)
+
+" NeoComplete
+" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+" function! s:my_cr_function()
+"     return neocomplete#close_popup() . "\<CR>"
+"     " For no inserting <CR> key.
+"     "   "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+"  endfunction
+
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><C-y>  neocomplete#close_popup()
+" inoremap <expr><C-e>  neocomplete#cancel_popup()
+
+" ultiships
+let g:UltiSnipsExpandTrigger="<c-S>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit="vertical"
+
+" map <leader>t <C-p>
+" map <leader>y :CtrlPBuffer<cr>
+" map <leader>nt :NERDTreeToggle<cr>
 map <D-S-]> gt
 map <D-S-[> gT
 map <D-1> 1gt
@@ -219,7 +299,6 @@ map <D-7> 7gt
 map <D-8> 8gt
 map <D-9> 9gt
 map <D-0> :tablast<cr>
-
 
 nmap <leader>l :set list!<cr>
 nmap _$ :call Preserve("%s/\\s\\+$//e")<cr>
@@ -271,6 +350,13 @@ if has("autocmd")
     autocmd BufReadPre *.js let b:javascript_lib_use_requirejs = 1
     " autocmd BufWritePre *.py,*.js :call <SID>Preserve()
 
+    " Enable omni completion.
+    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
     " Markdown
     autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
@@ -317,8 +403,3 @@ command! OpenChangedFiles :call OpenChangedFiles()
 " ----------------------------------------------------------------------------------------------------
 " powerline status
 " ----------------------------------------------------------------------------------------------------
-
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
-
