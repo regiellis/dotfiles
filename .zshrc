@@ -1,5 +1,4 @@
-# BASE ZSH - PERSONA IO
-# JAN 2015
+# BASE ZSH - PERSONA IO # JAN 2015
 #
 # ASK FOR THE ADMINISTRATOR PASSWORD UPFRONT
 sudo -v
@@ -48,7 +47,7 @@ colors
 setopt prompt_subst
 
 # UNCOMMENT FOLLOWING LINE IF YOU WANT RED DOTS TO BE DISPLAYED WHILE WAITING FOR COMPLETION
-COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="false"
 CASE_SENSITIVE="true"
 
 . $ZSH/oh-my-zsh.sh
@@ -93,54 +92,77 @@ bindkey "\e\e[D" backward-word
 # WHICH PLUGINS WOULD YOU LIKE TO LOAD? (PLUGINS CAN BE FOUND IN ~/.OH-MY-ZSH/PLUGINS/*)
 # CUSTOM PLUGINS MAY BE ADDED TO ~/.OH-MY-ZSH/CUSTOM/PLUGINS/
 plugins=(
+    bower
     brew
     brew-cask
-    bower
     cake
     cloudapp
     coffee
     colorize
     django
     docker
+    fabric
     git
     git-extras
     git-flow
     git-hubflow
-    github
     git-remote-branch
-    fabric
-    mercurial
+    github
     heroku
     history
+    mercurial
+    node
+    npm
     osx
-    pip
     pep8
-    python
+    pip
     pyenv
     pylint
-    # rails
+    python
     rbenv
     redis-cli
     ruby
-    terminalapp
-    node
-    npm
-    scala
     sbt
-    sudo
-    sublime
+    scala
     ssh-agent
+    sublime
+    sudo
+    terminalapp
     terminalapp
     textmate
     themes
     tmux
     vagrant
     virtualenv
-    # virtualenvwrapper
     xcode
+    zsh-history-substring-search
+    zsh-syntax-highlighting
 )
 
 # GRAB ALL FILES WITH THE ".zsh" EXT
 for config_file ($HOME/.dotfiles/*/*.zsh); do
   source $config_file
 done
+
+# Setup zsh-autosuggestions
+source /Users/regi/.zsh-autosuggestions/autosuggestions.zsh
+# Enable autosuggestions automatically
+zle-line-init() {
+    zle autosuggest-start
+}
+ 
+zle -N zle-line-init
+
+# use ctrl+t to toggle autosuggestions(hopefully this wont be needed as
+# zsh-autosuggestions is designed to be unobtrusive)
+bindkey '^T' autosuggest-toggle
+AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=31'
+# # Accept suggestions without leaving insert mode
+# bindkey '^f' vi-forward-word
+# or
+# bindkey '^f' vi-forward-blank-word
+
+# bind UP and DOWN arrow keys
+# bindkey '^[[A' history-substring-search-up
+# bindkey '^[[B' history-substring-search-down
+

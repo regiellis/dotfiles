@@ -70,7 +70,6 @@ fi
 alias nano="vim" # USE VIM WHEN NANO IS CALLED
 alias vim='mvim -v' # USE MACVIM WHEN VIM IS CALLED
 
-
 # LANGUAGE --------------------------
 
 # PYTHON
@@ -78,7 +77,6 @@ alias python_dir="python -c 'from distutils.sysconfig import get_python_lib; pri
 alias pip_update_system_packages="pip freeze > $HOME/.dotfiles/system.pip" # UPDATE ALL PIP PACKAGES
 alias pip_update="pip install -U -r $HOME/.dotfiles/system.pip" # UPDATE ALL PIP PACKAGES
 alias pip_remove_all="pip freeze | xargs pip uninstall -y" # REMOVE ALL PACKAGES
-
 
 # RUBY
 alias r="rake"
@@ -153,7 +151,6 @@ alias vplug="vagrant plugin uninstall" # PLUGIN UNINSTALL
 # alias b2d="boot2docker" # BOOT2DOCKER
 
 # NPM PACKAGE UPDATE
-#
 alias npm_update='npm update -g'
 
 # MONGO
