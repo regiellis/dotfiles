@@ -89,6 +89,10 @@ source $HOME/.zshfunc
 bindkey "\e\e[C" forward-word
 bindkey "\e\e[D" backward-word
 
+
+source $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fpath=($HOME/.oh-my-zsh/custom/plugins/zsh-completions/src $fpath)
+
 # WHICH PLUGINS WOULD YOU LIKE TO LOAD? (PLUGINS CAN BE FOUND IN ~/.OH-MY-ZSH/PLUGINS/*)
 # CUSTOM PLUGINS MAY BE ADDED TO ~/.OH-MY-ZSH/CUSTOM/PLUGINS/
 plugins=(
@@ -135,8 +139,8 @@ plugins=(
     vagrant
     virtualenv
     xcode
-    zsh-history-substring-search
     zsh-syntax-highlighting
+    history-substring-search
 )
 
 # GRAB ALL FILES WITH THE ".zsh" EXT
@@ -145,24 +149,9 @@ for config_file ($HOME/.dotfiles/*/*.zsh); do
 done
 
 # Setup zsh-autosuggestions
-source /Users/regi/.zsh-autosuggestions/autosuggestions.zsh
-# Enable autosuggestions automatically
-zle-line-init() {
-    zle autosuggest-start
-}
- 
-zle -N zle-line-init
-
-# use ctrl+t to toggle autosuggestions(hopefully this wont be needed as
-# zsh-autosuggestions is designed to be unobtrusive)
-bindkey '^T' autosuggest-toggle
-AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=31'
-# # Accept suggestions without leaving insert mode
-# bindkey '^f' vi-forward-word
-# or
-# bindkey '^f' vi-forward-blank-word
 
 # bind UP and DOWN arrow keys
-# bindkey '^[[A' history-substring-search-up
-# bindkey '^[[B' history-substring-search-down
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
 
