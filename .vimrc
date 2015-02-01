@@ -63,7 +63,7 @@ set tildeop
 set title
 set ttimeout
 set undolevels=1000
-set updatetime=500
+set updatetime=100
 set visualbell
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*.,*/.DS_Store
 set wildmenu
@@ -84,56 +84,56 @@ set wildmode=list:longest
 
 filetype off
 call plug#begin('~/.vim/bundle')
-        Plug 'FelikZ/ctrlp-py-matcher'
-        Plug 'Lokaltog/vim-easymotion'
-        Plug 'PeterRincker/vim-argumentative'
-        Plug 'Raimondi/delimitMate'
-        Plug 'SirVer/ultisnips',
-        Plug 'Wolfy87/vim-enmasse', { 'on': 'EnMasse' }
-        Plug 'Wolfy87/vim-expand', { 'on': 'Expand' }
-        Plug 'airblade/vim-gitgutter'
-        Plug 'amdt/vim-niji', { 'for': 'javascript' }
-        Plug 'bling/vim-airline'
-        Plug 'derekwyatt/vim-scala'
-        Plug 'ekalinin/Dockerfile.vim'
-        Plug 'geekjuice/vim-mocha'
-        Plug 'godlygeek/tabular'
-        Plug 'haya14busa/incsearch.vim'
-        Plug 'haya14busa/vim-asterisk'
-        Plug 'helino/vim-json', { 'for': 'json' }
-        Plug 'honza/vim-snippets'
-        Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
-        Plug 'jmcantrell/vim-virtualenv'
-        Plug 'junegunn/vim-easy-align'
-        Plug 'kien/ctrlp.vim'
-        Plug 'klen/python-mode'
-        Plug 'majutsushi/tagbar'
-        Plug 'marijnh/tern_for_vim', { 'do': 'npm install', 'for': 'javascript' }
-        Plug 'mattn/emmet-vim'
-        Plug 'myusuf3/numbers.vim'
-        Plug 'nathanaelkane/vim-indent-guides'
-        Plug 'othree/html5.vim', { 'for': 'html' }
-        Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
-        Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-        Plug 'rizzatti/dash.vim'
-        Plug 'rking/ag.vim'
-        Plug 'scrooloose/nerdcommenter'
-        Plug 'scrooloose/syntastic'
-        Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
-        Plug 'skammer/vim-css-color', { 'for': ['html', 'css'] }
-        Plug 'terryma/vim-multiple-cursors'
-        Plug 'tpope/vim-abolish'
-        Plug 'tpope/vim-endwise'
-        Plug 'tpope/vim-eunuch'
-        Plug 'tpope/vim-fugitive'
-        Plug 'tpope/vim-markdown', { 'for': 'md' }
-        Plug 'tpope/vim-repeat'
-        Plug 'tpope/vim-sleuth'
-        Plug 'tpope/vim-surround'
-        Plug 'tpope/vim-unimpaired'
-        Plug 'tpope/vim-vinegar'
-        Plug 'vim-scripts/SyntaxComplete'
-        Plug 'walm/jshint.vim', { 'on': 'JSHint', 'for': 'javascript' }
+    Plug 'FelikZ/ctrlp-py-matcher'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'Lokaltog/vim-easymotion'
+    Plug 'PeterRincker/vim-argumentative'
+    Plug 'Raimondi/delimitMate'
+    Plug 'SirVer/ultisnips',
+    Plug 'Wolfy87/vim-enmasse', { 'on': 'EnMasse' }
+    Plug 'Wolfy87/vim-expand', { 'on': 'Expand' }
+    Plug 'bling/vim-airline'
+    Plug 'amdt/vim-niji', { 'for': 'javascript' }
+    Plug 'derekwyatt/vim-scala'
+    Plug 'ekalinin/Dockerfile.vim'
+    Plug 'geekjuice/vim-mocha'
+    Plug 'godlygeek/tabular'
+    Plug 'haya14busa/incsearch.vim'
+    Plug 'haya14busa/vim-asterisk'
+    Plug 'helino/vim-json', { 'for': 'json' }
+    Plug 'honza/vim-snippets'
+    Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
+    Plug 'jmcantrell/vim-virtualenv'
+    Plug 'junegunn/vim-easy-align'
+    Plug 'kien/ctrlp.vim'
+    Plug 'klen/python-mode'
+    Plug 'majutsushi/tagbar'
+    Plug 'marijnh/tern_for_vim', { 'do': 'npm install', 'for': 'javascript' }
+    Plug 'mattn/emmet-vim'
+    Plug 'myusuf3/numbers.vim'
+    Plug 'nathanaelkane/vim-indent-guides'
+    Plug 'othree/html5.vim', { 'for': 'html' }
+    Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
+    Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+    Plug 'rizzatti/dash.vim'
+    Plug 'rking/ag.vim'
+    Plug 'scrooloose/nerdcommenter'
+    Plug 'scrooloose/syntastic'
+    Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
+    Plug 'skammer/vim-css-color', { 'for': ['html', 'css'] }
+    Plug 'terryma/vim-multiple-cursors'
+    Plug 'tpope/vim-abolish'
+    Plug 'tpope/vim-endwise'
+    Plug 'tpope/vim-eunuch'
+    Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-markdown', { 'for': 'md' }
+    Plug 'tpope/vim-repeat'
+    Plug 'tpope/vim-sleuth'
+    Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-unimpaired'
+    Plug 'tpope/vim-vinegar'
+    Plug 'vim-scripts/SyntaxComplete'
+    Plug 'walm/jshint.vim', { 'on': 'JSHint', 'for': 'javascript' }
     " Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
     " Plug 'docker/docker'
 call plug#end()
@@ -156,7 +156,7 @@ let g:solarized_termcolors=256
 " Powerline Symbols Config
 let g:Powerline_symbols = 'fancy'
 
-" Argumentative 
+" Argumentative
 nmap [; <Plug>Argumentative_Prev
 nmap ]; <Plug>Argumentative_Next
 xmap [; <Plug>Argumentative_XPrev
@@ -326,6 +326,7 @@ highlight ColorColumn ctermbg=234
 highlight NonText ctermfg=darkgray ctermbg=none cterm=none
 highlight SpecialKey ctermfg=darkgray ctermbg=none cterm=none
 highlight Search ctermfg=yellow ctermbg=none cterm=bold,underline
+highlight MatchParen cterm=bold ctermbg=none ctermfg=magenta
 
 highlight clear SignColumn
 highlight GitGutterAdd ctermfg=green
