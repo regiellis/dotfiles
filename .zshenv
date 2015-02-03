@@ -1,6 +1,8 @@
 # ENV ZSH - PERSONA IO
 # JAN 2015
 
+CFLAGS='-g -O2'
+
 # EDITOR --------------------------
 export EDITOR="$(which subl) --new-window --wait"
 
@@ -10,6 +12,7 @@ PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH"
 export PATH="$HOME/Android/sdk/tools:$PATH" # ANDROID
 export PATH="$HOME/Android/sdk/platform-tools:$PATH" #ANDROID
 export PATH="$HOME/.node/bin:$PATH" # NPM BIN
+export PATH="$(brew --prefix homebrew/php/php54)/bin:$PATH" #PHP
 export GITHUB_ROOT="$HOME/GitHub/:$PATH" # GITHUB
 
 export DOCKER_TLS_VERIFY=1

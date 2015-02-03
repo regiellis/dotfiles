@@ -110,8 +110,8 @@ _rbenv() {
 # DEV TOOLS --------------------------
 alias ios-sim-web='open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app' # IOS 7
 alias wordpress_svn='svn co http://core.svn.wordpress.org/trunk/ .' # WORDPRESS TRUNK DOWNLOAD
-# fpm_path=$(which php-fpm)
-# alias php-fpm='sudo $fpm_path' # PHP5 FPM START
+fpm_path=$(which php-fpm)
+alias php-fpm-start='$fpm_path' # PHP5 FPM START
 
 # BOXES
 # Ubuntu precise 64 - http://files.vagrantup.com/precise64.box
@@ -179,8 +179,7 @@ alias gnp="git-notpushed" # LIST PUSH NOT ON ORIGIN
 alias gp='git push origin HEAD' # PUSH TO ORIGIN
 alias gph='git push heroku master' #PUSH TO HEROKU MASTER
 alias gst='git status' # GIT STATUS
-alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative" # PRETTY LOG
-alias gs='git status -sb' # SHORT / BRANCH
+alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative" # PRETTY LOG alias gs='git status -sb' # SHORT / BRANCH
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm" # UNKNOWN
 alias n=!"git ls-files | xargs notes | awk -F: '{ print $1,$2; print $3,$4; print $5}' | grcat conf.notes " # FIND FIXME, TODO, ETC
 
@@ -204,6 +203,12 @@ alias ta="tmux attach" # TMUX ATTACH
 alias tan="tmux attach -t" # TMUX ATTACH TO NAME SESSION
 alias tkill="tmux kill-session -t" # TMUX KILL SESSION WITH NAME
 
+# MYSQL ------------------------------------
+alias my="mysql -u root -p" # QUICK LOGIN AS ROOT W/PASS
+alias mysql_start="mysql.server start" # MYSQL SERVER START
+alias mysql_stop="mysql.server stop" # MYSQL SERVER STOP
+alias mydump="mysqldump -u root -p" # MYSQL SERVER DUMP
+
 # CONFIG FILES --------------------------
 alias ohmyzsh="vim $HOME/.oh-my-zsh" # OPEN ZSH DEFAULT CONFIG
 alias zshconfig="vim $HOME/.zshrc" # OPEN ZSH CONFIG
@@ -216,6 +221,14 @@ alias eh="sudo vim /private/etc/hosts" # OPEN HOSTS FILE IN SUBL
 alias eg='vim .git/config' # EDIT GIT CONFIG
 alias dotconfig="vim $HOME/.dotfiles" # EDIT DOT FILES
 
+# NGINX
+alias nginx="sudo nginx"
+alias nginx_stop="sudo nginx -s stop"
+alias nginx_reload="sudo nginx -s reload"
+alias nginx_dir="cd /usr/local/etc/nginx/"
+function nginx_alias_site() {
+  sudo ln -s /usr/local/etc/nginx/sites-available/$1 /usr/local/etc/nginx/sites-enabled/$1
+}
 
 if $(grc &>/dev/null)
 then
