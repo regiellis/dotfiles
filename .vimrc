@@ -85,7 +85,7 @@ set wildmode=list:longest
 filetype off
 call plug#begin('~/.vim/bundle')
     Plug 'FelikZ/ctrlp-py-matcher'
-    Plug 'airblade/vim-gitgutter'
+    "Plug 'airblade/vim-gitgutter'
     Plug 'Lokaltog/vim-easymotion'
     Plug 'PeterRincker/vim-argumentative'
     Plug 'Raimondi/delimitMate'
@@ -134,8 +134,11 @@ call plug#begin('~/.vim/bundle')
     Plug 'tpope/vim-vinegar'
     Plug 'vim-scripts/SyntaxComplete'
     Plug 'walm/jshint.vim', { 'on': 'JSHint', 'for': 'javascript' }
-    " Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
-    " Plug 'docker/docker'
+    Plug 'skammer/vim-css-color', { 'for': ['css', 'less'] }
+    Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'less'] }
+    Plug 'groenewege/vim-less', { 'for': ['css', 'less'] }
+    Plug 'wincent/Command-T'
+    Plug 'docker/docker' , { 'rtp': '/contrib/syntax/vim/' }
 call plug#end()
 filetype plugin indent on
 
@@ -314,6 +317,7 @@ nnoremap ; :
 nnoremap <silent> <F5> :call <SID>Preserve()<cr>
 nnoremap <leader>s :SemanticHighlightToggle<cr>
 nnoremap <cr> :noh<cr><cr>
+nnoremap <leader>m :w <BAR> !lessc % > %:t:r.css<cr><space>
 
 vmap <D-[> <gv
 vmap <D-]> >gv
@@ -351,7 +355,7 @@ if has("autocmd")
     autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 1
     autocmd BufReadPre *.js let b:javascript_lib_use_jasmine = 1
     autocmd BufReadPre *.js let b:javascript_lib_use_chai = 1
-    autocmd BufReadPre *.js let b:javascript_lib_use_requirejs = 1
+    autocmd BufReadPre *.js let b:javascript_lib_use_requirejs = 0
     " autocmd BufWritePre *.py,*.js :call <SID>Preserve()
 
     " Enable omni completion.
