@@ -254,6 +254,6 @@ fi
 source `brew --prefix grc`/etc/grc.bashrc
 
 # LOAD PERSONAL FUNCTIONS IF USER MATCH
-if [[ $USER == 'regi' ]]; then
+if [[ $USER == 'regiellis' ]]; then
   source $HOME/.dotfiles/functions/personal.zsh
 fi
