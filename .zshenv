@@ -19,10 +19,18 @@ export DOCKER_TLS_VERIFY=1
 export DOCKER_TLS=yes
 export DOCKER_HOST=tcp://192.168.59.103:2376 # DOCKER
 
+# LIBSASS
+#export SASS_SPEC_PATH=/Users/you/dev/sass/sass-spec
+#export SASS_SASSC_PATH=/Users/you/dev/sass/sassc
+#export SASS_LIBSASS_PATH=/Users/you/dev/sass/libsass
+
+# NVM
+export NVM_DIR="/Users/regiellis/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
 # RBENV
 export RBENV_ROOT="/usr/local/var/rbenv:$PATH" # RBENV
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
 
 # PYENV
 export PYENV_ROOT="/usr/local/opt/pyenv"
