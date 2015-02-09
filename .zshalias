@@ -151,7 +151,7 @@ alias vplug="vagrant plugin uninstall" # PLUGIN UNINSTALL
 # alias b2d="boot2docker" # BOOT2DOCKER
 
 # NPM PACKAGE UPDATE
-alias npm_update='npm update -g'
+alias npm_update='npm install -g npm@latest'
 
 # MONGO
 alias mongodb_start="mongod run --config $HOME/www/data/config/mongodb.yaml" # QUICK START OF MONGO

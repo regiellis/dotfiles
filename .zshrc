@@ -25,6 +25,7 @@ DISABLE_UPDATE_PROMPT=false
 ZSH_THEME="psona"
 
 ZSH=$HOME/.oh-my-zsh
+. $ZSH/oh-my-zsh.sh
 
 # notify of bg job completion immediately
 set -o notify
@@ -44,13 +45,13 @@ FIGNORE="~:CVS:#:.pyc:.swp:.swa:apache-solr-*"
 # PROMPT COLORS
 autoload -U colors
 colors
+
 setopt prompt_subst
+export KEYTIMEOUT=2
 
 # UNCOMMENT FOLLOWING LINE IF YOU WANT RED DOTS TO BE DISPLAYED WHILE WAITING FOR COMPLETION
 COMPLETION_WAITING_DOTS="false"
 CASE_SENSITIVE="true"
-
-. $ZSH/oh-my-zsh.sh
 
 # GENERAL HISTORY RELATED STUFF
 HISTFILE=~/.history
@@ -71,7 +72,6 @@ setopt HIST_SAVE_NO_DUPS
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_FIND_NO_DUPS
 setopt MENUCOMPLETE
-bindkey -e
 
 # zsh performance tweaks
 # .. use a cache file
@@ -83,12 +83,6 @@ zstyle ':completion:*' cache-path $HOME/.zshcache
 source $HOME/.zshalias
 #functions
 source $HOME/.zshfunc
-
-# MAPPINGS FOR CTRL/OPTION-LEFT-ARROW AND CTRL/OPTION-RIGHT-ARROW FOR
-# MOVING ACROSS WORDS
-bindkey "\e\e[C" forward-word
-bindkey "\e\e[D" backward-word
-
 
 source $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fpath=($HOME/.oh-my-zsh/custom/plugins/zsh-completions/src $fpath)
@@ -150,6 +144,29 @@ done
 
 # Setup zsh-autosuggestions
 
+# VI MODE
+bindkey -v
+
+# MAPPINGS FOR CTRL/OPTION-LEFT-ARROW AND CTRL/OPTION-RIGHT-ARROW FOR
+# MOVING ACROSS WORDS
+bindkey "\e\e[C" forward-word
+bindkey "\e\e[D" backward-word
+
 # bind UP and DOWN arrow keys
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+
+bindkey '^P' up-history
+bindkey '^N' down-history
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+bindkey '^r' history-incremental-search-backward
+
+function zle-line-init zle-keymap-select {
+  VIM_MODE_INDICATION='%{fg_bold[darkorange]%}%{bg[brightorange]%} N %{$reset_color%}'
+  RPROMPT='%{$fg[red]%}%p $(virtualenv_prompt_info)%{$reset_color%} %{$fg[red]%}⮂%{$reset_color%}%{$fg[white]%}%{$bg[red]%} %? %{$reset_color%}${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}'
+  zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
