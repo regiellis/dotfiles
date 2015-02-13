@@ -1,4 +1,5 @@
 bpython
+pip
 jedi
 mercurial
 pep8
@@ -17,3 +18,4 @@ youtube-dl
 howdoi
 mkdocs
 hg-git
+setuptools

@@ -1,5 +1,10 @@
+# ------------------------------------------------------------------------------
+# PSONA ZSH THEME
+# ------------------------------------------------------------------------------
+# POWERLINE SYMBOLS: ⮂ ⮃ ⮀ ⮁ ⭤
 PROMPT='%{$fg[cyan]%}[%c]$(git_prompt_info)$(hg_prompt_info)%{$reset_color%}'
-RPROMPT='%{$fg[red]%}%p $(virtualenv_prompt_info)%{$reset_color%} %{$fg[red]%}⮂%{$reset_color%}%{$fg[white]%}%{$bg[red]%} %? %{$reset_color%}'
+RPROMPT='%{$fg[red]%}%p $(virtualenv_prompt_info)%{$reset_color%}
+%{$fg[red]%}⮂%{$reset_color%}%{$fg[white]%}%{$bg[red]%} %? %{$reset_color%} %{$fg[blue]%} [ I ]%{$reset_color%}'
 
 ZSH_THEME_VIRTUAL_ENV_PROMPT_PREFIX="%{$fg[red]%}(env):%{$reset_color%}"
 

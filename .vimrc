@@ -84,23 +84,28 @@ set wildmode=list:longest
 
 filetype off
 call plug#begin('~/.vim/bundle')
-    Plug 'FelikZ/ctrlp-py-matcher'
     "Plug 'airblade/vim-gitgutter'
+    Plug 'FelikZ/ctrlp-py-matcher'
     Plug 'Lokaltog/vim-easymotion'
     Plug 'PeterRincker/vim-argumentative'
     Plug 'Raimondi/delimitMate'
     Plug 'SirVer/ultisnips',
     Plug 'Wolfy87/vim-enmasse', { 'on': 'EnMasse' }
     Plug 'Wolfy87/vim-expand', { 'on': 'Expand' }
-    Plug 'bling/vim-airline'
     Plug 'amdt/vim-niji', { 'for': 'javascript' }
+    Plug 'bling/vim-airline'
     Plug 'derekwyatt/vim-scala'
+    Plug 'docker/docker' , { 'rtp': '/contrib/syntax/vim/' }
     Plug 'ekalinin/Dockerfile.vim'
+    Plug 'garbas/vim-snipmate'
     Plug 'geekjuice/vim-mocha'
     Plug 'godlygeek/tabular'
+    Plug 'groenewege/vim-less', { 'for': ['css', 'less'] }
+    Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'less'] }
     Plug 'haya14busa/incsearch.vim'
     Plug 'haya14busa/vim-asterisk'
     Plug 'helino/vim-json', { 'for': 'json' }
+    Plug 'honza/vim-snippets'
     Plug 'honza/vim-snippets'
     Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
     Plug 'jmcantrell/vim-virtualenv'
@@ -120,6 +125,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'scrooloose/nerdcommenter'
     Plug 'scrooloose/syntastic'
     Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
+    Plug 'skammer/vim-css-color', { 'for': ['css', 'less'] }
     Plug 'skammer/vim-css-color', { 'for': ['html', 'css'] }
     Plug 'terryma/vim-multiple-cursors'
     Plug 'tpope/vim-abolish'
@@ -133,12 +139,11 @@ call plug#begin('~/.vim/bundle')
     Plug 'tpope/vim-unimpaired'
     Plug 'tpope/vim-vinegar'
     Plug 'vim-scripts/SyntaxComplete'
+    Plug 'marcweber/vim-addon-mw-utils' 
     Plug 'walm/jshint.vim', { 'on': 'JSHint', 'for': 'javascript' }
-    Plug 'skammer/vim-css-color', { 'for': ['css', 'less'] }
-    Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'less'] }
-    Plug 'groenewege/vim-less', { 'for': ['css', 'less'] }
+    Plug 'scrooloose/nerdtree'
     Plug 'wincent/Command-T'
-    Plug 'docker/docker' , { 'rtp': '/contrib/syntax/vim/' }
+    Plug 'evidens/vim-twig'
 call plug#end()
 filetype plugin indent on
 
@@ -226,15 +231,18 @@ let g:airline_symbols.space="\ua0"
 let g:airline_theme="powerlineish"
 
 " Mocha
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
+map <leader>t :call RunCurrentSpecFile()<CR>
+map <leader>s :call RunNearestSpec()<CR>
+map <leader>l :call RunLastSpec()<CR>
+map <leader>a :call RunAllSpecs()<CR>
 
 map ^[OA <up>
 map ^[OB <down>
 map ^[OC <right>
 map ^[OD <left>
+
+" NerdTree
+map <leader>n :NERDTreeToggle<cr>
 
 " Neocomplete
 
