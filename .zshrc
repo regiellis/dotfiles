@@ -5,21 +5,21 @@ sudo -v
 # Keep-alive: update existing sudo time stamp if set, otherwise do nothing.
 # while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-# JUMP RIGHT INTO TMUX
-if [ -z "$TMUX" ]; then
-    base_session='PSONA'
-    # Create a new session if it doesn't exist
-    tmux has-session -t $base_session || tmux new-session -d -s $base_session
-    # Are there any clients connected already?
-    client_cnt=$(tmux list-clients | wc -l)
-    if [ $client_cnt -ge 1 ]; then
-        session_name=$base_session"-"$client_cnt
-        tmux new-session -d -t $base_session -s $session_name
-        tmux -2 attach-session -t $session_name \; set-option destroy-unattached
-    else
-        tmux -2 attach-session -t $base_session
-    fi
-fi
+## JUMP RIGHT INTO TMUX
+#if [ -z "$TMUX" ]; then
+#    base_session='PSONA'
+#    # Create a new session if it doesn't exist
+#    tmux has-session -t $base_session || tmux new-session -d -s $base_session
+#    # Are there any clients connected already?
+#    client_cnt=$(tmux list-clients | wc -l)
+#    if [ $client_cnt -ge 1 ]; then
+#        session_name=$base_session"-"$client_cnt
+#        tmux new-session -d -t $base_session -s $session_name
+#        tmux -2 attach-session -t $session_name \; set-option destroy-unattached
+#    else
+#        tmux -2 attach-session -t $base_session
+#    fi
+#fi
 
 DISABLE_UPDATE_PROMPT=false
 ZSH_THEME="psona"
@@ -87,63 +87,62 @@ source $HOME/.zshalias
 source $HOME/.zshfunc
 
 source $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(brew --prefix)/etc/profile.d/autojump.sh
 fpath=($HOME/.oh-my-zsh/custom/plugins/zsh-completions/src $fpath)
 
 # WHICH PLUGINS WOULD YOU LIKE TO LOAD? (PLUGINS CAN BE FOUND IN ~/.OH-MY-ZSH/PLUGINS/*)
 # CUSTOM PLUGINS MAY BE ADDED TO ~/.OH-MY-ZSH/CUSTOM/PLUGINS/
 plugins=(
-    autojump
-    brew
-    brew-cask
-    cloudapp
-    composer
-    common-aliases
-    coffee
-    colorize
-    django
-    docker
-    dirhistory
-    fabric
-    git
-    gem
-    git-extras
-    git-flow
-    git-hubflow
-    git-remote-branch
-    github
-    gradle
-    last-working-dir
-    heroku
-    history
-    mercurial
-    node
-    npm
-    osx
-    pep8
-    pip
-    pyenv
-    pylint
-    python
-    rbenv
-    redis-cli
-    ruby
-    sbt
-    scala
-    ssh-agent
-    sublime
-    symfony2
-    sudo
-    terminalapp
-    terminalapp
-    textmate
-    themes
-    tmux
-    vagrant
-    virtualenv
-    xcode
-    zsh-syntax-highlighting
-    history-substring-search
-    vi-mode
+      autojump
+      brew
+      brew-cask
+      cloudapp
+      composer
+      common-aliases
+      coffee
+      colorize
+      django
+      docker
+      dirhistory
+      fabric
+      git
+      gem
+      git-extras
+      git-flow
+      git-hubflow
+      git-remote-branch
+      #github
+      gradle
+      last-working-dir
+      heroku
+      history
+      mercurial
+      node
+      npm
+      osx
+      pep8
+      pip
+      pyenv
+      pylint
+      python
+      rbenv
+      redis-cli
+      ruby
+      sbt
+      scala
+      ssh-agent
+      sublime
+      symfony2
+      sudo
+      terminalapp
+      themes
+      tmux
+      vagrant
+      virtualenv
+      xcode
+      zsh-syntax-highlighting
+      history-substring-search
+      vi-mode
 )
 
 # GRAB ALL FILES WITH THE ".zsh" EXT

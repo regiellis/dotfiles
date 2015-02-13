@@ -157,6 +157,7 @@ let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
 let g:closetag_filenames = "*.html"
 let &colorcolumn=join(range(200,999),",")
 let &colorcolumn="120,".join(range(160,999),",")
+let g:user_emmet_leader_key='<c-z>'
 
 " Solorized Color
 let g:solarized_termcolors=256
@@ -231,10 +232,10 @@ let g:airline_symbols.space="\ua0"
 let g:airline_theme="powerlineish"
 
 " Mocha
-map <leader>t :call RunCurrentSpecFile()<CR>
-map <leader>s :call RunNearestSpec()<CR>
-map <leader>l :call RunLastSpec()<CR>
-map <leader>a :call RunAllSpecs()<CR>
+map <leader>mt :call RunCurrentSpecFile()<CR>
+map <leader>ms :call RunNearestSpec()<CR>
+map <leader>ml :call RunLastSpec()<CR>
+map <leader>ma :call RunAllSpecs()<CR>
 
 map ^[OA <up>
 map ^[OB <down>
@@ -242,7 +243,7 @@ map ^[OC <right>
 map ^[OD <left>
 
 " NerdTree
-map <leader>n :NERDTreeToggle<cr>
+map <leader>nt :NERDTreeToggle<cr>
 
 " Neocomplete
 
@@ -326,7 +327,6 @@ nnoremap <silent> <F5> :call <SID>Preserve()<cr>
 nnoremap <leader>s :SemanticHighlightToggle<cr>
 nnoremap <cr> :noh<cr><cr>
 nnoremap <leader>m :w <BAR> !lessc % > %:t:r.css<cr><space>
-
 vmap <D-[> <gv
 vmap <D-]> >gv
 
@@ -372,7 +372,7 @@ if has("autocmd")
     autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
     autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
+    autocmd FileType php setlocal omnifunc=phpcomplete#CompleteTags
     " Markdown
     autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
