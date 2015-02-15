@@ -374,6 +374,8 @@ if has("autocmd")
     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
     autocmd FileType php setlocal omnifunc=phpcomplete#CompleteTags
     " Markdown
+    autocmd BufRead,BufNewFile *.scss set filetype=scss.css
+    autocmd FileType scss set iskeyword+=-
     autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
     " Python

@@ -144,12 +144,6 @@ alias vpluginstall="vagrant plugin install" # PLUGIN INSTALL
 alias vpluglist="vagrant plugin list" # PLUGIN LIST
 alias vplug="vagrant plugin uninstall" # PLUGIN UNINSTALL
 
-
-# DOCKER
-# alias rm_all_docker_continaer="docker rm $(docker ps -aq)" # REMOVES ALL DOCKER CONTAINERS
-# alias rm_all_docker_images="docker rmi $(docker images -aq)" # REMOVES ALL DOCKER CONTAINERS
-# alias b2d="boot2docker" # BOOT2DOCKER
-
 # NPM PACKAGE UPDATE
 alias npm_update='npm install -g npm@latest'
 
@@ -166,19 +160,6 @@ alias rethinkdb_start="rethinkdb --config-file $HOME/www/data/config/rethink_con
 
 # GIT
 alias ungit="find . -name '.git' -exec rm -rf {} \;" # REMOVE GIT FILES
-alias gb='git branch' # CREATE A GIT BRANCH
-alias gba='git branch -a' # LIST ALL GIT BRANCHES
-alias gc='git commit -v' # GIT COMMIT W/VERBOSE
-alias ga='git add' # GIT ADDED FILES
-alias gca='git commit -a' # GIT COMMIT ADD MOD FILES W/VEBOSE
-alias gco='git checkout' # GIT CHECKOUT
-alias gd='git diff' # GIT DIFFERENCE
-alias gdm='git diff master' # GIT DIFFERENCE MASTER
-alias gl='git pull' # GIT PULL
-alias gnp="git-notpushed" # LIST PUSH NOT ON ORIGIN
-alias gp='git push origin HEAD' # PUSH TO ORIGIN
-alias gph='git push heroku master' #PUSH TO HEROKU MASTER
-alias gst='git status' # GIT STATUS
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative" # PRETTY LOG alias gs='git status -sb' # SHORT / BRANCH
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm" # UNKNOWN
 alias n=!"git ls-files | xargs notes | awk -F: '{ print $1,$2; print $3,$4; print $5}' | grcat conf.notes " # FIND FIXME, TODO, ETC
