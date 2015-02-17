@@ -95,7 +95,6 @@ call plug#begin('~/.vim/bundle')
     Plug 'amdt/vim-niji', { 'for': 'javascript' }
     Plug 'bling/vim-airline'
     Plug 'derekwyatt/vim-scala'
-    Plug 'docker/docker' , { 'rtp': '/contrib/syntax/vim/' }
     Plug 'ekalinin/Dockerfile.vim'
     Plug 'garbas/vim-snipmate'
     Plug 'geekjuice/vim-mocha'
@@ -105,7 +104,6 @@ call plug#begin('~/.vim/bundle')
     Plug 'haya14busa/incsearch.vim'
     Plug 'haya14busa/vim-asterisk'
     Plug 'helino/vim-json', { 'for': 'json' }
-    Plug 'honza/vim-snippets'
     Plug 'honza/vim-snippets'
     Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
     Plug 'jmcantrell/vim-virtualenv'
@@ -125,7 +123,6 @@ call plug#begin('~/.vim/bundle')
     Plug 'scrooloose/nerdcommenter'
     Plug 'scrooloose/syntastic'
     Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
-    Plug 'skammer/vim-css-color', { 'for': ['css', 'less'] }
     Plug 'skammer/vim-css-color', { 'for': ['html', 'css'] }
     Plug 'terryma/vim-multiple-cursors'
     Plug 'tpope/vim-abolish'
@@ -142,8 +139,11 @@ call plug#begin('~/.vim/bundle')
     Plug 'marcweber/vim-addon-mw-utils' 
     Plug 'walm/jshint.vim', { 'on': 'JSHint', 'for': 'javascript' }
     Plug 'scrooloose/nerdtree'
-    Plug 'wincent/Command-T'
     Plug 'evidens/vim-twig'
+    Plug 'docteurklein/vim-symfony'
+    Plug 'jmcomets/vim-pony'
+    Plug 'lepture/vim-jinja'
+    Plug 'cakebaker/scss-syntax.vim'
 call plug#end()
 filetype plugin indent on
 
