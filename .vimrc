@@ -14,6 +14,7 @@ colorscheme Tomorrow-Night
 set autoindent
 set autoread
 set autowrite
+set directory-=.
 set background=dark
 set backspace=indent,eol,start
 set clipboard+=unnamed
@@ -67,7 +68,7 @@ set updatetime=100
 set visualbell
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*.,*/.DS_Store
 set wildmenu
-set wildmode=list:longest
+set wildmode=longest,list,full
 
 " ----------------------------------------------------------------------------------------------------
 " Respectively Stolen from myusuf3
@@ -77,6 +78,16 @@ set wildmode=list:longest
 " :iabbrev ccopy  Copyright 2015 Regi Ellis, All Rights Reserved.
 " :iabbrev pdb    # XXX BREAKPOINT XXX <cr>import pdb; pdb.set_trace()
 " :iabbrev !env   #!/usr/bin/env python <cr>#-*- coding: utf-8 -*-
+
+" -----------------------------------------------------------------------------------------------------
+"  Mouse Behave
+" -----------------------------------------------------------------------------------------------------
+
+set mouse=a
+if exists('$TMUX')  " Support resizing in tmux
+  set ttymouse=xterm2
+endif
+
 
 " ----------------------------------------------------------------------------------------------------
 " Plug PluginList
@@ -391,7 +402,10 @@ if has("autocmd") && exists("+omnifunc")
         \       setlocal omnifunc=syntaxcomplete#Complete |
         \   endif
 endif
-
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
 " ----------------------------------------------------------------------------------------------------
 " functions
 " ----------------------------------------------------------------------------------------------------
