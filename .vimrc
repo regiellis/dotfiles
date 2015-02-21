@@ -98,6 +98,7 @@ call plug#begin('~/.vim/bundle')
     "Plug 'airblade/vim-gitgutter'
     Plug 'FelikZ/ctrlp-py-matcher'
     Plug 'Lokaltog/vim-easymotion'
+    Plug 'MarcWeber/vim-addon-mw-utils'
     Plug 'PeterRincker/vim-argumentative'
     Plug 'Raimondi/delimitMate'
     Plug 'SirVer/ultisnips',
@@ -105,8 +106,11 @@ call plug#begin('~/.vim/bundle')
     Plug 'Wolfy87/vim-expand', { 'on': 'Expand' }
     Plug 'amdt/vim-niji', { 'for': 'javascript' }
     Plug 'bling/vim-airline'
+    Plug 'cakebaker/scss-syntax.vim'
     Plug 'derekwyatt/vim-scala'
+    Plug 'docteurklein/vim-symfony'
     Plug 'ekalinin/Dockerfile.vim'
+    Plug 'evidens/vim-twig'
     Plug 'garbas/vim-snipmate'
     Plug 'geekjuice/vim-mocha'
     Plug 'godlygeek/tabular'
@@ -118,10 +122,13 @@ call plug#begin('~/.vim/bundle')
     Plug 'honza/vim-snippets'
     Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
     Plug 'jmcantrell/vim-virtualenv'
+    Plug 'jmcomets/vim-pony'
     Plug 'junegunn/vim-easy-align'
     Plug 'kien/ctrlp.vim'
     Plug 'klen/python-mode'
+    Plug 'lepture/vim-jinja'
     Plug 'majutsushi/tagbar'
+    Plug 'marcweber/vim-addon-mw-utils' 
     Plug 'marijnh/tern_for_vim', { 'do': 'npm install', 'for': 'javascript' }
     Plug 'mattn/emmet-vim'
     Plug 'myusuf3/numbers.vim'
@@ -132,10 +139,12 @@ call plug#begin('~/.vim/bundle')
     Plug 'rizzatti/dash.vim'
     Plug 'rking/ag.vim'
     Plug 'scrooloose/nerdcommenter'
+    Plug 'scrooloose/nerdtree'
     Plug 'scrooloose/syntastic'
     Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
     Plug 'skammer/vim-css-color', { 'for': ['html', 'css'] }
     Plug 'terryma/vim-multiple-cursors'
+    Plug 'tomtom/tlib_vim'
     Plug 'tpope/vim-abolish'
     Plug 'tpope/vim-endwise'
     Plug 'tpope/vim-eunuch'
@@ -143,18 +152,12 @@ call plug#begin('~/.vim/bundle')
     Plug 'tpope/vim-markdown', { 'for': 'md' }
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-sleuth'
+    Plug 'Shougo/neocomplete.vim'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-unimpaired'
     Plug 'tpope/vim-vinegar'
     Plug 'vim-scripts/SyntaxComplete'
-    Plug 'marcweber/vim-addon-mw-utils' 
     Plug 'walm/jshint.vim', { 'on': 'JSHint', 'for': 'javascript' }
-    Plug 'scrooloose/nerdtree'
-    Plug 'evidens/vim-twig'
-    Plug 'docteurklein/vim-symfony'
-    Plug 'jmcomets/vim-pony'
-    Plug 'lepture/vim-jinja'
-    Plug 'cakebaker/scss-syntax.vim'
 call plug#end()
 filetype plugin indent on
 
@@ -202,11 +205,11 @@ let s:semanticGUIColors = [ '#72d572', '#c5e1a5', '#e6ee9c', '#fff59d', '#ffe082
 let g:semanticTermColors = [28,1,2,3,4,5,6,7,25,9,10,34,12,13,14,15,16,125,124,19]
 
 " Git gutter
- let g:gitgutter_enabled = 1
- let g:gitgutter_eager = 0
- let g:gitgutter_sign_column_always = 1
- let g:github_user='regiellis'
- let g:github_comment_open_browser = 1
+" let g:gitgutter_enabled = 1
+" let g:gitgutter_eager = 0
+" let g:gitgutter_sign_column_always = 1
+" let g:github_user='regiellis'
+" let g:github_comment_open_browser = 1
 
 " Syntastic
 set statusline+=%#warningmsg#
@@ -259,9 +262,9 @@ map <leader>nt :NERDTreeToggle<cr>
 " Neocomplete
 
 let g:acp_enableAtStartup = 0
-" let g:neocomplete#enable_at_startup = 1
-" let g:neocomplete#enable_smart_case = 1
-" let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#enable_at_startup = 0
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
 " let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 let g:neocomplete#sources#dictionary#dictionaries = {
@@ -291,18 +294,18 @@ nmap <leader>s <Plugin>(eastmotion-s)
 omap / <Plug>(easymotion-tn)
 
 " NeoComplete
-" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-" function! s:my_cr_function()
-"     return neocomplete#close_popup() . "\<CR>"
-"     " For no inserting <CR> key.
-"     "   "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-"  endfunction
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+    return neocomplete#close_popup() . "\<CR>"
+    " For no inserting <CR> key.
+    "   "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+ endfunction
 
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" inoremap <expr><C-y>  neocomplete#close_popup()
-" inoremap <expr><C-e>  neocomplete#cancel_popup()
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
 
 " ultiships
 let g:UltiSnipsExpandTrigger="<c-S>"
