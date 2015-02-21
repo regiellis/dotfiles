@@ -1,5 +1,6 @@
 # BASE ZSH - PERSONA IO JAN 2015
 sudo -v
+
 # Keep-alive: update existing sudo time stamp if set, otherwise do nothing.
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
@@ -18,6 +19,16 @@ if [ -z "$TMUX" ]; then
         tmux -2 attach-session -t $base_session
     fi
 fi
+
+ZSH_THEME="psona"
+ZSH=$HOME/.oh-my-zsh
+source $ZSH/oh-my-zsh.sh
+
+# aliases
+source $HOME/.zshalias
+
+# functions
+source $HOME/.zshfunc
 
 # DISABLE_UPDATE_PROMPT=false
 # notify of bg job completion immediately
@@ -73,10 +84,7 @@ zstyle ':completion:*' use-cache on
 # .. and then specify the cache file to use (not added to repo: separate file for each machine)
 zstyle ':completion:*' cache-path $HOME/.zshcache
  
-source $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $(brew --prefix)/etc/profile.d/autojump.sh
 fpath=($HOME/.oh-my-zsh/custom/plugins/zsh-completions/src $fpath)
-source $HOME/.zsh-autosuggestions/autosuggestions.zsh
 
 # WHICH PLUGINS WOULD YOU LIKE TO LOAD? (PLUGINS CAN BE FOUND IN ~/.OH-MY-ZSH/PLUGINS/*)
 # CUSTOM PLUGINS MAY BE ADDED TO ~/.OH-MY-ZSH/CUSTOM/PLUGINS/
@@ -131,36 +139,30 @@ plugins=(
       xcode
       zsh-syntax-highlighting
       zsh-autosuggestions
-      zsh-history-substring-search
       alias-tips
       vi-mode
 )
 
+source $(brew --prefix)/etc/profile.d/autojump.sh
+source $HOME/.zsh-autosuggestions/autosuggestions.zsh
+
 # GRAB ALL FILES WITH THE ".zsh" EXT
-for config_file ($HOME/.dotfiles/*/*.zsh); do
+for config_file ($HOME/.dotfiles/functions/*.zsh); do
   source $config_file
 done
  
 # VI MODE
 bindkey -v
+
+# Enable autosuggestions automatically
+zle-line-init() {
+    zle autosuggest-start
+}
+zle -N zle-line-init
+
 # Accept suggestions without leaving insert mode
 bindkey '^f' vi-forward-word
-AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=175'
-# Enable autosuggestions automatically
-zle-line-init() {
-    zle autosuggest-start
-}
-zle -N zle-line-init
-
-# Setup zsh-autosuggestions
-source /Users/regiellis/.zsh-autosuggestions/autosuggestions.zsh
-
-# Enable autosuggestions automatically
-zle-line-init() {
-    zle autosuggest-start
-}
-
-zle -N zle-line-init
+AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=212'
 
 # use ctrl+t to toggle autosuggestions(hopefully this wont be needed as
 # zsh-autosuggestions is designed to be unobtrusive)
