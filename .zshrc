@@ -1,4 +1,5 @@
 # BASE ZSH - PERSONA IO JAN 2015
+sudo -v
 # Keep-alive: update existing sudo time stamp if set, otherwise do nothing.
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
@@ -72,6 +73,11 @@ zstyle ':completion:*' use-cache on
 # .. and then specify the cache file to use (not added to repo: separate file for each machine)
 zstyle ':completion:*' cache-path $HOME/.zshcache
  
+source $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(brew --prefix)/etc/profile.d/autojump.sh
+fpath=($HOME/.oh-my-zsh/custom/plugins/zsh-completions/src $fpath)
+source $HOME/.zsh-autosuggestions/autosuggestions.zsh
+
 # WHICH PLUGINS WOULD YOU LIKE TO LOAD? (PLUGINS CAN BE FOUND IN ~/.OH-MY-ZSH/PLUGINS/*)
 # CUSTOM PLUGINS MAY BE ADDED TO ~/.OH-MY-ZSH/CUSTOM/PLUGINS/
 plugins=(
@@ -134,7 +140,7 @@ plugins=(
 for config_file ($HOME/.dotfiles/*/*.zsh); do
   source $config_file
 done
-# 
+ 
 # VI MODE
 bindkey -v
 # Accept suggestions without leaving insert mode
