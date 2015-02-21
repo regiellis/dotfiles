@@ -1,6 +1,4 @@
-# BASE ZSH - PERSONA IO # JAN 2015
-#
-# ASK FOR THE ADMINISTRATOR PASSWORD UPFRONT
+# BASE ZSH - PERSONA IO JAN 2015
 sudo -v
 # Keep-alive: update existing sudo time stamp if set, otherwise do nothing.
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
@@ -22,10 +20,6 @@ if [ -z "$TMUX" ]; then
 fi
 
 # DISABLE_UPDATE_PROMPT=false
-ZSH=$HOME/.oh-my-zsh
-source $ZSH/oh-my-zsh.sh
-ZSH_THEME="psona"
-
 # notify of bg job completion immediately
 set -o notify
 
@@ -79,11 +73,6 @@ zstyle ':completion:*' use-cache on
 # .. and then specify the cache file to use (not added to repo: separate file for each machine)
 zstyle ':completion:*' cache-path $HOME/.zshcache
  
-# aliases
-source $HOME/.zshalias
-# functions
-source $HOME/.zshfunc
- 
 source $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $(brew --prefix)/etc/profile.d/autojump.sh
 fpath=($HOME/.oh-my-zsh/custom/plugins/zsh-completions/src $fpath)
@@ -110,7 +99,6 @@ plugins=(
       git-flow
       git-hubflow
       git-remote-branch
-      #github
       gradle
       last-working-dir
       heroku
@@ -157,7 +145,7 @@ done
 bindkey -v
 # Accept suggestions without leaving insert mode
 bindkey '^f' vi-forward-word
-AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=45'
+AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=175'
 # Enable autosuggestions automatically
 zle-line-init() {
     zle autosuggest-start

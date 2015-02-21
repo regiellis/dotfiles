@@ -40,7 +40,7 @@ alias spell="aspell"
 alias pathcp="pwd | pbcopy" # COPY PATH TP PB
 alias ports='sudo lsof -i -P | grep -i "listen"' # LIST OPEN PORTS
 alias ips="ifconfig -a | grep -o 'inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)" # GET LOCAL IPS
-
+alias gitlive="/usr/local/bin/gitlivelog.sh" # GITLIVELOG
 
 # ANIMATION FUNCTIONS --------------------------
 

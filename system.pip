@@ -19,3 +19,5 @@ howdoi
 mkdocs
 hg-git
 setuptools
+docker-compose
+docker-py
