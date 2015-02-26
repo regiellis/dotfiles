@@ -89,7 +89,6 @@ fpath=($HOME/.oh-my-zsh/custom/plugins/zsh-completions/src $fpath)
 # WHICH PLUGINS WOULD YOU LIKE TO LOAD? (PLUGINS CAN BE FOUND IN ~/.OH-MY-ZSH/PLUGINS/*)
 # CUSTOM PLUGINS MAY BE ADDED TO ~/.OH-MY-ZSH/CUSTOM/PLUGINS/
 plugins=(
-      autojump
       brew
       brew-cask
       cloudapp
@@ -109,6 +108,7 @@ plugins=(
       git-remote-branch
       gradle
       last-working-dir
+      fasd
       heroku
       history
       mercurial
@@ -137,14 +137,15 @@ plugins=(
       vagrant
       virtualenv
       xcode
+      history-substring-search
       zsh-syntax-highlighting
-      zsh-autosuggestions
+#      zsh-autosuggestions
       alias-tips
       vi-mode
+
 )
 
-source $(brew --prefix)/etc/profile.d/autojump.sh
-source $HOME/.zsh-autosuggestions/autosuggestions.zsh
+#source $HOME/.zsh-autosuggestions/autosuggestions.zsh
 
 # GRAB ALL FILES WITH THE ".zsh" EXT
 for config_file ($HOME/.dotfiles/functions/*.zsh); do
@@ -154,16 +155,3 @@ done
 # VI MODE
 bindkey -v
 
-# Enable autosuggestions automatically
-zle-line-init() {
-    zle autosuggest-start
-}
-zle -N zle-line-init
-
-# Accept suggestions without leaving insert mode
-bindkey '^f' vi-forward-word
-AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=212'
-
-# use ctrl+t to toggle autosuggestions(hopefully this wont be needed as
-# zsh-autosuggestions is designed to be unobtrusive)
-bindkey '^T' autosuggest-toggle
