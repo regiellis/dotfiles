@@ -101,6 +101,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'MarcWeber/vim-addon-mw-utils'
     Plug 'PeterRincker/vim-argumentative'
     Plug 'Raimondi/delimitMate'
+    Plug 'Shougo/neocomplete.vim'
     Plug 'SirVer/ultisnips',
     Plug 'Wolfy87/vim-enmasse', { 'on': 'EnMasse' }
     Plug 'Wolfy87/vim-expand', { 'on': 'Expand' }
@@ -120,6 +121,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'haya14busa/vim-asterisk'
     Plug 'helino/vim-json', { 'for': 'json' }
     Plug 'honza/vim-snippets'
+    "Plug 'jaxbot/github-issues.vim'
     Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
     Plug 'jmcantrell/vim-virtualenv'
     Plug 'jmcomets/vim-pony'
@@ -143,6 +145,8 @@ call plug#begin('~/.vim/bundle')
     Plug 'scrooloose/syntastic'
     Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
     Plug 'skammer/vim-css-color', { 'for': ['html', 'css'] }
+    Plug 'szw/vim-ctrlspace'
+    Plug 'techlivezheng/vim-plugin-minibufexpl'
     Plug 'terryma/vim-multiple-cursors'
     Plug 'tomtom/tlib_vim'
     Plug 'tpope/vim-abolish'
@@ -152,7 +156,6 @@ call plug#begin('~/.vim/bundle')
     Plug 'tpope/vim-markdown', { 'for': 'md' }
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-sleuth'
-    Plug 'Shougo/neocomplete.vim'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-unimpaired'
     Plug 'tpope/vim-vinegar'
@@ -220,6 +223,18 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
+let g:syntastic_mode_map = {'mode': 'active',
+  \ 'active_filetypes': [],
+  \ 'passive_filetypes': ['html', 'twig'] }
+
+" Use flake8
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_flake8_args = '--ignore="E501,E302,E261,E701,E241,E126,E127,E128,W801"'
+let g:syntastic_javascript_checkers = ['jshint']
+
+" Better :sign interface symbols
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '!'
 
 " Ultisnip
 let g:UltiSnipsExpandTrigger="<tab>"

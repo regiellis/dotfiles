@@ -15,8 +15,10 @@ if [ -z "$TMUX" ]; then
         session_name=$base_session"-"$client_cnt
         tmux new-session -d -t $base_session -s $session_name
         tmux -2 attach-session -t $session_name \; set-option destroy-unattached
+        tmux send-keys 'reload'
     else
         tmux -2 attach-session -t $base_session
+        tmux send-keys 'reload'
     fi
 fi
 
@@ -154,4 +156,3 @@ done
  
 # VI MODE
 bindkey -v
-

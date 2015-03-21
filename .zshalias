@@ -113,6 +113,9 @@ alias wordpress_svn='svn co http://core.svn.wordpress.org/trunk/ .' # WORDPRESS 
 fpm_path=$(which php-fpm)
 alias php-fpm-start='$fpm_path' # PHP5 FPM START
 
+alias use_php54="brew unlink php55 && brew unlink php54 && brew link php54"
+alias use_php55="brew unlink php54 && brew unlink php55 && brew link php55"
+
 # BOXES
 # Ubuntu precise 64 - http://files.vagrantup.com/precise64.box
 # Ubuntu Server 12.04 amd64 - http://goo.gl/8kWkm
@@ -193,7 +196,7 @@ alias mydump="mysqldump -u root -p" # MYSQL SERVER DUMP
 # CONFIG FILES --------------------------
 alias ohmyzsh="vim $HOME/.oh-my-zsh" # OPEN ZSH DEFAULT CONFIG
 alias zshconfig="vim $HOME/.zshrc" # OPEN ZSH CONFIG
-alias reload=". $HOME/.zshrc && echo 'ZSH config reloaded'" # RELOAD CONFIGS
+alias reload="source $HOME/.zshrc && echo 'ZSH config reloaded'" # RELOAD CONFIGS
 alias ea="vim $HOME/.dotfiles/.zshalias && reload" # OPEN USER-DEFINED ALIASES
 alias ee="vim $HOME/.dotfiles/.zshenv" # OPEN USER-DEFINED ENV
 alias known_host="vim $USER/.ssh/known_hosts" # OPEN KNOWN HOST
