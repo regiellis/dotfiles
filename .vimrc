@@ -105,7 +105,6 @@ call plug#begin('~/.vim/bundle')
     Plug 'SirVer/ultisnips',
     Plug 'Wolfy87/vim-enmasse', { 'on': 'EnMasse' }
     Plug 'Wolfy87/vim-expand', { 'on': 'Expand' }
-    Plug 'amdt/vim-niji', { 'for': 'javascript' }
     Plug 'bling/vim-airline'
     Plug 'cakebaker/scss-syntax.vim'
     Plug 'derekwyatt/vim-scala'
