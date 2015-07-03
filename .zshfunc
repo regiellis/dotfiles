@@ -67,11 +67,8 @@ function sublime_3_package() {
 }
 
 function pip_install_system_packages() {  # INSTALL AND UPDATE SYSTEM FILE
-pip install $1
-pip freeze > .dotfiles/system.txt
-}
-function remove_all_pyc() {
-  find . -name "*.pyc" -exec git rm -f {} \; # REMOVE ALL PYC
+  pip install $1
+  pip freeze > .dotfiles/system.txt
 }
 
 # LANGUAGE FUNCTIONS --------------------------
@@ -90,15 +87,13 @@ function python_simpleserver() {
   open "http://localhost:${port}/" && python -m SimpleHTTPServer "$port"
 }
 
+function remove_all_pyc() {
+  find . -name "*.pyc" -exec git rm -f {} \; # REMOVE ALL PYC
+}
+
 # MARKDOWN DOCS
 function markdown() {
   /Applications/Textmate.app/Contents/SharedSupport/Support/bin/Markdown.pl $1 > $1.html
-}
-
-# CREATE A NEW MERURIAL REPO ON A SERVER
-function new-hg() {
-  ssh regi@persona.io "hg init $1"
-  hg clone ssh://hg@example.com/$1
 }
 
 # COMMIT PENDING CHANGES AND QUOTE ALL ARGS AS MESSAGE

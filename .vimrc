@@ -97,6 +97,7 @@ filetype off
 call plug#begin('~/.vim/bundle')
     "Plug 'airblade/vim-gitgutter'
     Plug 'FelikZ/ctrlp-py-matcher'
+    Plug 'nicklasos/vim-jsx-riot', { 'for': 'Javascript'}
     Plug 'Lokaltog/vim-easymotion'
     Plug 'MarcWeber/vim-addon-mw-utils'
     Plug 'PeterRincker/vim-argumentative'
@@ -105,7 +106,6 @@ call plug#begin('~/.vim/bundle')
     Plug 'SirVer/ultisnips',
     Plug 'Wolfy87/vim-enmasse', { 'on': 'EnMasse' }
     Plug 'Wolfy87/vim-expand', { 'on': 'Expand' }
-    Plug 'amdt/vim-niji', { 'for': 'javascript' }
     Plug 'bling/vim-airline'
     Plug 'cakebaker/scss-syntax.vim'
     Plug 'derekwyatt/vim-scala'
@@ -259,6 +259,10 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_symbols.space="\ua0"
 let g:airline_theme="powerlineish"
+
+" Symfony
+let g:symfony_app_console_caller= "php"
+let g:symfony_app_console_path= "app/console"
 
 " Mocha
 map <leader>mt :call RunCurrentSpecFile()<CR>
