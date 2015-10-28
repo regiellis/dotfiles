@@ -41,6 +41,7 @@ alias pathcp="pwd | pbcopy" # COPY PATH TP PB
 alias ports='sudo lsof -i -P | grep -i "listen"' # LIST OPEN PORTS
 alias ips="ifconfig -a | grep -o 'inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)" # GET LOCAL IPS
 alias gitlive="/usr/local/bin/gitlivelog.sh" # GITLIVELOG
+alias sass="SassC"
 
 # ANIMATION FUNCTIONS --------------------------
 
@@ -59,6 +60,11 @@ then
   alias g-ll="gls -l --color"
   alias g-la='gls -A --color'
 fi
+
+# DOCKER
+alias dm="docker-machine"
+
+
 
 # APPS --------------------------
 
@@ -150,12 +156,20 @@ alias vplug="vagrant plugin uninstall" # PLUGIN UNINSTALL
 # NPM PACKAGE UPDATE
 alias npm_update='npm install -g npm@latest'
 
+# CONFIG DBS
+alias config_nosql="vim $HOME/www/data/config"
+
 # MONGO
 alias mongodb_start="mongod run --config $HOME/www/data/config/mongodb.yaml" # QUICK START OF MONGO
 alias mongodb_stop="mongo --eval 'db.getSiblingDB(\"admin\").shutdownServer()'" # QUICK STOP OF MONGO
 
 # RETHINKDB
 alias rethinkdb_start="rethinkdb --config-file $HOME/www/data/config/rethink_config"
+
+# REDIS
+alias redis_start="redis-server $HOME/www/data/config/local_redis.config"
+
+
 
 # DEV TOOL FUNCTIONS --------------------------
 
@@ -178,7 +192,7 @@ alias vhosts="cd $HOME/www/vhosts" # OVERVIEW GENERAL DIR
 alias logs="cd $HOME/www/logs" # OVERVIEW LOGS DIR
 alias database_configs="cd $HOME/www/data" # OVERVIEW DATA DIR
 alias assets_dev="cd $HOME/Desktop/ASSETS/DEVELOPMENT" # OVERVIEW DEVELOPMENT DIR
-alias android_tools="cd $HOME/Android/sdk/tools" # OVERVIEW ANDROID TOOLS DIR
+alias android_tools="cd $HOME/Library/Android/" # OVERVIEW ANDROID TOOLS DIR
 
 # TMUX QUICK KEYS --------------------------
 alias tns="tmux new-session" # START A NEW NAME SESSION

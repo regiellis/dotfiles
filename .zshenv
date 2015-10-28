@@ -9,34 +9,30 @@ export EDITOR="$(which subl) --new-window --wait"
 # PATHS --------------------------
 
 PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH"
-export PATH="$HOME/Android/sdk/tools:$PATH" # ANDROID
-export PATH="$HOME/Android/sdk/platform-tools:$PATH" #ANDROID
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
-export PATH="$HOME/.node/bin:$PATH" # NPM BIN
-export PATH="$(brew --prefix homebrew/php/php54)/bin:$PATH" #PHP
+export PATH="$HOME/Library/Android/sdk/tools:$PATH" # ANDROID
+export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH" # ANDROID
 export GITHUB_ROOT="$HOME/GitHub/:$PATH" # GITHUB
+export ANDROID_HOME="$HOME/Library/Android/sdk"
 
-export DOCKER_TLS_VERIFY=1
-export DOCKER_TLS=yes
-#export DOCKER_HOST=tcp://192.168.59.103:2376 # DOCKER
-
-# LIBSASS
-#export SASS_SPEC_PATH=/Users/you/dev/sass/sass-spec
-#export SASS_SASSC_PATH=/Users/you/dev/sass/sassc
-#export SASS_LIBSASS_PATH=/Users/you/dev/sass/libsass
-
-# NVM
-export NVM_DIR="/Users/$(whoami)/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+# DOCKER
+export DOCKER_TLS_VERIFY="1"
+export DOCKER_HOST="tcp://192.168.99.100:2376"
+export DOCKER_CERT_PATH="/Users/regiellis/.docker/machine/machines/dev"
+export DOCKER_MACHINE_NAME="dev"
+if which docker-machine > /dev/null; then eval "$(docker-machine env dev)"; fi
 
 # RBENV
-export RBENV_ROOT="/usr/local/var/rbenv:$PATH" # RBENV
+export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # PYENV
 export PYENV_ROOT="/usr/local/opt/pyenv"
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+
+#NODEENV
+export PATH="$HOME/.nodenv/bin:$PATH"
+if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi
 
 # PYTHON
 export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="false"

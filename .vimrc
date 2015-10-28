@@ -9,7 +9,7 @@
 set nocompatible
 syntax enable
 set term=screen-256color
-colorscheme Tomorrow-Night
+color jellybeans
 
 set autoindent
 set autoread
@@ -96,55 +96,59 @@ endif
 filetype off
 call plug#begin('~/.vim/bundle')
     "Plug 'airblade/vim-gitgutter'
+    "Plug 'cakebaker/scss-syntax.vim'
+    "Plug 'groenewege/vim-less', { 'for': ['css', 'less'] }
+    "Plug 'haya14busa/incsearch.vim'
+    "Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
+    "Plug 'junegunn/vim-oblique'
+    "Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
     Plug 'FelikZ/ctrlp-py-matcher'
-    Plug 'nicklasos/vim-jsx-riot', { 'for': 'Javascript'}
     Plug 'Lokaltog/vim-easymotion'
-    Plug 'MarcWeber/vim-addon-mw-utils'
     Plug 'PeterRincker/vim-argumentative'
     Plug 'Raimondi/delimitMate'
     Plug 'Shougo/neocomplete.vim'
-    Plug 'SirVer/ultisnips',
+    Plug 'SirVer/ultisnips'
     Plug 'Wolfy87/vim-enmasse', { 'on': 'EnMasse' }
     Plug 'Wolfy87/vim-expand', { 'on': 'Expand' }
     Plug 'bling/vim-airline'
-    Plug 'cakebaker/scss-syntax.vim'
-    Plug 'derekwyatt/vim-scala'
-    Plug 'docteurklein/vim-symfony'
+    Plug 'digitaltoad/vim-jade', { 'for': ['jade'] }
     Plug 'ekalinin/Dockerfile.vim'
-    Plug 'evidens/vim-twig'
     Plug 'garbas/vim-snipmate'
     Plug 'geekjuice/vim-mocha'
+    Plug 'gilgigilgil/anderson.vim'
     Plug 'godlygeek/tabular'
-    Plug 'groenewege/vim-less', { 'for': ['css', 'less'] }
-    Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'less'] }
-    Plug 'haya14busa/incsearch.vim'
     Plug 'haya14busa/vim-asterisk'
     Plug 'helino/vim-json', { 'for': 'json' }
     Plug 'honza/vim-snippets'
-    "Plug 'jaxbot/github-issues.vim'
-    Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
+    Plug 'honza/vim-snippets'
+    Plug 'jaxbot/github-issues.vim'
     Plug 'jmcantrell/vim-virtualenv'
     Plug 'jmcomets/vim-pony'
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+    Plug 'junegunn/goyo.vim'
+    Plug 'junegunn/limelight.vim'
+    Plug 'junegunn/seoul256.vim'
     Plug 'junegunn/vim-easy-align'
+    Plug 'junegunn/vim-peekaboo'
+    Plug 'junegunn/vim-pseudocl'
+    Plug 'justinj/vim-react-snippets'
     Plug 'kien/ctrlp.vim'
     Plug 'klen/python-mode'
     Plug 'lepture/vim-jinja'
     Plug 'majutsushi/tagbar'
-    Plug 'marcweber/vim-addon-mw-utils' 
+    Plug 'marcweber/vim-addon-mw-utils'
     Plug 'marijnh/tern_for_vim', { 'do': 'npm install', 'for': 'javascript' }
     Plug 'mattn/emmet-vim'
+    Plug 'mxw/vim-jsx', { 'for': 'jsx'}
     Plug 'myusuf3/numbers.vim'
     Plug 'nathanaelkane/vim-indent-guides'
-    Plug 'othree/html5.vim', { 'for': 'html' }
-    Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
-    Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+    Plug 'pangloss/vim-javascript'
     Plug 'rizzatti/dash.vim'
     Plug 'rking/ag.vim'
     Plug 'scrooloose/nerdcommenter'
     Plug 'scrooloose/nerdtree'
     Plug 'scrooloose/syntastic'
     Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
-    Plug 'skammer/vim-css-color', { 'for': ['html', 'css'] }
     Plug 'szw/vim-ctrlspace'
     Plug 'techlivezheng/vim-plugin-minibufexpl'
     Plug 'terryma/vim-multiple-cursors'
@@ -160,7 +164,6 @@ call plug#begin('~/.vim/bundle')
     Plug 'tpope/vim-unimpaired'
     Plug 'tpope/vim-vinegar'
     Plug 'vim-scripts/SyntaxComplete'
-    Plug 'walm/jshint.vim', { 'on': 'JSHint', 'for': 'javascript' }
 call plug#end()
 filetype plugin indent on
 
@@ -175,12 +178,19 @@ let g:closetag_filenames = "*.html"
 let &colorcolumn=join(range(200,999),",")
 let &colorcolumn="120,".join(range(160,999),",")
 let g:user_emmet_leader_key='<c-z>'
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+let g:syntastic_javascript_checkers = ['eslint']
 
 " Solorized Color
 let g:solarized_termcolors=256
 
 " Powerline Symbols Config
 let g:Powerline_symbols = 'fancy'
+
+" Peekaboo
+let g:peekaboo_window = 'vertical botright 50new'
+let g:peekaboo_delay = 0
+let g:peekaboo_compact = 1
 
 " Argumentative
 nmap [; <Plug>Argumentative_Prev
@@ -207,12 +217,13 @@ let g:ctrlp_use_caching = 0
 let s:semanticGUIColors = [ '#72d572', '#c5e1a5', '#e6ee9c', '#fff59d', '#ffe082', '#ffcc80', '#ffab91', '#bcaaa4', '#b0bec5', '#ffa726', '#ff8a65', '#f9bdbb', '#f9bdbb', '#f8bbd0', '#e1bee7', '#d1c4e9', '#ffe0b2', '#c5cae9', '#d0d9ff', '#b3e5fc', '#b2ebf2', '#b2dfdb', '#a3e9a4', '#dcedc8' , '#f0f4c3', '#ffb74d' ]
 let g:semanticTermColors = [28,1,2,3,4,5,6,7,25,9,10,34,12,13,14,15,16,125,124,19]
 
-" Git gutter
-" let g:gitgutter_enabled = 1
-" let g:gitgutter_eager = 0
-" let g:gitgutter_sign_column_always = 1
-" let g:github_user='regiellis'
-" let g:github_comment_open_browser = 1
+" Limelight
+nmap <Leader>l <Plug>(Limelight)
+xmap <Leader>l <Plug>(Limelight)
+
+" Goyo
+autocmd User GoyoEnter Limelight
+autocmd User GoyoLeave Limelight!
 
 " Syntastic
 set statusline+=%#warningmsg#
@@ -230,14 +241,15 @@ let g:syntastic_mode_map = {'mode': 'active',
 " Use flake8
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args = '--ignore="E501,E302,E261,E701,E241,E126,E127,E128,W801"'
-let g:syntastic_javascript_checkers = ['jshint']
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+let g:syntastic_javascript_checkers = ['eslint']
 
 " Better :sign interface symbols
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '!'
 
 " Ultisnip
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="k"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
@@ -307,10 +319,10 @@ imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 " Easy Motion / GIF CONFIG
 map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
 map <leader>j <Plug>(easymotion-j)
 map <leader>k <Plug>(easymotion-k)
 nmap <leader>s <Plugin>(eastmotion-s)
-omap / <Plug>(easymotion-tn)
 
 " NeoComplete
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
@@ -367,7 +379,7 @@ vmap <D-]> >gv
 " highlight
 " ----------------------------------------------------------------------------------------------------
 
-highlight ColorColumn ctermbg=234
+highlight ColorColumn ctermbg=235 guibg=#2c2d27
 highlight NonText ctermfg=darkgray ctermbg=none cterm=none
 highlight SpecialKey ctermfg=darkgray ctermbg=none cterm=none
 highlight Search ctermfg=yellow ctermbg=none cterm=bold,underline
@@ -428,6 +440,7 @@ if executable('ag')
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
 endif
+
 " ----------------------------------------------------------------------------------------------------
 " functions
 " ----------------------------------------------------------------------------------------------------
@@ -454,3 +467,4 @@ function! OpenChangedFiles()
     endfor
 endfunction
 command! OpenChangedFiles :call OpenChangedFiles()
+

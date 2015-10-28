@@ -156,3 +156,4 @@ done
  
 # VI MODE
 bindkey -v
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
