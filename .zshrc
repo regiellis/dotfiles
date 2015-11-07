@@ -157,3 +157,9 @@ done
 # VI MODE
 bindkey -v
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+###-tns-completion-start-###
+if [ -f /Users/regiellis/.tnsrc ]; then 
+    source /Users/regiellis/.tnsrc 
+fi
+###-tns-completion-end-###
