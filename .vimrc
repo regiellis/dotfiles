@@ -95,11 +95,12 @@ endif
 
 filetype off
 call plug#begin('~/.vim/bundle')
+    "Plug 'SirVer/ultisnips'
     "Plug 'airblade/vim-gitgutter'
     "Plug 'cakebaker/scss-syntax.vim'
     "Plug 'groenewege/vim-less', { 'for': ['css', 'less'] }
     "Plug 'haya14busa/incsearch.vim'
-    "Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
+    "Plug 'jaxbot/github-issues.vim'
     "Plug 'junegunn/vim-oblique'
     "Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
     Plug 'FelikZ/ctrlp-py-matcher'
@@ -107,7 +108,6 @@ call plug#begin('~/.vim/bundle')
     Plug 'PeterRincker/vim-argumentative'
     Plug 'Raimondi/delimitMate'
     Plug 'Shougo/neocomplete.vim'
-    Plug 'SirVer/ultisnips'
     Plug 'Wolfy87/vim-enmasse', { 'on': 'EnMasse' }
     Plug 'Wolfy87/vim-expand', { 'on': 'Expand' }
     Plug 'bling/vim-airline'
@@ -120,8 +120,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'haya14busa/vim-asterisk'
     Plug 'helino/vim-json', { 'for': 'json' }
     Plug 'honza/vim-snippets'
-    Plug 'honza/vim-snippets'
-    Plug 'jaxbot/github-issues.vim'
+    Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
     Plug 'jmcantrell/vim-virtualenv'
     Plug 'jmcomets/vim-pony'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
@@ -248,10 +247,11 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '!'
 
-" Ultisnip
-let g:UltiSnipsExpandTrigger="k"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" Multi Cursor
+let g:multi_cursor_next_key='<C-n>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
 
 " Python Mode"
 let g:pymode_lint_write = 0
@@ -338,12 +338,6 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
 
-" ultiships
-let g:UltiSnipsExpandTrigger="<c-S>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsEditSplit="vertical"
-
 " map <leader>t <C-p>
 " map <leader>y :CtrlPBuffer<cr>
 " map <leader>nt :NERDTreeToggle<cr>
@@ -401,14 +395,6 @@ if has("autocmd")
     autocmd FileType html setlocal ts=4 sts=4 sw=4 expandtab
     autocmd FileType css setlocal ts=4 sts=4 sw=4 expandtab
     autocmd Filetype javascript setlocal ts=4 sts=4 sw=4 expandtab
-    autocmd BufReadPre *.js let b:javascript_lib_use_jquery = 1
-    autocmd BufReadPre *.js let b:javascript_lib_use_underscore = 1
-    autocmd BufReadPre *.js let b:javascript_lib_use_backbone = 1
-    autocmd BufReadPre *.js let b:javascript_lib_use_prelude = 0
-    autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 1
-    autocmd BufReadPre *.js let b:javascript_lib_use_jasmine = 1
-    autocmd BufReadPre *.js let b:javascript_lib_use_chai = 1
-    autocmd BufReadPre *.js let b:javascript_lib_use_requirejs = 0
     " autocmd BufWritePre *.py,*.js :call <SID>Preserve()
 
     " Enable omni completion.

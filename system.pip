@@ -1,7 +1,7 @@
 bpython
 pip
 jedi
-mercurial
+#mercurial
 pep8
 pep257
 powerline-status
