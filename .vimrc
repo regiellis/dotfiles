@@ -14,18 +14,19 @@ color jellybeans
 set autoindent
 set autoread
 set autowrite
-set directory-=.
 set background=dark
 set backspace=indent,eol,start
 set clipboard+=unnamed
 set colorcolumn=120
 set copyindent
+set directory-=.
 set display+=lastline
 set encoding=utf-8
 set expandtab
 set foldlevel=1
 set foldmethod=indent
 set foldnestmax=10
+set guifont=Inconsolata\ for\ Powerline:h12
 set hidden
 set history=1000
 set hlsearch
@@ -49,13 +50,13 @@ set shiftround
 set shiftwidth=4
 set shortmess+=I
 set shortmess=atI
-set splitbelow
-set splitright
 set showcmd
 set showmatch
 set smartcase
 set smarttab
 set softtabstop=4
+set splitbelow
+set splitright
 set tabpagemax=15
 set tabstop=4
 set tags=.git/tags,tags
@@ -110,7 +111,8 @@ call plug#begin('~/.vim/bundle')
     Plug 'Shougo/neocomplete.vim'
     Plug 'Wolfy87/vim-enmasse', { 'on': 'EnMasse' }
     Plug 'Wolfy87/vim-expand', { 'on': 'Expand' }
-    Plug 'bling/vim-airline'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
     Plug 'digitaltoad/vim-jade', { 'for': ['jade'] }
     Plug 'ekalinin/Dockerfile.vim'
     Plug 'garbas/vim-snipmate'
