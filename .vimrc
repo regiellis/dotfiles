@@ -105,6 +105,7 @@ call plug#begin('~/.vim/bundle')
     "Plug 'junegunn/vim-oblique'
     "Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
     Plug 'FelikZ/ctrlp-py-matcher'
+    Plug 'elzr/vim-json'
     Plug 'Lokaltog/vim-easymotion'
     Plug 'PeterRincker/vim-argumentative'
     Plug 'Raimondi/delimitMate'
@@ -120,6 +121,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'gilgigilgil/anderson.vim'
     Plug 'godlygeek/tabular'
     Plug 'haya14busa/vim-asterisk'
+    Plug 'kylef/apiblueprint.vim'
     Plug 'helino/vim-json', { 'for': 'json' }
     Plug 'honza/vim-snippets'
     Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
@@ -179,8 +181,13 @@ let g:closetag_filenames = "*.html"
 let &colorcolumn=join(range(200,999),",")
 let &colorcolumn="120,".join(range(160,999),",")
 let g:user_emmet_leader_key='<c-z>'
+
+" React Tools
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+let g:syntastic_javascript_checkers = ['jsxhint']
+let g:syntastic_javascript_jsxhint_exec = 'jsx-jshint-wrapper'
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_json_checkers=['jsonlint']
 
 " Solorized Color
 let g:solarized_termcolors=256
@@ -273,10 +280,6 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_symbols.space="\ua0"
 let g:airline_theme="powerlineish"
-
-" Symfony
-let g:symfony_app_console_caller= "php"
-let g:symfony_app_console_path= "app/console"
 
 " Mocha
 map <leader>mt :call RunCurrentSpecFile()<CR>
@@ -397,6 +400,7 @@ if has("autocmd")
     autocmd FileType html setlocal ts=4 sts=4 sw=4 expandtab
     autocmd FileType css setlocal ts=4 sts=4 sw=4 expandtab
     autocmd Filetype javascript setlocal ts=4 sts=4 sw=4 expandtab
+    autocmd BufRead,BufNewFile *.json set filetype=json
     " autocmd BufWritePre *.py,*.js :call <SID>Preserve()
 
     " Enable omni completion.
