@@ -105,23 +105,20 @@ call plug#begin('~/.vim/bundle')
     "Plug 'junegunn/vim-oblique'
     "Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
     Plug 'FelikZ/ctrlp-py-matcher'
-    Plug 'elzr/vim-json'
     Plug 'Lokaltog/vim-easymotion'
     Plug 'PeterRincker/vim-argumentative'
     Plug 'Raimondi/delimitMate'
     Plug 'Shougo/neocomplete.vim'
     Plug 'Wolfy87/vim-enmasse', { 'on': 'EnMasse' }
     Plug 'Wolfy87/vim-expand', { 'on': 'Expand' }
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
     Plug 'digitaltoad/vim-jade', { 'for': ['jade'] }
     Plug 'ekalinin/Dockerfile.vim'
+    Plug 'elzr/vim-json'
     Plug 'garbas/vim-snipmate'
     Plug 'geekjuice/vim-mocha'
     Plug 'gilgigilgil/anderson.vim'
     Plug 'godlygeek/tabular'
     Plug 'haya14busa/vim-asterisk'
-    Plug 'kylef/apiblueprint.vim'
     Plug 'helino/vim-json', { 'for': 'json' }
     Plug 'honza/vim-snippets'
     Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
@@ -135,8 +132,10 @@ call plug#begin('~/.vim/bundle')
     Plug 'junegunn/vim-peekaboo'
     Plug 'junegunn/vim-pseudocl'
     Plug 'justinj/vim-react-snippets'
+    Plug 'junegunn/gv.vim'
     Plug 'kien/ctrlp.vim'
     Plug 'klen/python-mode'
+    Plug 'kylef/apiblueprint.vim'
     Plug 'lepture/vim-jinja'
     Plug 'majutsushi/tagbar'
     Plug 'marcweber/vim-addon-mw-utils'
@@ -146,6 +145,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'myusuf3/numbers.vim'
     Plug 'nathanaelkane/vim-indent-guides'
     Plug 'pangloss/vim-javascript'
+    Plug 'posva/vim-vue'
     Plug 'rizzatti/dash.vim'
     Plug 'rking/ag.vim'
     Plug 'scrooloose/nerdcommenter'
@@ -166,6 +166,8 @@ call plug#begin('~/.vim/bundle')
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-unimpaired'
     Plug 'tpope/vim-vinegar'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
     Plug 'vim-scripts/SyntaxComplete'
 call plug#end()
 filetype plugin indent on

@@ -4,7 +4,8 @@
 CFLAGS='-g -O2'
 
 # EDITOR --------------------------
-export EDITOR="$(which subl) --new-window --wait"
+export EDITOR="$(which vim)"
+export REACT_EDITOR="$(which vim)"
 
 # PATHS --------------------------
 
@@ -14,6 +15,9 @@ export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH" # ANDROID
 export GITHUB_ROOT="$HOME/GitHub/:$PATH" # GITHUB
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 
+export GOPATH="$HOME/www/apps/GO"
+export PATH="$GOPATH/bin:$PATH"
+
 # DOCKER
 export DOCKER_TLS_VERIFY="1"
 
@@ -22,6 +26,7 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # PYENV
+export PATH="$HOME/.pyenv/bin:$PATH"
 export PYENV_ROOT="/usr/local/opt/pyenv"
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
