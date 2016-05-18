@@ -31,9 +31,13 @@ export PYENV_ROOT="/usr/local/opt/pyenv"
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
-#NODEENV
+# NODEENV
 export PATH="$HOME/.nodenv/bin:$PATH"
 if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi
+
+# PHPENV
+export PATH="$HOME/.phpenv/bin:$PATH"
+if which phpenv > /dev/null; then eval "$(phpenv init -)"; fi
 
 # PYTHON
 export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="false"
