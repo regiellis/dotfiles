@@ -8,7 +8,7 @@
 
 set nocompatible
 syntax enable
-set term=screen-256color
+" set term=screen-256color
 color jellybeans
 
 set autoindent
@@ -95,29 +95,35 @@ endif
 " ----------------------------------------------------------------------------------------------------
 
 filetype off
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
 call plug#begin('~/.vim/bundle')
     "Plug 'SirVer/ultisnips'
-    "Plug 'airblade/vim-gitgutter'
     "Plug 'cakebaker/scss-syntax.vim'
-    "Plug 'groenewege/vim-less', { 'for': ['css', 'less'] }
     "Plug 'haya14busa/incsearch.vim'
-    "Plug 'jaxbot/github-issues.vim'
-    "Plug 'junegunn/vim-oblique'
     "Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
     Plug 'FelikZ/ctrlp-py-matcher'
     Plug 'Lokaltog/vim-easymotion'
     Plug 'PeterRincker/vim-argumentative'
     Plug 'Raimondi/delimitMate'
     Plug 'Shougo/neocomplete.vim'
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'zchee/deoplete-go', { 'do': 'make'}
     Plug 'Wolfy87/vim-enmasse', { 'on': 'EnMasse' }
     Plug 'Wolfy87/vim-expand', { 'on': 'Expand' }
+    Plug 'airblade/vim-gitgutter'
+    Plug 'chase/vim-ansible-yaml'
     Plug 'digitaltoad/vim-jade', { 'for': ['jade'] }
     Plug 'ekalinin/Dockerfile.vim'
     Plug 'elzr/vim-json'
+    Plug 'fatih/vim-go'
+    Plug 'felixr/docker-zsh-completion'
     Plug 'garbas/vim-snipmate'
     Plug 'geekjuice/vim-mocha'
     Plug 'gilgigilgil/anderson.vim'
     Plug 'godlygeek/tabular'
+    Plug 'groenewege/vim-less', { 'for': ['css', 'less'] }
     Plug 'haya14busa/vim-asterisk'
     Plug 'helino/vim-json', { 'for': 'json' }
     Plug 'honza/vim-snippets'
@@ -126,13 +132,14 @@ call plug#begin('~/.vim/bundle')
     Plug 'jmcomets/vim-pony'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
     Plug 'junegunn/goyo.vim'
+    Plug 'junegunn/gv.vim'
     Plug 'junegunn/limelight.vim'
     Plug 'junegunn/seoul256.vim'
     Plug 'junegunn/vim-easy-align'
+    Plug 'junegunn/vim-oblique'
     Plug 'junegunn/vim-peekaboo'
     Plug 'junegunn/vim-pseudocl'
     Plug 'justinj/vim-react-snippets'
-    Plug 'junegunn/gv.vim'
     Plug 'kien/ctrlp.vim'
     Plug 'klen/python-mode'
     Plug 'kylef/apiblueprint.vim'
@@ -141,6 +148,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'marcweber/vim-addon-mw-utils'
     Plug 'marijnh/tern_for_vim', { 'do': 'npm install', 'for': 'javascript' }
     Plug 'mattn/emmet-vim'
+    Plug 'mileszs/ack.vim'
     Plug 'mxw/vim-jsx', { 'for': 'jsx'}
     Plug 'myusuf3/numbers.vim'
     Plug 'nathanaelkane/vim-indent-guides'
@@ -169,6 +177,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'vim-scripts/SyntaxComplete'
+   "Plug 'jaxbot/github-issues.vim'
 call plug#end()
 filetype plugin indent on
 
@@ -183,6 +192,11 @@ let g:closetag_filenames = "*.html"
 let &colorcolumn=join(range(200,999),",")
 let &colorcolumn="120,".join(range(160,999),",")
 let g:user_emmet_leader_key='<c-z>'
+
+" Ansible
+let g:ansible_options = {'ignore_blank_lines': 0}
+let g:ansible_options = {'documentation_mapping': '<C-K>'}
+
 
 " React Tools
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
@@ -247,6 +261,9 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = {'mode': 'active',
   \ 'active_filetypes': [],
   \ 'passive_filetypes': ['html', 'twig'] }
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:go_list_type = "quickfix"
 
 " Use flake8
 let g:syntastic_python_checkers = ['flake8']
@@ -257,6 +274,19 @@ let g:syntastic_javascript_checkers = ['eslint']
 " Better :sign interface symbols
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '!'
+
+" Go
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_fmt_fail_silently = 1
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:go_fmt_command = "gofmt"
+
 
 " Multi Cursor
 let g:multi_cursor_next_key='<C-n>'
@@ -316,6 +346,7 @@ if !exists('g:neocomplete#keyword_patterns')
 endif
 let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+let g:loaded_python3_provider = 1
 " ----------------------------------------------------------------------------------------------------
 " maps
 " ----------------------------------------------------------------------------------------------------
@@ -325,8 +356,8 @@ imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 " nmap <CR> o<Esc>
 
 " Easy Motion / GIF CONFIG
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
+map  \ <Plug>(easymotion-sn)
+omap \ <Plug>(easymotion-tn)
 map <leader>j <Plug>(easymotion-j)
 map <leader>k <Plug>(easymotion-k)
 nmap <leader>s <Plugin>(eastmotion-s)
@@ -398,12 +429,23 @@ highlight GitGutterChangeDelete ctermfg=yellow
 
 if has("autocmd")
 
+    " GO
+    au FileType go nmap <leader>rt <Plug>(go-run-tab)
+    au FileType go nmap <Leader>rs <Plug>(go-run-split)
+    au FileType go nmap <Leader>rv <Plug>(go-run-vertical)
+    au FileType go nmap <leader>r <Plug>(go-run)
+    au FileType go nmap <leader>b <Plug>(go-build)
+    au FileType go nmap <leader>t <Plug>(go-test)
+    au FileType go nmap <leader>c <Plug>(go-coverage)
+    au FileType go nmap <Leader>gd <Plug>(go-doc)
+    au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+    au FileType go setlocal ts=4 sts=4 sw=4 expandtab
+
     " Javascript/HTML/CSS
     autocmd FileType html setlocal ts=4 sts=4 sw=4 expandtab
     autocmd FileType css setlocal ts=4 sts=4 sw=4 expandtab
     autocmd Filetype javascript setlocal ts=4 sts=4 sw=4 expandtab
     autocmd BufRead,BufNewFile *.json set filetype=json
-    " autocmd BufWritePre *.py,*.js :call <SID>Preserve()
 
     " Enable omni completion.
     autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -412,16 +454,15 @@ if has("autocmd")
     autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
     autocmd FileType php setlocal omnifunc=phpcomplete#CompleteTags
+
     " Markdown
     autocmd BufRead,BufNewFile *.scss set filetype=scss.css
     autocmd FileType scss set iskeyword+=-
     autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
     " Python
-     autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
-     autocmd StdinReadPre * let s:std_in=1
-    " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-    " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+    autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
+    autocmd StdinReadPre * let s:std_in=1
 endif
 
 if has("autocmd") && exists("+omnifunc")

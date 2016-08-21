@@ -1,26 +1,26 @@
 # BASE ZSH - PERSONA IO JAN 2015
-sudo -v
+#sudo -v
 
 # Keep-alive: update existing sudo time stamp if set, otherwise do nothing.
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+#while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # JUMP RIGHT INTO TMUX
-if [ -z "$TMUX" ]; then
-    base_session='PSONA'
-    # Create a new session if it doesn't exist
-    tmux has-session -t $base_session || tmux new-session -d -s $base_session
+#if [ -z "$TMUX" ]; then
+#    base_session='PSONA'
+#    # Create a new session if it doesn't exist
+#    tmux has-session -t $base_session || tmux new-session -d -s $base_session
     # Are there any clients connected already?
-    client_cnt=$(tmux list-clients | wc -l)
-    if [ $client_cnt -ge 1 ]; then
-        session_name=$base_session"-"$client_cnt
-        tmux new-session -d -t $base_session -s $session_name
-        tmux -2 attach-session -t $session_name \; set-option destroy-unattached
-        tmux send-keys 'reload'
-    else
-        tmux -2 attach-session -t $base_session
-        tmux send-keys 'reload'
-    fi
-fi
+#    client_cnt=$(tmux list-clients | wc -l)
+#    if [ $client_cnt -ge 1 ]; then
+#        session_name=$base_session"-"$client_cnt
+#        tmux new-session -d -t $base_session -s $session_name
+#        tmux -2 attach-session -t $session_name \; set-option destroy-unattached
+#        tmux send-keys 'reload'
+#    else
+#        tmux -2 attach-session -t $base_session
+#        tmux send-keys 'reload'
+#    fi
+#fi
 
 ZSH_THEME="psona"
 ZSH=$HOME/.oh-my-zsh
@@ -53,7 +53,7 @@ autoload -U colors
 
 setopt prompt_subst
 export KEYTIMEOUT=1
- 
+
 # UNCOMMENT FOLLOWING LINE IF YOU WANT RED DOTS TO BE DISPLAYED WHILE WAITING FOR COMPLETION
 COMPLETION_WAITING_DOTS="false"
 CASE_SENSITIVE="true"
@@ -79,13 +79,13 @@ setopt HIST_FIND_NO_DUPS
 setopt MENUCOMPLETE
 setopt NOMATCH
 unsetopt HIST_EXPIRE_DUPS_FIRST
- 
+
 # zsh performance tweaks
 # .. use a cache file
 zstyle ':completion:*' use-cache on
 # .. and then specify the cache file to use (not added to repo: separate file for each machine)
 zstyle ':completion:*' cache-path $HOME/.zshcache
- 
+
 fpath=($HOME/.oh-my-zsh/custom/plugins/zsh-completions/src $fpath)
 
 # WHICH PLUGINS WOULD YOU LIKE TO LOAD? (PLUGINS CAN BE FOUND IN ~/.OH-MY-ZSH/PLUGINS/*)
@@ -153,14 +153,14 @@ plugins=(
 for config_file ($HOME/.dotfiles/functions/*.zsh); do
   source $config_file
 done
- 
+
 # VI MODE
 bindkey -v
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 ###-tns-completion-start-###
-if [ -f /Users/regiellis/.tnsrc ]; then 
-    source /Users/regiellis/.tnsrc 
+if [ -f /Users/regiellis/.tnsrc ]; then
+    source /Users/regiellis/.tnsrc
 fi
 ###-tns-completion-end-###
 ###-begin-npm-completion-###

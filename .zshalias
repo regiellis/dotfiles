@@ -45,13 +45,6 @@ alias sass="SassC"
 alias reload_shell="exec $SHELL"
 alias dropbox="/usr/local/bin/dropbox.py"
 
-# ANIMATION FUNCTIONS --------------------------
-
-# MODO
-alias modo_dir="open $HOME/Library/Application\ Support/Luxology"
-alias modo_config="open $HOME/Library/Application\ Support/Luxology/Configs"
-alias modo_scripts="open $HOME/Library/Application\ Support/Luxology/Scripts"
-
 # GRC OVERIDES FOR LS
 #   MADE POSSIBLE THROUGH CONTRIBUTIONS FROM GENEROUS BENEFACTORS LIKE
 #   `BREW INSTALL COREUTILS`
@@ -65,18 +58,18 @@ fi
 
 # DOCKER
 alias dm="docker-machine"
-
-
+function docker_env() {
+  eval $(docker-machine env)
+}
 
 # APPS --------------------------
-
 hub_path=$(which hub)
 if (( $+commands[hub] ))
 then
   alias git=$hub_path # USE HUB WHEN RUNNING GIT IS CALLED
 fi
-alias nano="vim" # USE VIM WHEN NANO IS CALLED
-alias vim='mvim -v' # USE MACVIM WHEN VIM IS CALLED
+alias nano="nvim" # USE VIM WHEN NANO IS CALLED
+alias vim='nvim' # USE MACVIM WHEN VIM IS CALLED
 
 # LANGUAGE --------------------------
 
@@ -123,9 +116,7 @@ alias ios-sim-web='open /Applications/Xcode.app/Contents/Developer/Platforms/iPh
 alias wordpress_svn='svn co http://core.svn.wordpress.org/trunk/ .' # WORDPRESS TRUNK DOWNLOAD
 fpm_path=$(which php-fpm)
 alias php-fpm-start='$fpm_path' # PHP5 FPM START
-
-alias use_php54="brew unlink php55 && brew unlink php54 && brew link php54"
-alias use_php55="brew unlink php54 && brew unlink php55 && brew link php55"
+alias composer="php /usr/local/bin/composer.phar"
 
 # BOXES
 # Ubuntu precise 64 - http://files.vagrantup.com/precise64.box
@@ -158,11 +149,9 @@ alias vpluginstall="vagrant plugin install" # PLUGIN INSTALL
 alias vpluglist="vagrant plugin list" # PLUGIN LIST
 alias vplug="vagrant plugin uninstall" # PLUGIN UNINSTALL
 
-# NPM PACKAGE UPDATE
-alias npm_update='npm install -g npm@latest'
 
 # CONFIG DBS
-alias config_nosql="vim $HOME/www/data/config"
+alias config_nosql="nvim $HOME/www/data/config"
 
 # MONGO
 alias mongodb_start="mongod run --config $HOME/www/data/config/mongodb.yaml" # QUICK START OF MONGO
@@ -173,8 +162,6 @@ alias rethinkdb_start="rethinkdb --config-file $HOME/www/data/config/rethink_con
 
 # REDIS
 alias redis_start="redis-server $HOME/www/data/config/local_redis.config"
-
-
 
 # DEV TOOL FUNCTIONS --------------------------
 
@@ -206,32 +193,17 @@ alias ta="tmux attach" # TMUX ATTACH
 alias tan="tmux attach -t" # TMUX ATTACH TO NAME SESSION
 alias tkill="tmux kill-session -t" # TMUX KILL SESSION WITH NAME
 
-# MYSQL ------------------------------------
-alias my="mysql -u root -p" # QUICK LOGIN AS ROOT W/PASS
-alias mysql_start="mysql.server start" # MYSQL SERVER START
-alias mysql_stop="mysql.server stop" # MYSQL SERVER STOP
-alias mydump="mysqldump -u root -p" # MYSQL SERVER DUMP
-
 # CONFIG FILES --------------------------
-alias ohmyzsh="vim $HOME/.oh-my-zsh" # OPEN ZSH DEFAULT CONFIG
-alias zshconfig="vim $HOME/.zshrc" # OPEN ZSH CONFIG
+alias ohmyzsh="nvim $HOME/.oh-my-zsh" # OPEN ZSH DEFAULT CONFIG
+alias zshconfig="nvim $HOME/.zshrc" # OPEN ZSH CONFIG
 alias reload="source $HOME/.zshrc && echo 'ZSH config reloaded'" # RELOAD CONFIGS
-alias ea="vim $HOME/.dotfiles/.zshalias && reload" # OPEN USER-DEFINED ALIASES
-alias ee="vim $HOME/.dotfiles/.zshenv" # OPEN USER-DEFINED ENV
-alias known_host="vim $USER/.ssh/known_hosts" # OPEN KNOWN HOST
-alias ssh-config="vim $HOME/.ssh/config" # OPEN SSH CONFIG
-alias eh="sudo vim /private/etc/hosts" # OPEN HOSTS FILE IN SUBL
-alias eg='vim .git/config' # EDIT GIT CONFIG
-alias dotconfig="vim $HOME/.dotfiles" # EDIT DOT FILES
-
-# NGINX
-alias nginx="sudo nginx"
-alias nginx_stop="sudo nginx -s stop"
-alias nginx_reload="sudo nginx -s reload"
-alias nginx_dir="cd /usr/local/etc/nginx/"
-function nginx_alias_site() {
-  sudo ln -s /usr/local/etc/nginx/sites-available/$1 /usr/local/etc/nginx/sites-enabled/$1
-}
+alias ea="nvim $HOME/.dotfiles/.zshalias && reload" # OPEN USER-DEFINED ALIASES
+alias ee="nvim $HOME/.dotfiles/.zshenv" # OPEN USER-DEFINED ENV
+alias known_host="nvim $USER/.ssh/known_hosts" # OPEN KNOWN HOST
+alias ssh-config="nvim $HOME/.ssh/config" # OPEN SSH CONFIG
+alias eh="sudo nvim /private/etc/hosts" # OPEN HOSTS FILE IN SUBL
+alias eg='nvim .git/config' # EDIT GIT CONFIG
+alias dotconfig="nvim $HOME/.dotfiles" # EDIT DOT FILES
 
 if $(grc &>/dev/null)
 then
@@ -253,8 +225,6 @@ then
   fi
 fi
 
-# ALIASES FOR GRC FROM HOMEBREW
-source `brew --prefix grc`/etc/grc.bashrc
 
 # LOAD PERSONAL FUNCTIONS IF USER MATCH
 if [[ $USER == 'regiellis' ]]; then

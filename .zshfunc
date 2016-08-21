@@ -6,6 +6,14 @@
 # This function is here because the wacom drivers will
 # not stay installed on Mac 10.9+ on my machine
 #
+#
+
+function create_ansible_config() {
+  wget https://gist.githubusercontent.com/regiellis/55f3cfe6165f04b90b1b1c9201992657/raw/1a54d208dd154ca677238ac6f6767e4eea9aa426/ansible.cfg
+}
+
+
+
 function wacom_download_install() {
   cd "/Users/$USER/Downloads" # Change into download dir
   wget "http://cdn.wacom.com/u/drivers/mac/pro/WacomTablet_6.3.7-3.dmg"
@@ -60,11 +68,6 @@ function untarit() {
 }
 
 # APP FUNCTIONS --------------------------
-
-# INSTALL SUBLIME PACKAGES VIA GITHUB USERNAME AND PACKAGE NAME
-function sublime_3_package() {
-  git clone $1 $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/$2
-}
 
 function pip_install_system_packages() {  # INSTALL AND UPDATE SYSTEM FILE
   pip install $1
@@ -128,7 +131,3 @@ function unmark {
   rm -i "$MARKPATH/$1"
 }
 
-# COOKBOOKS
-function git_cookbook() {
-    git clone https://github.com/opscode-cookbooks/$1.git
-}

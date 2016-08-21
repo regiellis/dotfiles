@@ -1,7 +1,6 @@
 bpython
 pip
 jedi
-#mercurial
 pep8
 pep257
 powerline-status
@@ -13,10 +12,12 @@ invoke
 pyflakes
 pylint
 virtualenv
-virtualenvwrapper
+#virtualenvwrapper
 youtube-dl
 howdoi
 mkdocs
 hg-git
 setuptools
 awscli
+aws-shell
+neovim
