@@ -12,10 +12,10 @@ export PATH="$HOME/Library/Android/sdk/tools:$PATH" # ANDROID
 export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH" # ANDROID
 export GITHUB_ROOT="$HOME/GitHub/:$PATH" # GITHUB
 export ANDROID_HOME="$HOME/Library/Android/sdk"
-#
+
+#GO
 export GOPATH="$HOME/www/apps/GOAPPS/PACKAGES"
 export PATH="$GOPATH/bin:$PATH"
-
 
 # RBENV
 export PATH="$HOME/.rbenv/bin:$PATH"

@@ -99,20 +99,16 @@ function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
 call plug#begin('~/.vim/bundle')
-    "Plug 'SirVer/ultisnips'
-    "Plug 'cakebaker/scss-syntax.vim'
-    "Plug 'haya14busa/incsearch.vim'
-    "Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
+    "Plug 'Shougo/neocomplete.vim'
     Plug 'FelikZ/ctrlp-py-matcher'
     Plug 'Lokaltog/vim-easymotion'
     Plug 'PeterRincker/vim-argumentative'
     Plug 'Raimondi/delimitMate'
-    Plug 'Shougo/neocomplete.vim'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'zchee/deoplete-go', { 'do': 'make'}
     Plug 'Wolfy87/vim-enmasse', { 'on': 'EnMasse' }
     Plug 'Wolfy87/vim-expand', { 'on': 'Expand' }
     Plug 'airblade/vim-gitgutter'
+    Plug 'carlitux/deoplete-ternjs'
     Plug 'chase/vim-ansible-yaml'
     Plug 'digitaltoad/vim-jade', { 'for': ['jade'] }
     Plug 'ekalinin/Dockerfile.vim'
@@ -124,6 +120,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'gilgigilgil/anderson.vim'
     Plug 'godlygeek/tabular'
     Plug 'groenewege/vim-less', { 'for': ['css', 'less'] }
+    Plug 'haya14busa/incsearch.vim'
     Plug 'haya14busa/vim-asterisk'
     Plug 'helino/vim-json', { 'for': 'json' }
     Plug 'honza/vim-snippets'
@@ -144,6 +141,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'klen/python-mode'
     Plug 'kylef/apiblueprint.vim'
     Plug 'lepture/vim-jinja'
+    Plug 'majutsushi/tagbar'
     Plug 'majutsushi/tagbar'
     Plug 'marcweber/vim-addon-mw-utils'
     Plug 'marijnh/tern_for_vim', { 'do': 'npm install', 'for': 'javascript' }
@@ -177,7 +175,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'vim-scripts/SyntaxComplete'
-   "Plug 'jaxbot/github-issues.vim'
+    Plug 'zchee/deoplete-go', { 'do': 'make'}
 call plug#end()
 filetype plugin indent on
 
@@ -276,6 +274,7 @@ let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '!'
 
 " Go
+let g:go_disable_autoinstall = 0
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
@@ -285,8 +284,34 @@ let g:go_highlight_build_constraints = 1
 let g:go_fmt_fail_silently = 1
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-let g:go_fmt_command = "gofmt"
-
+let g:go_fmt_command = "goimports"
+let g:tagbar_type_go = {  
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
 
 " Multi Cursor
 let g:multi_cursor_next_key='<C-n>'
@@ -327,26 +352,30 @@ map ^[OD <left>
 " NerdTree
 map <leader>nt :NERDTreeToggle<cr>
 
-" Neocomplete
-
-let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 0
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-" let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-    \ }
-
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
-let g:loaded_python3_provider = 1
+" Neocomplete / Deoplete
+let g:deoplete#enable_at_startup = 1
+let g:tern_request_timeout = 1
+let g:tern_show_signature_in_pum = 0  " This do disable full signature type on autocomplete
+let g:tern#command = ["tern"]
+let g:tern#arguments = ["--persistent"]
+" let g:acp_enableAtStartup = 0
+" let g:neocomplete#enable_at_startup = 1
+" let g:neocomplete#enable_smart_case = 1
+" let g:neocomplete#sources#syntax#min_keyword_length = 3
+" " let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+" 
+" let g:neocomplete#sources#dictionary#dictionaries = {
+"     \ 'default' : '',
+"     \ 'vimshell' : $HOME.'/.vimshell_hist',
+"     \ 'scheme' : $HOME.'/.gosh_completions'
+"     \ }
+" 
+" if !exists('g:neocomplete#keyword_patterns')
+"     let g:neocomplete#keyword_patterns = {}
+" endif
+" let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+" imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+" let g:loaded_python3_provider = 1
 " ----------------------------------------------------------------------------------------------------
 " maps
 " ----------------------------------------------------------------------------------------------------
@@ -357,24 +386,25 @@ let g:loaded_python3_provider = 1
 
 " Easy Motion / GIF CONFIG
 map  \ <Plug>(easymotion-sn)
-omap \ <Plug>(easymotion-tn)
 map <leader>j <Plug>(easymotion-j)
 map <leader>k <Plug>(easymotion-k)
+nmap <F8> :TagbarToggle<CR>
 nmap <leader>s <Plugin>(eastmotion-s)
+omap \ <Plug>(easymotion-tn)
 
 " NeoComplete
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-    return neocomplete#close_popup() . "\<CR>"
-    " For no inserting <CR> key.
-    "   "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
- endfunction
-
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
+"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+" function! s:my_cr_function()
+"     return neocomplete#close_popup() . "\<CR>"
+"     " For no inserting <CR> key.
+"     "   "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+"  endfunction
+" 
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><C-y>  neocomplete#close_popup()
+" inoremap <expr><C-e>  neocomplete#cancel_popup()
 
 " map <leader>t <C-p>
 " map <leader>y :CtrlPBuffer<cr>
