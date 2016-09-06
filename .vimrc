@@ -36,13 +36,14 @@ set laststatus=2
 set lazyredraw
 set list
 set listchars=tab:▸\ ,eol:¬
+set nowritebackup
 set nobackup
+set backupcopy=yes
 set nofoldenable
 set noshowmode
 set noswapfile
 set nottimeout
 set nowrap
-set nowritebackup
 set number
 set ruler
 set scrolloff=5
@@ -100,11 +101,14 @@ function! DoRemote(arg)
 endfunction
 call plug#begin('~/.vim/bundle')
     "Plug 'Shougo/neocomplete.vim'
+    Plug 'AndrewRadev/splitjoin.vim'
     Plug 'FelikZ/ctrlp-py-matcher'
     Plug 'Lokaltog/vim-easymotion'
     Plug 'PeterRincker/vim-argumentative'
     Plug 'Raimondi/delimitMate'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
     Plug 'Wolfy87/vim-enmasse', { 'on': 'EnMasse' }
     Plug 'Wolfy87/vim-expand', { 'on': 'Expand' }
     Plug 'airblade/vim-gitgutter'
@@ -113,6 +117,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'digitaltoad/vim-jade', { 'for': ['jade'] }
     Plug 'ekalinin/Dockerfile.vim'
     Plug 'elzr/vim-json'
+    Plug 'tpope/vim-dispatch'
     Plug 'fatih/vim-go'
     Plug 'felixr/docker-zsh-completion'
     Plug 'garbas/vim-snipmate'
@@ -194,6 +199,11 @@ let g:user_emmet_leader_key='<c-z>'
 " Ansible
 let g:ansible_options = {'ignore_blank_lines': 0}
 let g:ansible_options = {'documentation_mapping': '<C-K>'}
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 
 " React Tools
@@ -312,6 +322,26 @@ let g:tagbar_type_go = {
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
 \ }
+
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
+nnoremap <leader>a :cclose<CR>
+
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#cmd#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
+autocmd FileType go nmap <leader>t  <Plug>(go-test)
+let g:go_list_type = "quickfix"
+
 
 " Multi Cursor
 let g:multi_cursor_next_key='<C-n>'

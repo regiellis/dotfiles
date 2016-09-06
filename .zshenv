@@ -14,8 +14,9 @@ export GITHUB_ROOT="$HOME/GitHub/:$PATH" # GITHUB
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 
 #GO
-export GOPATH="$HOME/www/apps/GOAPPS/PACKAGES"
+export GOPATH="$HOME/www/apps/GOAPPS"
 export PATH="$GOPATH/bin:$PATH"
+export PATH=$PATH:/usr/local/opt/go/libexec/bin
 
 # RBENV
 export PATH="$HOME/.rbenv/bin:$PATH"
