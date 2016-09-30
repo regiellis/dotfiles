@@ -81,6 +81,7 @@ alias pip_remove_all="pip freeze | xargs pip uninstall -y" # REMOVE ALL PACKAGES
 
 #NODE
 alias nodenv_update="$(nodenv root)/plugins/node-build && npm run write-definitions"
+alias node_install="cat .dotfiles/npm.txt | xargs $(which npm) install -g"
 
 # RUBY
 alias r="rake"

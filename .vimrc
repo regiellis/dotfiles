@@ -102,10 +102,15 @@ endfunction
 call plug#begin('~/.vim/bundle')
     "Plug 'Shougo/neocomplete.vim'
     Plug 'AndrewRadev/splitjoin.vim'
+    Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+    Plug 'gfontenot/vim-xcode'
     Plug 'FelikZ/ctrlp-py-matcher'
     Plug 'Lokaltog/vim-easymotion'
     Plug 'PeterRincker/vim-argumentative'
     Plug 'Raimondi/delimitMate'
+    Plug 'burnettk/vim-angular'
+    Plug 'leafgarland/typescript-vim'
+    Plug 'Quramy/tsuquyomi'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
@@ -205,6 +210,8 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
+" XCODE
+let g:xcode_runner_command = 'VtrSendCommandToRunner! {cmd}'
 
 " React Tools
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
