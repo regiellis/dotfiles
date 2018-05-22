@@ -13,41 +13,22 @@ function create_ansible_config() {
 }
 
 
-
-function wacom_download_install() {
-  cd "/Users/$USER/Downloads" # Change into download dir
-  wget "http://cdn.wacom.com/u/drivers/mac/pro/WacomTablet_6.3.7-3.dmg"
-  hdiutil detach WacomTablet_6.3.7-3.dmg
-  /Volumes/WacomTablet/
-  sudo installer -pkg Install\ Wacom\ Tablet.pkg -target /
-}
-
 # FIX PERMISSIONS ON NODE
 function permission_fix_on_node() {
   sudo chown -R `whoami` ~/.npm
   sudo chown -R `whoami` /usr/local/lib/node_modules
 }
 
-# ROSETTA STONE
-function rosetta() {
-  /Library/Application\ Support/RosettaStoneDaemon/Bin/RosettaStoneDaemon
-  /Applications/Rosetta\ Stone\ TOTALe.app/Contents/MacOS/Rosetta\ Stone\ TOTALe
-}
-
-# SWITCH XCODE
-function xcode_switch() {
-  sudo xcode-select -switch /Applications/$1.app/Contents/Developer
-}
 
 # SYSTEM FUNCTIONS --------------------------
 
 # CHANGE INTO THEN LIST
-function cdc() {
+function cdl() {
   cd $1; ls
 }
 
 # CREATE THEN CHANGE INTO
-function take() {
+function cdc() {
   mkdir -p "$1"
   cd "$1"
 }
@@ -94,11 +75,6 @@ function remove_all_pyc() {
   find . -name "*.pyc" -exec git rm -f {} \; # REMOVE ALL PYC
 }
 
-# MARKDOWN DOCS
-function markdown() {
-  /Applications/Textmate.app/Contents/SharedSupport/Support/bin/Markdown.pl $1 > $1.html
-}
-
 # COMMIT PENDING CHANGES AND QUOTE ALL ARGS AS MESSAGE
 function gg() {
   git commit -v -a -m "$*"
@@ -118,16 +94,3 @@ function grf() {
   rm $1
   git checkout $1
 }
-
-# QUICK JUMPS WITH MARKS
-# http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html?utm_source=hackernewsletter&utm_medium=email
-function jump {
-  cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
-}
-function mark {
-  mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"
-}
-function unmark {
-  rm -i "$MARKPATH/$1"
-}
-

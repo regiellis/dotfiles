@@ -111,7 +111,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'burnettk/vim-angular'
     Plug 'leafgarland/typescript-vim'
     Plug 'Quramy/tsuquyomi'
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
     Plug 'Wolfy87/vim-enmasse', { 'on': 'EnMasse' }

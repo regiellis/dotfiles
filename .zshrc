@@ -1,26 +1,7 @@
-# BASE ZSH - PERSONA IO JAN 2015
 #sudo -v
 
 # Keep-alive: update existing sudo time stamp if set, otherwise do nothing.
 #while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
-
-# JUMP RIGHT INTO TMUX
-#if [ -z "$TMUX" ]; then
-#    base_session='PSONA'
-#    # Create a new session if it doesn't exist
-#    tmux has-session -t $base_session || tmux new-session -d -s $base_session
-    # Are there any clients connected already?
-#    client_cnt=$(tmux list-clients | wc -l)
-#    if [ $client_cnt -ge 1 ]; then
-#        session_name=$base_session"-"$client_cnt
-#        tmux new-session -d -t $base_session -s $session_name
-#        tmux -2 attach-session -t $session_name \; set-option destroy-unattached
-#        tmux send-keys 'reload'
-#    else
-#        tmux -2 attach-session -t $base_session
-#        tmux send-keys 'reload'
-#    fi
-#fi
 
 ZSH_THEME="psona"
 ZSH=$HOME/.oh-my-zsh

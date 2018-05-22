@@ -8,12 +8,6 @@ EMAIL="$EMAIL"
 # SYSTEM --------------------------
 # SOME FROM Damian Conway
 
-alias disable_local_backups="sudo tmutil disablelocal" # DISABLES LOCAL BACKUPS - OSX 10.6+
-alias enable_local_backups="sudo tmutil enablelocal" # ENABLES LOCAL BACKUPS - OSX 10.6+
-alias show_hidden_files="defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder" # SHOW ALL HIDDEN FILES
-alias hide_hidden_files="defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder" # HIDE ALL HIDDEN FILES
-alias no_ds_store_remote="defaults write com.apple.desktopservices DSDontWriteNetworkStores true" # PREVENT DS STORE ON REMOTE
-alias o='open . &' # QUICK OPEN IN FINDER WITH "O"
 alias tu='top -o cpu' # QUICK LOOK AT CPU USAGE
 alias tm='top -o vsize' # QUICK LOOK AT MEMOERY USAGE
 alias cl='clear; l' # CLEAR THEN LIST
@@ -32,18 +26,15 @@ alias md='mkdir -p' # CREATE DIR , CREATE PARENT DIR IF IT DOES EXIST
 alias up='cd ..'   # MOVE UP ONE DIR
 alias e='exit'  # EXIT CMD
 alias k9="killall -9" # KILL BY PROC ID
-alias pubkey="more $HOME/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'" # COPY PUBKEY TO PASTEBOARD
-alias sshalias="vim /Users/regi/.ssh/config -w"
-alias restart_finder="open /System/Library/CoreServices/Finder.app" # AS IT SAYS, RESTART FINDER
-alias going_mobile="diskutil unmountDisk /dev/disk*" # UNMONUT ALL DISK
+alias pubkey="more $HOME.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'" # COPY PUBKEY TO PASTEBOARD
+alias sshalias="vim $HOME.ssh/config -w"
 alias spell="aspell"
 alias pathcp="pwd | pbcopy" # COPY PATH TP PB
 alias ports='sudo lsof -i -P | grep -i "listen"' # LIST OPEN PORTS
 alias ips="ifconfig -a | grep -o 'inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)" # GET LOCAL IPS
-alias gitlive="/usr/local/bin/gitlivelog.sh" # GITLIVELOG
+#alias gitlive="/usr/local/bin/gitlivelog.sh" # GITLIVELOG
 alias sass="SassC"
 alias reload_shell="exec $SHELL"
-alias dropbox="/usr/local/bin/dropbox.py"
 
 # GRC OVERIDES FOR LS
 #   MADE POSSIBLE THROUGH CONTRIBUTIONS FROM GENEROUS BENEFACTORS LIKE
@@ -56,20 +47,9 @@ then
   alias g-la='gls -A --color'
 fi
 
-# DOCKER
-alias dm="docker-machine"
-function docker_env() {
-  eval $(docker-machine env)
-}
-
 # APPS --------------------------
-hub_path=$(which hub)
-if (( $+commands[hub] ))
-then
-  alias git=$hub_path # USE HUB WHEN RUNNING GIT IS CALLED
-fi
 alias nano="nvim" # USE VIM WHEN NANO IS CALLED
-alias vim='nvim' # USE MACVIM WHEN VIM IS CALLED
+#alias vim='nvim' # USE MACVIM WHEN VIM IS CALLED
 
 # LANGUAGE --------------------------
 
@@ -78,10 +58,6 @@ alias python_dir="python -c 'from distutils.sysconfig import get_python_lib; pri
 alias pip_update_system_packages="pip freeze > $HOME/.dotfiles/system.pip" # UPDATE ALL PIP PACKAGES
 alias pip_update="pip install -U -r $HOME/.dotfiles/system.pip" # UPDATE ALL PIP PACKAGES
 alias pip_remove_all="pip freeze | xargs pip uninstall -y" # REMOVE ALL PACKAGES
-
-#NODE
-alias nodenv_update="$(nodenv root)/plugins/node-build && npm run write-definitions"
-alias node_install="cat .dotfiles/npm.txt | xargs $(which npm) install -g"
 
 # RUBY
 alias r="rake"
@@ -113,56 +89,23 @@ _rbenv() {
 # FRAMEWORK FUNCTIONS --------------------------
 
 # DEV TOOLS --------------------------
-alias ios-sim-web='open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app' # IOS 7
 alias wordpress_svn='svn co http://core.svn.wordpress.org/trunk/ .' # WORDPRESS TRUNK DOWNLOAD
-fpm_path=$(which php-fpm)
-alias php-fpm-start='$fpm_path' # PHP5 FPM START
-alias composer="php /usr/local/bin/composer.phar"
-
-# BOXES
-# Ubuntu precise 64 - http://files.vagrantup.com/precise64.box
-# Ubuntu Server 12.04 amd64 - http://goo.gl/8kWkm
-
-# VAGRANT COMMON CMDS
-alias vinit="vagrant init" # CREATE VAGRANTFILE < NAME & URL
-alias vup="vagrant up" # CREATE SETUP BASED ON VAGRANT FILE
-alias vreload="vagrant reload" # REUP
-alias vhalt="vagrant halt" # SHUTDOWN CURRENT RUNNING BOX
-alias vgone="vagrant destroy" # DESTORY VAGRANT SETUP
-alias vssh="vagrant ssh" # SSH INTO CURRENT RUNNING BOX
-alias vsleep="vagrant suspend" # SUSPEND CURRENT VBOX
-alias vst="vagrant status" # GET THE CURRENT STATUS OF BOX
-alias vwake="vagrant resume" # RESUME BOX
-alias vrefresh"vagrant provision" # RE-PROVISION
-
-# VAGRANT SHARE
-alias vpack="vagrant package" # PACKAGE UP CURRENT BOX
-
-# VAGRANT BOX
-alias vboxadd="vagrant box add" # ADD NEW BOX < NAME & URL
-alias vboxlist="vagrant box list" # ADD LIST BOX < NAME
-alias vboxrm="vagrant box remove" # ADD REMOVE BOX < NAME & URL
-alias vboxrepack="vagrant box repackage" # ADD REPACK BOX < NAME & URL
-
-# VAGRANT PLUGIN
-alias vplug="vagrant plugin" # PLUGIN LIST
-alias vpluginstall="vagrant plugin install" # PLUGIN INSTALL
-alias vpluglist="vagrant plugin list" # PLUGIN LIST
-alias vplug="vagrant plugin uninstall" # PLUGIN UNINSTALL
-
+#fpm_path=$(which php-fpm)
+#alias php-fpm-start='$fpm_path' # PHP5 FPM START
+#alias composer="php /usr/local/bin/composer.phar"
 
 # CONFIG DBS
-alias config_nosql="nvim $HOME/www/data/config"
+# alias config_nosql="nvim $HOME/www/data/config"
 
 # MONGO
-alias mongodb_start="mongod run --config $HOME/www/data/config/mongodb.yaml" # QUICK START OF MONGO
-alias mongodb_stop="mongo --eval 'db.getSiblingDB(\"admin\").shutdownServer()'" # QUICK STOP OF MONGO
+#alias mongodb_start="mongod run --config $HOME/www/data/config/mongodb.yaml" # QUICK START OF MONGO
+#alias mongodb_stop="mongo --eval 'db.getSiblingDB(\"admin\").shutdownServer()'" # QUICK STOP OF MONGO
 
 # RETHINKDB
-alias rethinkdb_start="rethinkdb --config-file $HOME/www/data/config/rethink_config"
+#alias rethinkdb_start="rethinkdb --config-file $HOME/www/data/config/rethink_config"
 
 # REDIS
-alias redis_start="redis-server $HOME/www/data/config/local_redis.config"
+# alias redis_start="redis-server $HOME/www/data/config/local_redis.config"
 
 # DEV TOOL FUNCTIONS --------------------------
 
@@ -179,20 +122,12 @@ alias n=!"git ls-files | xargs notes | awk -F: '{ print $1,$2; print $3,$4; prin
 
 # QUICK LOCATION --------------------------
 
-alias apps="cd $HOME/www/apps" # OVERVIEW APPLICATIONS DIR
-alias www="cd $HOME/www/" # OVERVIEW GENERAL WEB DIR
-alias vhosts="cd $HOME/www/vhosts" # OVERVIEW GENERAL DIR
-alias logs="cd $HOME/www/logs" # OVERVIEW LOGS DIR
-alias database_configs="cd $HOME/www/data" # OVERVIEW DATA DIR
-alias assets_dev="cd $HOME/Desktop/ASSETS/DEVELOPMENT" # OVERVIEW DEVELOPMENT DIR
-alias android_tools="cd $HOME/Library/Android/" # OVERVIEW ANDROID TOOLS DIR
 
-# TMUX QUICK KEYS --------------------------
-alias tmns="tmux new-session" # START A NEW NAME SESSION
-alias tls="tmux ls" # LIST ALL SESSIONS
-alias ta="tmux attach" # TMUX ATTACH
-alias tan="tmux attach -t" # TMUX ATTACH TO NAME SESSION
-alias tkill="tmux kill-session -t" # TMUX KILL SESSION WITH NAME
+DEVLOCATION="/mnt/d/WWW/"
+alias apps="cd /mnt/d/WWW/APPS" # OVERVIEW APPLICATIONS DIR
+alias vhosts="cd /mnt/d/WWW/STATIC" # OVERVIEW GENERAL DIR
+alias logs="cd /mnt/d/WWW/LOGS" # OVERVIEW LOGS DIR
+alias database_configs="cd /mnt/d/WWW/DATABASE" # OVERVIEW DATA DIR
 
 # CONFIG FILES --------------------------
 alias ohmyzsh="nvim $HOME/.oh-my-zsh" # OPEN ZSH DEFAULT CONFIG
@@ -202,7 +137,7 @@ alias ea="nvim $HOME/.dotfiles/.zshalias && reload" # OPEN USER-DEFINED ALIASES
 alias ee="nvim $HOME/.dotfiles/.zshenv" # OPEN USER-DEFINED ENV
 alias known_host="nvim $USER/.ssh/known_hosts" # OPEN KNOWN HOST
 alias ssh-config="nvim $HOME/.ssh/config" # OPEN SSH CONFIG
-alias eh="sudo nvim /private/etc/hosts" # OPEN HOSTS FILE IN SUBL
+alias eh="sudo nvim /etc/hosts" # OPEN HOSTS FILE IN SUBL
 alias eg='nvim .git/config' # EDIT GIT CONFIG
 alias dotconfig="nvim $HOME/.dotfiles" # EDIT DOT FILES
 
@@ -226,8 +161,9 @@ then
   fi
 fi
 
-
+alias pbcopy='xclip -selection clipboard' 
+alias pbpaste='xclip -selection clipboard -o'
 # LOAD PERSONAL FUNCTIONS IF USER MATCH
-if [[ $USER == 'regiellis' ]]; then
-  source $HOME/.dotfiles/functions/personal.zsh
-fi
+#if [[ $USER == 'regiellis' ]]; then
+#  source $HOME/.dotfiles/functions/personal.zsh
+#fi
